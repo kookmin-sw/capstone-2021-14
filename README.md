@@ -41,7 +41,9 @@
 
 ### 4. 사용법
 
-소스코드제출시 설치법이나 사용법을 작성하세요.
+#### Face-Landmarks-Detection
+  - Install
+    - yarn add @tensorflow/tfjs @tensorflow-models/face-landmarks-detection@0.0.1 react-webcam
 
 ### 5. 기타
 
