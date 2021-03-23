@@ -19,6 +19,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import { drawMesh } from "./utilities";
+import { drawDot } from "./mask";
 
 function App() {
   // Setup references
@@ -30,7 +31,7 @@ function App() {
     const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
     setInterval(() => {
       detect(net);
-    }, 10); // 10ms
+    }, 3000); // 3000ms
   };
 
   // Detect function
@@ -57,6 +58,7 @@ function App() {
       // Get canvas context for drawing
       const ctx = canvasRef.current.getContext("2d");
       drawMesh(face, ctx)
+      drawDot(ctx)
     }
   };
 
