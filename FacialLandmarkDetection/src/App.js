@@ -21,11 +21,12 @@ import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import { drawMesh } from "./utilities";
 
+//Components
+import HomeContainer from "./Containers/Home"
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-
   //  Load posenet
   const runFacemesh = async () => {
     // OLD MODEL
@@ -72,13 +73,14 @@ function App() {
     }
   };
 
-  useEffect(()=>{runFacemesh()}, []);
+  // useEffect(()=>{runFacemesh()}, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <Test>dd</Test>
-        <Webcam
+        <HomeContainer/>
+        
+        {/* <Webcam
           ref={webcamRef}
           style={{
             // position: "absolute",
@@ -106,7 +108,7 @@ function App() {
             width: 640,
             height: 480,
           }}
-        />
+        /> */}
         
       </header>
     </div>
