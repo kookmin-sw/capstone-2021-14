@@ -1,38 +1,54 @@
-import React from 'react'
-import styled from 'styled-components'
-import Container from '../Components/Container'
-import FileUploadContainer from "./FileUpload"
+import React from "react";
+import styled from "styled-components";
+import FileUploadContainer from "./FileUpload";
+import FaceInputContainer from "./FaceInput";
+import Container from 'Components/Container'
 class HomeContainer extends React.Component {
-  
+  state=
+  {
+    buttonIndex:0
+  }
   picClick = () => {
     alert("사진 업로드");
+    this.setState({buttonIndex:1})
   }
 
   camClick = () => {
     alert("웹캠 사용");
+    this.setState({buttonIndex:2})
   }
 
   render() {
-    //
     
     return (
       <>
         {/* <FileUploadContainer/> */}
         <Container>
-          <Font50>분기 설정</Font50>
-          <ButtonContainer>
-            <PicUploadButton onClick = {this.picClick.bind(this)}>
-              <Font15>사진 업로드</Font15>
-            </PicUploadButton>
-            <WebcamButton onClick = {this.camClick.bind(this)}>
-              <Font15>웹캠 사용</Font15>
-            </WebcamButton>
-          </ButtonContainer>
+          {
+            this.state.buttonIndex==0 &&
+            <>
+            <Font50>분기 설정</Font50>
+            <ButtonContainer>
+              <PicUploadButton onClick = {this.picClick}>
+                <Font15>사진 업로드</Font15>
+              </PicUploadButton>
+              <WebcamButton onClick = {this.camClick}>
+                <Font15>웹캠 사용</Font15>
+              </WebcamButton>
+            </ButtonContainer>
+          </> 
+          }
+          {this.state.buttonIndex==1 && <FileUploadContainer />}
+          {this.state.buttonIndex==2 && <FaceInputContainer/>}
+          
         </Container>
       </>
-    )
+    );
   }
 }
+
+
+export default HomeContainer
 
 const ButtonContainer = styled.div`
   width: 70%;
@@ -64,7 +80,7 @@ const WebcamButton = styled.button`
 `;
 
 const Font50 = styled.p`
-  color: black;
+  color: white;
   font-size: 50px;
   font-weight: bold;
 `;
@@ -74,6 +90,3 @@ const Font15 = styled.p`
   font-size: 15px;
   font-weight: bold;
 `;
-
-
-export default HomeContainer

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Container from "Components/Container";
 
 import { observer, inject } from "mobx-react";
+import ManageFile from "stores/ManageFile";
 
 @inject("ManageFile")
 @observer
@@ -23,6 +24,14 @@ class FileUploadContainer extends React.Component {
       }
       fileName = e.currentTarget.files[0].name;
       ManageFile.imageFile = e.currentTarget.files[0];
+      console.log(ManageFile.imageFile)
+      // document.getElementById('FileInput').select();
+      const temp=document.getElementById('FileInput')
+      temp.select();
+      // console.log(document.getSelection)
+      // console.log(temp)
+
+      this.setState({f:3})
     }
   };
   render() {
@@ -44,6 +53,9 @@ class FileUploadContainer extends React.Component {
             onChange={(e) => this.onChangeFile(e)}
           />
         </FileSelect>
+
+        {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
+        {/* <img src={require('./face_540.jpg')}/> */}
       </Container>
     );
   }
