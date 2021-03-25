@@ -1,12 +1,3 @@
-// 1. Install dependencies DONE
-// 2. Import dependencies DONE
-// 3. Setup webcam and canvas DONE
-// 4. Define references to those DONE
-// 5. Load posenet DONE
-// 6. Detect function DONE
-// 7. Drawing utilities from tensorflow DONE
-// 8. Draw functions DONE
-
 // Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
 
 import React, { useRef, useEffect } from "react";
@@ -18,8 +9,9 @@ import * as tf from "@tensorflow/tfjs";
 // NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
-import { drawMesh } from "./utilities";
+import { drawMesh, checkClick, userFace } from "./utilities";
 import { drawDot } from "./mask";
+import {getUserFace} from "./compare";
 
 function App() {
   // Setup references
@@ -31,7 +23,7 @@ function App() {
     const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
     setInterval(() => {
       detect(net);
-    }, 3000); // 3000ms
+    }, 1000); // 1000ms
   };
 
   // Detect function
@@ -60,6 +52,17 @@ function App() {
       drawMesh(face, ctx)
       drawDot(ctx)
     }
+  };
+
+  // Click the Button
+  const ButtonForUserFace = () => {
+    checkClick(true);
+  };
+
+  const checkUserFace = () => {
+    console.log("ok!");
+    getUserFace();
+    //console.log(userFace);
   };
 
   runFacemesh();
@@ -95,6 +98,8 @@ function App() {
             height: 480,
           }}
         />
+        <button onClick={ButtonForUserFace} style={{marginTop: '39.5em', marginRight: '7em'}}>Button</button>
+        <button onClick={checkUserFace} style={{marginTop: '-1.7em', marginLeft: '7em'}}>Check My Face</button>
       </header>
     </div>
   );
