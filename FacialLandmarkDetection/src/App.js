@@ -1,12 +1,3 @@
-// 1. Install dependencies DONE
-// 2. Import dependencies DONE
-// 3. Setup webcam and canvas DONE
-// 4. Define references to those DONE
-// 5. Load posenet DONE
-// 6. Detect function DONE
-// 7. Drawing utilities from tensorflow DONE
-// 8. Draw functions DONE
-
 // Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
 
 import React, { useRef, useEffect } from "react";
@@ -19,7 +10,9 @@ import * as tf from "@tensorflow/tfjs";
 // NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
-import { drawMesh } from "./utilities";
+import { drawMesh, checkClick, userFace } from "./utilities";
+import { drawDot } from "./mask";
+import {getUserFace} from "./compare";
 
 //Components
 import HomeContainer from "./Containers/Home";
