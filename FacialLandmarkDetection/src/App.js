@@ -11,7 +11,7 @@
 
 import React, { useRef, useEffect } from "react";
 import "./App.css";
-import styled from 'styled-components';
+import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
 // OLD MODEL
 //import * as facemesh from "@tensorflow-models/facemesh";
@@ -22,7 +22,7 @@ import Webcam from "react-webcam";
 import { drawMesh } from "./utilities";
 
 //Components
-import HomeContainer from "./Containers/Home"
+import HomeContainer from "./Containers/Home";
 
 function App() {
   const webcamRef = useRef(null);
@@ -35,7 +35,9 @@ function App() {
     //   scale: 0.8,
     // });
     // NEW MODEL
-    const net = await facemesh.load(facemesh.SupportedPackages.mediapipeFacemesh);
+    const net = await facemesh.load(
+      facemesh.SupportedPackages.mediapipeFacemesh
+    );
     setInterval(() => {
       detect(net);
     }, 10);
@@ -64,12 +66,14 @@ function App() {
       // OLD MODEL
       //       const face = await net.estimateFaces(video);
       // NEW MODEL
-      const face = await net.estimateFaces({input:video});
+      const face = await net.estimateFaces({ input: video });
       console.log(face);
 
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
-      requestAnimationFrame(()=>{drawMesh(face, ctx)});
+      requestAnimationFrame(() => {
+        drawMesh(face, ctx);
+      });
     }
   };
 
@@ -78,8 +82,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <HomeContainer/>
-        
+        <HomeContainer />
+
         {/* <Webcam
           ref={webcamRef}
           style={{
@@ -109,7 +113,6 @@ function App() {
             height: 480,
           }}
         /> */}
-        
       </header>
     </div>
   );
@@ -118,7 +121,7 @@ function App() {
 export default App;
 
 const Test = styled.div`
-  background-color:red;
-  width:100px;
-  height:100px;
-`
+  background-color: red;
+  width: 100px;
+  height: 100px;
+`;
