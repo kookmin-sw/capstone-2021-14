@@ -48,7 +48,7 @@ const PicUploadButton = styled.button`
   width: 40%;
   height: 70%;
   background-color: red;
-  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 30px;
 `;
