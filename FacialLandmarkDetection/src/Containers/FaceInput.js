@@ -19,30 +19,28 @@ import * as tf from "@tensorflow/tfjs";
 // NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
-import { drawMesh } from "utilities";
+import { drawMesh, checkClick, userFace } from "utilities";
+import { drawDot } from "./mask";
+import { getUserFace } from "./compare";
 
 function FaceInputContainer() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-  //  Load posenet
+
+  // Load facemesh
   const runFacemesh = async () => {
-    // OLD MODEL
-    // const net = await facemesh.load({
-    //   inputResolution: { width: 640, height: 480 },
-    //   scale: 0.8,
-    // });
-    // NEW MODEL
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
     setInterval(() => {
       detect(net);
-    }, 10);
+    }, 1000); // 1000ms
   };
 
+  // Detect function
   const detect = async (net) => {
     if (
-      typeof webcamRef.current !== "undefined" &&
+      typeof webcamRef.current !== "underfined" &&
       webcamRef.current !== null &&
       webcamRef.current.video.readyState === 4
     ) {
@@ -59,35 +57,38 @@ function FaceInputContainer() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // Make Detections
-      // OLD MODEL
-      //       const face = await net.estimateFaces(video);
-      // NEW MODEL
+      // Make detections
       const face = await net.estimateFaces({ input: video });
-      console.log(face);
+      // console.log(face);
 
-      // Get canvas context
+      // Get canvas context for drawing
       const ctx = canvasRef.current.getContext("2d");
-      requestAnimationFrame(() => {
-        drawMesh(face, ctx);
-      });
+      drawMesh(face, ctx);
+      drawDot(ctx);
     }
   };
 
-  useEffect(() => {
-    runFacemesh();
-  }, []);
+  // Click the Button
+  const ButtonForUserFace = () => {
+    checkClick(true);
+  };
 
+  const checkUserFace = () => {
+    console.log("ok!");
+    getUserFace();
+    //console.log(userFace);
+  };
+
+  runFacemesh();
   return (
     <div className="App">
       <header className="App-header">
         <Webcam
           ref={webcamRef}
           style={{
-            // position: "absolute",
-            position: "relative",
-            // marginLeft: "auto",
-            // marginRight: "auto",
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
             left: 0,
             right: 0,
             textAlign: "center",
@@ -110,6 +111,18 @@ function FaceInputContainer() {
             height: 480,
           }}
         />
+        <button
+          onClick={ButtonForUserFace}
+          style={{ marginTop: "39.5em", marginRight: "7em" }}
+        >
+          Button
+        </button>
+        <button
+          onClick={checkUserFace}
+          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
+        >
+          Check My Face
+        </button>
       </header>
     </div>
   );
