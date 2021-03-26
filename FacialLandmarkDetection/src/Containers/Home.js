@@ -8,12 +8,12 @@ class HomeContainer extends React.Component {
     buttonIndex: 0,
   };
   picClick = () => {
-    alert("사진 업로드");
+    // alert("사진 업로드");
     this.setState({ buttonIndex: 1 });
   };
 
   camClick = () => {
-    alert("웹캠 사용");
+    // alert("웹캠 사용");
     this.setState({ buttonIndex: 2 });
   };
 
