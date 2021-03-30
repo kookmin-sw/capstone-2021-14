@@ -1,4 +1,4 @@
-#Capstone-14의 GitHub Pages에 오신 것을 환영합니다.
+##Capstone-14의 GitHub Pages에 오신 것을 환영합니다.
 
 ```
 1. 프로젝트 소개
@@ -38,7 +38,7 @@ Role : Project manager, Web Front-End
 차윤성
 
 email : vaite714@gmail.com,
-Role : 
+Role : Web Front-End
 ```
 
 ```
@@ -46,7 +46,7 @@ Role :
 유선종
 
 email : jongsyou@kookmin.ac.kr,
-Role : 
+Role : Object Detection, 모델 개발
 ```
 
 ```
@@ -54,7 +54,7 @@ Role :
 양성민
 
 email : tjdals1668@kookmin.ac.kr
-Role : 
+Role : Object Detection, Data Labeling
 ```
 
 ```
@@ -62,7 +62,7 @@ Role :
 최나라
 
 email : chlskfk6810@kookmin.ac.kr
-Role : 
+Role : Object Detection
 ```
 
 
