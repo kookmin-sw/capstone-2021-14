@@ -20,7 +20,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import { drawMesh, checkClick, userFace } from "utilities";
-import { drawDot } from "./mask";
+//import { drawDot } from "./mask";
 import { getUserFace } from "./compare";
 
 // const testImg = "../src/Containers/faceSam.png";
@@ -123,7 +123,7 @@ function FaceInputContainer() {
       // Get canvas context for drawing
       const ctx = canvasRef.current.getContext("2d");
       drawMesh(face, ctx);
-      drawDot(ctx);
+      //drawDot(ctx);
     }
   };
 
