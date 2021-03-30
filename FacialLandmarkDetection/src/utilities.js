@@ -8,7 +8,7 @@ export const checkClick = (check) => {
   }
 };
 
-// Drawing Mesh
+// Drawing Mesh 
 export var userFace = null;
 export const drawMesh = (predictions, ctx) => {
   if (predictions.length > 0) {
