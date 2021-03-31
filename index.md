@@ -28,6 +28,10 @@
 
 #### - 사용법
 
+사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서  사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다.  사진을 제공하는 두 가지 방식이 있습니다.
+
+첫 번째는 Image Upload 방식입니다. 사용자는  자신의 로컬 공간에 존재하는 image 형식의 파일을 업로드할 수 있습니다. AI는 이 사진을 통해 사용자의 얼굴형을 판단하여 어울리는 헤어 스타일을 추천할 것입니다.
+두 번째는 Web-Cam 방식입니다. 사용자는 Web-camera를 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. AI는 이 사진을 통해 사용자의 얼굴형을 판단하여 어울리는 헤어 스타일을 추천할 것입니다.
 
 ### 3. 팀원 소개
 
@@ -36,7 +40,7 @@
 
 email : cane1226@gmail.com
 Role : Project manager, Web Front-End
-GitHub : [cane21 · GitHub](https://github.com/cane21)
+GitHub : https://github.com/cane21
 
 ```
 
@@ -45,7 +49,7 @@ GitHub : [cane21 · GitHub](https://github.com/cane21)
 
 email : vaite714@gmail.com,
 Role : Web Front-End
-GitHub : [Cha-Y-S (Cha_Y_S) · GitHub](https://github.com/Cha-Y-S)
+GitHub : https://github.com/Cha-Y-S
 ```
 
 ```
@@ -53,7 +57,7 @@ GitHub : [Cha-Y-S (Cha_Y_S) · GitHub](https://github.com/Cha-Y-S)
 
 email : jongsyou@kookmin.ac.kr,
 Role : Object Detection, 모델 개발
-GitHub : [SeonJongYoo (sjong_Yoo) · GitHub](https://github.com/SeonJongYoo)
+GitHub : https://github.com/SeonJongYoo
 
 ```
 
@@ -62,7 +66,7 @@ GitHub : [SeonJongYoo (sjong_Yoo) · GitHub](https://github.com/SeonJongYoo)
 
 email : tjdals1668@kookmin.ac.kr
 Role : Object Detection, Data Labeling
-GitHub : [ysmin709 · GitHub](https://github.com/ysmin709)
+GitHub : https://github.com/ysmin709
 
 ```
 
@@ -71,7 +75,7 @@ GitHub : [ysmin709 · GitHub](https://github.com/ysmin709)
 
 email : chlskfk6810@kookmin.ac.kr
 Role : Object Detection
-GitHub : [choinara0 · GitHub](https://github.com/choinara0)
+GitHub : https://github.com/choinara0
 
 ```
 
