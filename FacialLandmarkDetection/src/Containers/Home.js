@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FileUploadContainer from "./FileUpload";
 import FaceInputContainer from "./FaceInput";
+import CamUploadContainer from "./CamUpload";
 import Container from "Components/Container";
 class HomeContainer extends React.Component {
   state = {
@@ -36,7 +37,8 @@ class HomeContainer extends React.Component {
             </>
           )}
           {this.state.buttonIndex == 1 && <FileUploadContainer />}
-          {this.state.buttonIndex == 2 && <FaceInputContainer />}
+          {/* {this.state.buttonIndex == 2 && <FaceInputContainer />} */}
+          {this.state.buttonIndex == 2 && <CamUploadContainer />}
         </Container>
       </>
     );
@@ -48,7 +50,6 @@ export default HomeContainer;
 const ButtonContainer = styled.div`
   width: 70%;
   height: 70px;
-  ${"" /* background-color: red; */}
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -65,7 +66,7 @@ const PicUploadButton = styled.button`
 `;
 
 const WebcamButton = styled.button`
-  color: balck;
+  color: black;
   width: 40%;
   height: 70%;
   background-color: blue;
