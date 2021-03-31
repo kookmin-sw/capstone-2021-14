@@ -1,35 +1,18 @@
-// 1. Install dependencies DONE
-// 2. Import dependencies DONE
-// 3. Setup webcam and canvas DONE
-// 4. Define references to those DONE
-// 5. Load posenet DONE
-// 6. Detect function DONE
-// 7. Drawing utilities from tensorflow DONE
-// 8. Draw functions DONE
-
-// Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
-
 import React, { useRef, useEffect } from "react";
 import "../App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
-// OLD MODEL
-//import * as facemesh from "@tensorflow-models/facemesh";
-
-// NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
-import Webcam from "react-webcam";
-import { drawMesh, checkClick, userFace } from "utilities";
+import { drawMesh, checkClick } from "utilities";
 import { drawDot } from "./mask";
 import { getUserFace } from "./compare";
 
 // const testImg = "../src/Containers/faceSam.png";
-import testImg from "./faceSample3.png";
+import testImg from "./photo/Egg/1.jpg";
 
 function FaceInputContainer() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-
   const imageRef = useRef(null);
 
   // const imageRef = React.createRef();
@@ -41,38 +24,16 @@ function FaceInputContainer() {
     );
     setInterval(() => {
       detect(net);
-    }, 1000); // 1000ms
+    }, 2000); // 1000ms
   };
 
   // Detect function
   const detect = async (net) => {
-    // const video = webcamRef.current.video;
-    // console.log(video);
-
-    // const videoWidth = webcamRef.current.video.videoWidth;
-    // const videoHeight = webcamRef.current.video.videoHeight;
-
-    // // Set video width
-    // webcamRef.current.video.width = videoWidth;
-    // webcamRef.current.video.height = videoHeight;
-
-    // // Set canvas width
-    // canvasRef.current.width = videoWidth;
-    // canvasRef.current.height = videoHeight;
-
-    // Make detections
-    // const face = await net.estimateFaces({ input: video });
     const image = imageRef.current;
     // console.log(image);
     const imageWidth = imageRef.current.width;
     // console.log(imageWidth);
     const imageHeight = imageRef.current.height;
-
-    // imageRef.current.image.width = imageWidth;
-    // imageRef.current.image.height = imageHeight;
-
-    // imageRef.current.img.imageWidth = imageWidth;
-    // imageRef.current.img.imageHeight = imageHeight;
 
     // Set canvas width
     canvasRef.current.width = imageWidth;
@@ -80,12 +41,11 @@ function FaceInputContainer() {
 
     // const imageElement = document.getElementById("test");
     const face = await net.estimateFaces({
-      input: image,
+      input: image, predictIrises: false
     });
 
     // console.log(face);
 
-    // console.log(document.getElementById("test"));
     // Get canvas context for drawing
     const ctx = canvasRef.current.getContext("2d");
     drawMesh(face, ctx);
@@ -155,7 +115,7 @@ function FaceInputContainer() {
             textAlign: "center",
             zindex: 9,
             width: 640,
-            height: 480,
+            height: 640,
           }}
         />
         {/* <Webcam
@@ -183,13 +143,13 @@ function FaceInputContainer() {
             textAlign: "center",
             zindex: 9,
             width: 640,
-            height: 480,
+            height: 640,
           }}
         />
 
         <button
           onClick={ButtonForUserFace}
-          style={{ marginTop: "39.5em", marginRight: "7em" }}
+          style={{ marginTop: "50em", marginRight: "8.5em" }}
         >
           Button
         </button>
