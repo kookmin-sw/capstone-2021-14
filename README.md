@@ -1,8 +1,3 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=382661&assignment_repo_type=GroupAssignmentRepo)
-# Welcome to GitHub
-
-캡스톤 팀 생성을 축하합니다.
-
 ## 팀소개 및 페이지를 꾸며주세요.
 
 - 프로젝트 소개
@@ -18,32 +13,25 @@
   - Theme Chooser에서 태마선택
   - 수정후 팀페이지 확인하여 점검.
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
-
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
-
-
-## 내용에 아래와 같은 내용들을 추가하세요.
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-14
 
 ### 1. 프로잭트 소개
 
-프로젝트
+AI 교육용 웹 서비스로 별도의 설치 없이 웹 브라우저에서 간단한 AI 개념을 학습. 테스트 할 수 있는 서비스 프로젝트입니다.
 
 ### 2. 소개 영상
 
-프로젝트 소개하는 영상을 추가하세요
+추후에 추가
 
 ### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
+- 양성민(20163124) / Object Detection
+- 오규석(20163125) / 팀장, Front-End 개발
+- 유선종(20163128) / 모델 개발, Object Detection
+- 차윤성(20163162) / Front-End 개발
+- 최나라(20163163) / Object Detection
 
 ### 4. 사용법
-
-#### Face-Landmarks-Detection
-  - Install
-    - yarn add @tensorflow/tfjs @tensorflow-models/face-landmarks-detection@0.0.1 react-webcam
+추후에 추가
 
 ### 5. 기타
 
