@@ -9,6 +9,7 @@ export const checkClick = (check) => {
 // Drawing Mesh
 export var userFace = new Array(3);
 var cnt = 0;
+export var sendData = null;
 export const drawMesh = (predictions, ctx) => {
   if (predictions.length > 0) {
     
@@ -29,18 +30,20 @@ export const drawMesh = (predictions, ctx) => {
       const keypoints = prediction.scaledMesh;
       // Draw Dots
       for (let i = 0; i < keypoints.length; i++) {
-        const [x, y, z] = keypoints[i];
-        if (cnt < 11) {
-          console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
-        }
         //Pointlist.push(x);
         //Pointlist.push(y);
         //Pointlist.push(z);
-
-        ctx.beginPath();
-        ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
-        ctx.fillStyle = "SpringGreen";
-        ctx.fill();
+        
+        if (i % 2 == 0) {
+          const [x, y, z] = keypoints[i];
+          if (cnt < 11) {
+            console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+          }
+          ctx.beginPath();
+          ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
+          ctx.fillStyle = "SpringGreen";
+          ctx.fill();
+        }
       }
     });
   }
