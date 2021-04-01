@@ -48,7 +48,7 @@ GitHub : https://github.com/ysmin709
 #### 유선종
 ```markdown
 Student ID: 20163128
-Email : jongsyou@kookmin.ac.kr
+Email : sjongyuuu@gmail.com
 Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
 GitHub : https://github.com/SeonJongYoo
 ```
