@@ -39,12 +39,13 @@ GitHub : https://github.com/cane21
 ```
 
 ```
-차윤성
+양성민
 
-Student ID: 20163162
-Email : vaite714@gmail.com
-Role : Front-End 개발, 데이터 라벨링
-GitHub : https://github.com/Cha-Y-S
+Student ID: 20163124
+Email : tjdals1668@kookmin.ac.kr
+Role : Object Detection, 데이터 수집, 데이터 라벨링
+GitHub : https://github.com/ysmin709
+
 ```
 
 ```
@@ -58,13 +59,12 @@ GitHub : https://github.com/SeonJongYoo
 ```
 
 ```
-양성민
+차윤성
 
-Student ID: 20163124
-Email : tjdals1668@kookmin.ac.kr
-Role : Object Detection, 데이터 수집, 데이터 라벨링
-GitHub : https://github.com/ysmin709
-
+Student ID: 20163162
+Email : vaite714@gmail.com
+Role : Front-End 개발, 데이터 라벨링
+GitHub : https://github.com/Cha-Y-S
 ```
 
 ```
@@ -76,7 +76,6 @@ Role : Object Detection, 데이터 라벨링
 GitHub : https://github.com/choinara0
 
 ```
-
 
 ### 4. 협업 및 개발
 
