@@ -1,14 +1,20 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from "mobx";
 
 class ManageFile {
-    @observable imageFile=null;
+  constructor() {
+    makeObservable(this);
+  }
 
-    @action increase = () => {
-        this.num++
-    }
-    @action decrease = () => {
-        this.num--
-    }
+  @observable imageUrl = "test";
+  @observable pageIndex = 0;
+  @observable counter = 0;
+
+  @action increase = (t) => {
+    this.pageIndex = t;
+  };
+  @action decrease = () => {
+    this.counter++;
+  };
 }
 
-export default new ManageFile()
+export default new ManageFile();
