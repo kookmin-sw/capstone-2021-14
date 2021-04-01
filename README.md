@@ -64,7 +64,7 @@ GitHub : https://github.com/Cha-Y-S
 
 #### 최나라
 ```markdown
-Student ID: 20163124
+Student ID: 20163163
 Email : tjdals1668@kookmin.ac.kr
 Role : Object Detection, 데이터 라벨링
 GitHub : https://github.com/choinara0
@@ -79,10 +79,31 @@ GitHub : https://github.com/choinara0
 
 마지막으로 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일을 확인할 수 있습니다. 
 
-### 5. 기타
+### 5. 협업 및 개발
 
-추가적인 내용은 자유롭게 작성하세요.
+#### 협업
+  - 버전 관리 : GitHub
+  - 회의 기록 및 정리 : Trello, Notion
+  - 비대면 미팅 : Google Meeting
 
+#### 개발
+  - Object Detection
+    - Tensorflow.js 사용
+    - 얼굴 인식 및 윤곽 인식
+      - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
+    - 얼굴형 판단 모델
+      - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
+ 
+  - Front-End
+    - React
+      - React-WebCam 라이브러리
+    - Mobx-react
+
+  - 데이터 라벨링
+    - 데이터 수집
+      - Kaggle
+    - Dataframe 생성
+      - Pandas
 
 ## Markdown을 사용하여 내용꾸미기
 
