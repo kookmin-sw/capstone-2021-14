@@ -4,15 +4,14 @@ import styled from "styled-components";
 import Container from "Components/Container";
 
 import { observer, inject } from "mobx-react";
-import ManageFile from "stores/ManageFile";
 
 @inject("ManageFile")
 @observer
 class FileUploadContainer extends React.Component {
-  state= {
-    file: '',
-    previewURL: '',
-  }
+  state = {
+    file: "",
+    previewURL: "",
+  };
   onChangeFile = (e) => {
     e.preventDefault();
 
@@ -20,14 +19,15 @@ class FileUploadContainer extends React.Component {
     let file = e.target.files[0];
 
     reader.onloadend = () => {
+      this.props.ManageFile.imageUrl = reader.result;
       this.setState({
         file: file,
-        previewURL: reader.result
+        previewURL: reader.result,
       });
-    }
+    };
 
-    reader.readAsDataURL(file)
-  }
+    reader.readAsDataURL(file);
+  };
   // onChangeFile = (e) => {
   //   const { ManageFile } = this.props;
 
@@ -50,7 +50,7 @@ class FileUploadContainer extends React.Component {
   //     // console.log(document.getSelection)
   //     // console.log(temp)
   //     console.log(ManageFile.imageFile.name);
-      
+
   //     this.setState({f:3})
   //   }
   // };
@@ -73,7 +73,7 @@ class FileUploadContainer extends React.Component {
             onChange={(e) => this.onChangeFile(e)}
           />
         </FileSelect>
-        {this.state.previewURL && <img src={this.state.previewURL}/>}
+        {this.state.previewURL && <img src={this.state.previewURL} />}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
         {/* <img src={require('./face_540.jpg')}/> */}
