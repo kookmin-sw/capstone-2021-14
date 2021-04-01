@@ -28,18 +28,22 @@
 
 #### - 사용법
 
-사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서  사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다.  사진을 제공하는 두 가지 방식이 있습니다.
+사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
 
-첫 번째는 Image Upload 방식입니다. 사용자는  자신의 로컬 공간에 존재하는 image 형식의 파일을 업로드할 수 있습니다. AI는 이 사진을 통해 사용자의 얼굴형을 판단하여 어울리는 헤어 스타일을 추천할 것입니다.
-두 번째는 Web-Cam 방식입니다. 사용자는 Web-camera를 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. AI는 이 사진을 통해 사용자의 얼굴형을 판단하여 어울리는 헤어 스타일을 추천할 것입니다.
+첫 번째는 "사진 업로드" 방식입니다. "사진 업로드" 버튼 클릭시 사용자는 "업로드" 버튼을 클릭하고 얼굴의 정면이 보이는 사진을 업로드하도록 합니다.
+
+두 번째는 "Web-Cam Capture" 방식입니다. 사용자는 Web-Cam을 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. "웹캠 사용" 버튼 클릭시 사용자는 자신의 웹캠 화면에 얼굴의 정면이 나오도록 하고 "캡처" 버튼을 클릭합니다.
+
+마지막으로 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일을 확인할 수 있습니다. 
 
 ### 3. 팀원 소개
 
 ```
 오규석
 
-email : cane1226@gmail.com
-Role : Project manager, Web Front-End
+Student ID: 20163125
+Email : cane1226@gmail.com
+Role : 팀장, Project manager, Front-End 개발, 데이터 라벨링
 GitHub : https://github.com/cane21
 
 ```
@@ -47,16 +51,18 @@ GitHub : https://github.com/cane21
 ```
 차윤성
 
-email : vaite714@gmail.com,
-Role : Web Front-End
+Student ID: 20163162
+Email : vaite714@gmail.com
+Role : Front-End 개발, 데이터 라벨링
 GitHub : https://github.com/Cha-Y-S
 ```
 
 ```
 유선종
 
-email : jongsyou@kookmin.ac.kr,
-Role : Object Detection, 모델 개발
+Student ID: 20163128
+Email : jongsyou@kookmin.ac.kr
+Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
 GitHub : https://github.com/SeonJongYoo
 
 ```
@@ -64,8 +70,9 @@ GitHub : https://github.com/SeonJongYoo
 ```
 양성민
 
-email : tjdals1668@kookmin.ac.kr
-Role : Object Detection, Data Labeling
+Student ID: 20163124
+Email : tjdals1668@kookmin.ac.kr
+Role : Object Detection, 데이터 수집, 데이터 라벨링
 GitHub : https://github.com/ysmin709
 
 ```
@@ -73,8 +80,9 @@ GitHub : https://github.com/ysmin709
 ```
 최나라
 
-email : chlskfk6810@kookmin.ac.kr
-Role : Object Detection
+Student ID: 20163124
+Email : tjdals1668@kookmin.ac.kr
+Role : Object Detection, 데이터 라벨링
 GitHub : https://github.com/choinara0
 
 ```
