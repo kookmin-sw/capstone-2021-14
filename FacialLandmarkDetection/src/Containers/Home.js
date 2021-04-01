@@ -36,9 +36,14 @@ class HomeContainer extends React.Component {
               </ButtonContainer>
             </>
           )}
-          {this.state.buttonIndex == 1 && <FileUploadContainer />}
-          {/* {this.state.buttonIndex == 2 && <FaceInputContainer />} */}
-          {this.state.buttonIndex == 2 && <CamUploadContainer />}
+          {/* {this.state.buttonIndex == 1 && <FileUploadContainer />} */}
+          {this.state.buttonIndex == 1 && (
+            <FaceInputContainer inputType={"file"} />
+          )}
+          {this.state.buttonIndex == 2 && (
+            <FaceInputContainer inputType={"cam"} />
+          )}
+          {/* {this.state.buttonIndex == 2 && <CamUploadContainer />} */}
         </Container>
       </>
     );

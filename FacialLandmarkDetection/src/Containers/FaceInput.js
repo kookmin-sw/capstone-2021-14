@@ -41,7 +41,8 @@ function FaceInputContainer() {
 
     // const imageElement = document.getElementById("test");
     const face = await net.estimateFaces({
-      input: image, predictIrises: false
+      input: image,
+      predictIrises: false,
     });
 
     // console.log(face);
