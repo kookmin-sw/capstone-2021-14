@@ -70,7 +70,7 @@ GitHub : https://github.com/ysmin709
 ```
 최나라
 
-Student ID: 20163124
+Student ID: 20163163
 Email : tjdals1668@kookmin.ac.kr
 Role : Object Detection, 데이터 라벨링
 GitHub : https://github.com/choinara0
@@ -80,22 +80,26 @@ GitHub : https://github.com/choinara0
 
 ### 4. 협업 및 개발
 
-* 협업
+#### 협업
   - 버전 관리 : GitHub
   - 회의 기록 및 정리 : Trello, Notion
   - 비대면 미팅 : Google Meeting
 
-* 개발
+#### 개발
   - Object Detection
     - Tensorflow.js 사용
     - 얼굴 인식 및 윤곽 인식
-      - Tensorflow.js에서 제공하는 ```markdown Face-Landmarks-Detection ```모델 사용
+      - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
     - 얼굴형 판단 모델
-      - FLD 모델의 Output을 데이터로 하여 Classification 모델
+      - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
  
   - Front-End
     - React
       - React-WebCam 라이브러리
     - Mobx-react
 
-### 5. 개발 후기
+  - 데이터 라벨링
+    - 데이터 수집
+      - Kaggle
+    - Dataframe 생성
+      - Pandas
