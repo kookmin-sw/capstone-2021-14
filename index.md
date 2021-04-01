@@ -51,7 +51,7 @@ GitHub : https://github.com/Cha-Y-S
 유선종
 
 Student ID: 20163128
-Email : jongsyou@kookmin.ac.kr
+Email : sjongyuuu@gmail.com
 Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
 GitHub : https://github.com/SeonJongYoo
 
@@ -80,15 +80,22 @@ GitHub : https://github.com/choinara0
 
 ### 4. 협업 및 개발
 
-* 사용한 협업 도구
+* 협업
+  - 버전 관리 : GitHub
+  - 회의 기록 및 정리 : Trello, Notion
+  - 비대면 미팅 : Google Meeting
 
-버전 관리 : GitHub
-일정 관리 : Trello
-회의 기록 및 정리 : Notion
-비대면 미팅 : Google Meeting
-
-* 개발 방식
-  Front-End Part와 Object Detection Part로 구분하여 개발을 진행하였습니다. 
-
+* 개발
+  - Object Detection
+    - Tensorflow.js 사용
+    - 얼굴 인식 및 윤곽 인식
+      - Tensorflow.js에서 제공하는 ```markdown Face-Landmarks-Detection ```모델 사용
+    - 얼굴형 판단 모델
+      - FLD 모델의 Output을 데이터로 하여 Classification 모델
+ 
+  - Front-End
+    - React
+      - React-WebCam 라이브러리
+    - Mobx-react
 
 ### 5. 개발 후기
