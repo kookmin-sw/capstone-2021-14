@@ -9,31 +9,51 @@ import ManageFile from "stores/ManageFile";
 @inject("ManageFile")
 @observer
 class FileUploadContainer extends React.Component {
+  state= {
+    file: '',
+    previewURL: '',
+  }
   onChangeFile = (e) => {
-    const { ManageFile } = this.props;
+    e.preventDefault();
 
-    let fileNameAvailable = ["png", "jpg", "jpeg"];
-    let fileName;
-    if (e.currentTarget.files[0]) {
-      if (
-        !fileNameAvailable.includes(
-          e.currentTarget.files[0].name.split(".")[e.currentTarget.files.length]
-        )
-      ) {
-        return alert("파일 확장자명 (png, jpg, jpeg만 가능) 을 확인해주세요.");
-      }
-      fileName = e.currentTarget.files[0].name;
-      ManageFile.imageFile = e.currentTarget.files[0];
-      console.log(ManageFile.imageFile)
-      // document.getElementById('FileInput').select();
-      const temp=document.getElementById('FileInput')
-      temp.select();
-      // console.log(document.getSelection)
-      // console.log(temp)
+    let reader = new FileReader();
+    let file = e.target.files[0];
 
-      this.setState({f:3})
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        previewURL: reader.result
+      });
     }
-  };
+
+    reader.readAsDataURL(file)
+  }
+  // onChangeFile = (e) => {
+  //   const { ManageFile } = this.props;
+
+  //   let fileNameAvailable = ["png", "jpg", "jpeg"];
+  //   let fileName;
+  //   if (e.currentTarget.files[0]) {
+  //     if (
+  //       !fileNameAvailable.includes(
+  //         e.currentTarget.files[0].name.split(".")[e.currentTarget.files.length]
+  //       )
+  //     ) {
+  //       return alert("파일 확장자명 (png, jpg, jpeg만 가능) 을 확인해주세요.");
+  //     }
+  //     fileName = e.currentTarget.files[0].name;
+  //     ManageFile.imageFile = e.currentTarget.files[0];
+  //     console.log(ManageFile.imageFile)
+  //     // document.getElementById('FileInput').select();
+  //     const temp=document.getElementById('FileInput')
+  //     temp.select();
+  //     // console.log(document.getSelection)
+  //     // console.log(temp)
+  //     console.log(ManageFile.imageFile.name);
+      
+  //     this.setState({f:3})
+  //   }
+  // };
   render() {
     return (
       <Container>
@@ -53,6 +73,7 @@ class FileUploadContainer extends React.Component {
             onChange={(e) => this.onChangeFile(e)}
           />
         </FileSelect>
+        {this.state.previewURL && <img src={this.state.previewURL}/>}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
         {/* <img src={require('./face_540.jpg')}/> */}
