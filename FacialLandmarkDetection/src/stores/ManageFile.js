@@ -5,9 +5,10 @@ class ManageFile {
     makeObservable(this);
   }
 
-  @observable imageUrl = "test";
+  @observable imageUrl = "";
   @observable pageIndex = 0;
   @observable counter = 0;
+  @observable downFlag = true;
 
   @action increase = (t) => {
     this.pageIndex = t;
