@@ -1,37 +1,106 @@
-## Welcome to GitHub Pages
+### Capstone-14의 GitHub Pages에 오신 것을 환영합니다. 
 
-You can use the [editor on GitHub](https://github.com/kookmin-sw/cap-template/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
+# Your Face Your Hair
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### 1. 프로젝트 소개
 
-### Markdown
+***사용자의 얼굴형을 바탕으로 Hair Style을 추천하는 서비스***
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+최근에 다양한 헤어 스타일들이 생겨나면서 사람들은 다양한 헤어 스타일을 시도하려고 합니다. 하지만, 자신에게 어울리는 헤어 스타일을 찾기란 쉽지 않습니다. 조사에 따르면 얼굴형 별로 어울리는 헤어 스타일이 있다는 사실을 알았습니다.
 
-```markdown
-Syntax highlighted code block
+실제로 사람들은 직접 자신의 얼굴형에 맞는 헤어 스타일을 찾아 머리를 꾸미기도 하고 많은 헤어 디자이너들은 고객에게 헤어 스타일을 추천할 때, 고객의 얼굴형을 참고하여 헤어 스타일을 추천하기도 합니다. 그러나, 대부분의 사람들은 자신의 얼굴형에 대해 정확히 인지하지 못하고 있고, 전문가들도 얼굴형을 정확하게 판단하는데 어려움이 있습니다.
 
-# Header 1
-## Header 2
-### Header 3
+이와 같이 사람들의 고민과 여러 사실들을 바탕으로 저희 팀은  프로젝트를 기획하게 되었습니다. 
+본 프로젝트는 Web-Cam 캡처 또는 사진 업로드를 통해 사용자의 얼굴형을 판단하여 헤어 스타일을 추천해주는 AI기반 웹 서비스를 개발합니다.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+### 2. 소개 영상 및 사용법
 
-**Bold** and _Italic_ and `Code` text
+#### - 200초 소개 동영상
 
-[Link](url) and ![Image](src)
+#### - 사용법
+
+사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
+
+첫 번째는 "사진 업로드" 방식입니다. "사진 업로드" 버튼 클릭시 사용자는 "업로드" 버튼을 클릭하고 얼굴의 정면이 보이는 사진을 업로드 합니다.
+
+두 번째는 "Web-Cam Capture" 방식입니다. 사용자는 Web-Cam을 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. "웹캠 사용" 버튼 클릭시 사용자는 자신의 웹캠 화면에 얼굴의 정면이 나오도록 하고 "캡처" 버튼을 클릭합니다.
+
+마지막으로 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일을 확인할 수 있습니다. 
+
+### 3. 팀원 소개
+
+```
+오규석
+
+Student ID: 20163125
+Email : cane1226@gmail.com
+Role : 팀장, Project manager, Front-End 개발, 데이터 라벨링
+GitHub : https://github.com/cane21
+
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+```
+양성민
 
-### Jekyll Themes
+Student ID: 20163124
+Email : tjdals1668@kookmin.ac.kr
+Role : Object Detection, 데이터 수집, 데이터 라벨링
+GitHub : https://github.com/ysmin709
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/kookmin-sw/cap-template/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+```
 
-### Support or Contact
+```
+유선종
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Student ID: 20163128
+Email : sjongyuuu@gmail.com
+Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
+GitHub : https://github.com/SeonJongYoo
+
+```
+
+```
+차윤성
+
+Student ID: 20163162
+Email : vaite714@gmail.com
+Role : Front-End 개발, 데이터 라벨링
+GitHub : https://github.com/Cha-Y-S
+```
+
+```
+최나라
+
+Student ID: 20163163
+Email : chlskfkt6810@kookmin.ac.kr
+Role : Object Detection, 데이터 라벨링
+GitHub : https://github.com/choinara0
+
+```
+
+### 4. 협업 및 개발
+
+#### 협업
+  - 버전 관리 : GitHub
+  - 회의 기록 및 정리 : Trello, Notion
+  - 비대면 미팅 : Google Meeting
+
+#### 개발
+  - Object Detection
+    - Tensorflow.js 사용
+    - 얼굴 인식 및 윤곽 인식
+      - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
+    - 얼굴형 판단 모델
+      - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
+ 
+  - Front-End
+    - React
+      - React-WebCam 라이브러리
+    - Mobx-react
+
+  - 데이터 라벨링
+    - 데이터 수집
+      - Kaggle
+    - Dataframe 생성
+      - Pandas

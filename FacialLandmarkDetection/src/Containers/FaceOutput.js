@@ -1,26 +1,31 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import "../App.css";
 import styled from "styled-components";
-// <<<<<<< HEAD
 import * as tf from "@tensorflow/tfjs";
-// OLD MODEL
-//import * as facemesh from "@tensorflow-models/facemesh";
-
-// NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
-import Webcam from "react-webcam";
-import { drawMesh, checkClick, userFace } from "utilities";
-//import { drawDot } from "./mask";
+import { drawMesh, checkClick } from "utilities";
+import { drawDot } from "./mask";
 import { getUserFace } from "./compare";
+import { MobXProviderContext } from "mobx-react";
 
 // const testImg = "../src/Containers/faceSam.png";
-import testImg from "./faceSample3.png";
+import testImg from "./photo/Egg/1.jpg";
+import { inject, observer } from "mobx-react";
+import { useObserver } from "mobx-react";
 
-function FaceInputContainer() {
+// @inject("ManageFile")
+// @observer
+
+function useStores() {
+  return React.useContext(MobXProviderContext);
+}
+
+function FaceOutputContainer() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
-
   const imageRef = useRef(null);
 
+  const { ManageFile } = useStores();
   // const imageRef = React.createRef();
 
   // Load facemesh
@@ -30,38 +35,16 @@ function FaceInputContainer() {
     );
     setInterval(() => {
       detect(net);
-    }, 1000); // 1000ms
+    }, 2000); // 1000ms
   };
 
   // Detect function
   const detect = async (net) => {
-    // const video = webcamRef.current.video;
-    // console.log(video);
-
-    // const videoWidth = webcamRef.current.video.videoWidth;
-    // const videoHeight = webcamRef.current.video.videoHeight;
-
-    // // Set video width
-    // webcamRef.current.video.width = videoWidth;
-    // webcamRef.current.video.height = videoHeight;
-
-    // // Set canvas width
-    // canvasRef.current.width = videoWidth;
-    // canvasRef.current.height = videoHeight;
-
-    // Make detections
-    // const face = await net.estimateFaces({ input: video });
     const image = imageRef.current;
     // console.log(image);
     const imageWidth = imageRef.current.width;
     // console.log(imageWidth);
     const imageHeight = imageRef.current.height;
-
-    // imageRef.current.image.width = imageWidth;
-    // imageRef.current.image.height = imageHeight;
-
-    // imageRef.current.img.imageWidth = imageWidth;
-    // imageRef.current.img.imageHeight = imageHeight;
 
     // Set canvas width
     canvasRef.current.width = imageWidth;
@@ -70,11 +53,11 @@ function FaceInputContainer() {
     // const imageElement = document.getElementById("test");
     const face = await net.estimateFaces({
       input: image,
+      predictIrises: false,
     });
 
     // console.log(face);
 
-    // console.log(document.getElementById("test"));
     // Get canvas context for drawing
     const ctx = canvasRef.current.getContext("2d");
     drawMesh(face, ctx);
@@ -112,7 +95,7 @@ function FaceInputContainer() {
       // Get canvas context for drawing
       const ctx = canvasRef.current.getContext("2d");
       drawMesh(face, ctx);
-      //drawDot(ctx);
+      drawDot(ctx);
     }
   };
 
@@ -125,46 +108,75 @@ function FaceInputContainer() {
     console.log("ok!");
     getUserFace();
     //console.log(userFace);
-
-import FileUploadContainer from "./FileUpload";
-import CamUploadContainer from "./CamUpload";
-import Container from "Components/Container";
-import { observer, inject } from "mobx-react";
-
-@inject("ManageFile")
-@observer
-class FaceInputContainer extends React.Component {
-  state = {
-    f: 0, d5b9805d79ba38687732e6cda9f06ca44d922eab
   };
-  render() {
-    const { inputType } = this.props;
 
-    const ConfirmButtonClick = () => {
-      this.props.ManageFile.pageIndex = 3;
-      // alert(this.props.ManageFile.pageIndex);
-    };
+  runFacemesh();
+  return (
+    <div className="App">
+      <header className="App-header">
+        {/* <img src={ManageFile.imageUrl} ref={imageRef} /> */}
+        <img
+          id="test"
+          src={ManageFile.imageUrl}
+          ref={imageRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zindex: 9,
+            width: 640,
+            height: 640,
+          }}
+        />
 
-    return (
-      <>
-        {/* {this.props.ManageFile.pageIndex} */}
-        <Container>
-          {inputType == "file" ? (
-            <FileUploadContainer />
-          ) : (
-            <CamUploadContainer />
-          )}
+        {/* <Webcam
+          ref={webcamRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zindex: 9,
+            width: 640,
+            height: 480,
+          }}
+        /> */}
 
-          <ConfirmButton onClick={ConfirmButtonClick}>확인!</ConfirmButton>
-        </Container>
-      </>
-    );
-  }
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            marginLeft: "auto",
+            marginRight: "auto",
+            left: 0,
+            right: 0,
+            textAlign: "center",
+            zindex: 9,
+            width: 640,
+            height: 640,
+          }}
+        />
+
+        {/* <button
+          onClick={ButtonForUserFace}
+          style={{ marginTop: "50em", marginRight: "8.5em" }}
+        >
+          Button
+        </button>
+        <button
+          onClick={checkUserFace}
+          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
+        >
+          Check My Face
+        </button> */}
+      </header>
+    </div>
+  );
 }
 
-export default FaceInputContainer;
-
-const ConfirmButton = styled.div`
-  background-color: green;
-  border: 1px solid gray;
-  padding: 5px 10px 5px 10px;
+export default FaceOutputContainer;

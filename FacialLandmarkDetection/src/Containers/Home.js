@@ -1,28 +1,39 @@
 import React from "react";
 import styled from "styled-components";
-import FileUploadContainer from "./FileUpload";
+import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
+
 import Container from "Components/Container";
+import { observer, inject } from "mobx-react";
+@inject("ManageFile")
+@observer
 class HomeContainer extends React.Component {
   state = {
     buttonIndex: 0,
   };
+
   picClick = () => {
     // alert("사진 업로드");
-    this.setState({ buttonIndex: 1 });
+    // this.setState({ buttonIndex: 1 });
+    this.props.ManageFile.pageIndex = 1;
   };
 
   camClick = () => {
     // alert("웹캠 사용");
-    this.setState({ buttonIndex: 2 });
+    // this.setState({ buttonIndex: 2 });
+    this.props.ManageFile.pageIndex = 2;
   };
 
+  componentDidUpdate() {
+    // alert("F");
+  }
   render() {
+    const { ManageFile } = this.props;
     return (
       <>
         {/* <FileUploadContainer/> */}
         <Container>
-          {this.state.buttonIndex == 0 && (
+          {ManageFile.pageIndex == 0 && (
             <>
               <Font50>분기 설정</Font50>
               <ButtonContainer>
@@ -35,8 +46,13 @@ class HomeContainer extends React.Component {
               </ButtonContainer>
             </>
           )}
-          {this.state.buttonIndex == 1 && <FileUploadContainer />}
-          {this.state.buttonIndex == 2 && <FaceInputContainer />}
+          {ManageFile.pageIndex == 1 && (
+            <FaceInputContainer inputType={"file"} />
+          )}
+          {ManageFile.pageIndex == 2 && (
+            <FaceInputContainer inputType={"cam"} />
+          )}
+          {ManageFile.pageIndex == 3 && <FaceOutputContainer />}
         </Container>
       </>
     );
@@ -48,7 +64,6 @@ export default HomeContainer;
 const ButtonContainer = styled.div`
   width: 70%;
   height: 70px;
-  ${"" /* background-color: red; */}
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -65,7 +80,7 @@ const PicUploadButton = styled.button`
 `;
 
 const WebcamButton = styled.button`
-  color: balck;
+  color: black;
   width: 40%;
   height: 70%;
   background-color: blue;

@@ -1,79 +1,94 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=382661&assignment_repo_type=GroupAssignmentRepo)
-# Welcome to GitHub
+# Your Face Your Hair
 
-캡스톤 팀 생성을 축하합니다.
+**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-14
 
-## 팀소개 및 페이지를 꾸며주세요.
+### 1. 프로젝트 소개
+#### 사용자의 얼굴형을 바탕으로 Hair Style을 추천하는 서비스
 
-- 프로젝트 소개
-  - 프로젝트 설치방법 및 데모, 사용방법, 프리뷰등을 readme.md에 작성.
-  - Api나 사용방법등 내용이 많을경우 wiki에 꾸미고 링크 추가.
+최근에 다양한 헤어 스타일들이 생겨나면서 사람들은 다양한 헤어 스타일을 시도하려고 합니다. 하지만, 자신에게 어울리는 헤어 스타일을 찾기란 쉽지 않습니다. 조사에 따르면 얼굴형 별로 어울리는 헤어 스타일이 있다는 사실을 알았습니다.
 
-- 팀페이지 꾸미기
-  - 프로젝트 소개 및 팀원 소개
-  - index.md 예시보고 수정.
+실제로 사람들은 직접 자신의 얼굴형에 맞는 헤어 스타일을 찾아 머리를 꾸미기도 하고 많은 헤어 디자이너들은 고객에게 헤어 스타일을 추천할 때, 고객의 얼굴형을 참고하여 헤어 스타일을 추천하기도 합니다. 그러나, 대부분의 사람들은 자신의 얼굴형에 대해 정확히 인지하지 못하고 있고, 전문가들도 얼굴형을 정확하게 판단하는데 어려움이 있습니다.
 
-- GitHub Pages 리파지토리 Settings > Options > GitHub Pages 
-  - Source를 marster branch
-  - Theme Chooser에서 태마선택
-  - 수정후 팀페이지 확인하여 점검.
-
-**팀페이지 주소** -> https://kookmin-sw.github.io/ '{{자신의 리파지토리 아이디}}'
-
-**예시)** 2020년 0조  https://kookmin-sw.github.io/capstone-2020-0/
-
-
-## 내용에 아래와 같은 내용들을 추가하세요.
-
-### 1. 프로잭트 소개
-
-프로젝트
+이와 같이 사람들의 고민과 여러 사실들을 바탕으로 저희 팀은  프로젝트를 기획하게 되었습니다. 
+본 프로젝트는 Web-Cam 캡처 또는 사진 업로드를 통해 사용자의 얼굴형을 판단하여 헤어 스타일을 추천해주는 AI기반 웹 서비스를 개발합니다.
 
 ### 2. 소개 영상
 
-프로젝트 소개하는 영상을 추가하세요
+추후에 추가
 
 ### 3. 팀 소개
-
-팀을 소개하세요.
-
-팀원정보 및 담당이나 사진 및 SNS를 이용하여 소개하세요.
-
-### 4. 사용법
-
-#### Face-Landmarks-Detection
-  - Install
-    - yarn add @tensorflow/tfjs @tensorflow-models/face-landmarks-detection@0.0.1 react-webcam
-
-### 5. 기타
-
-추가적인 내용은 자유롭게 작성하세요.
-
-
-## Markdown을 사용하여 내용꾸미기
-
-Markdown은 작문을 스타일링하기위한 가볍고 사용하기 쉬운 구문입니다. 여기에는 다음을위한 규칙이 포함됩니다.
-
+#### 오규석
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+Student ID: 20163125
+Email : cane1226@gmail.com
+Role : 팀장, Project manager, Front-End 개발, 데이터 라벨링
+GitHub : https://github.com/cane21
 ```
 
-자세한 내용은 [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#### 양성민
+```markdown
+Student ID: 20163124
+Email : tjdals1668@kookmin.ac.kr
+Role : Object Detection, 데이터 수집, 데이터 라벨링
+GitHub : https://github.com/ysmin709
+```
 
-### Support or Contact
+#### 유선종
+```markdown
+Student ID: 20163128
+Email : sjongyuuu@gmail.com
+Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
+GitHub : https://github.com/SeonJongYoo
+```
 
-readme 파일 생성에 추가적인 도움이 필요하면 [도움말](https://help.github.com/articles/about-readmes/) 이나 [contact support](https://github.com/contact) 을 이용하세요.
+
+#### 차윤성
+```markdown
+Student ID: 20163162
+Email : vaite714@gmail.com
+Role : Front-End 개발, 데이터 라벨링
+GitHub : https://github.com/Cha-Y-S
+```
+
+#### 최나라
+```markdown
+Student ID: 20163163
+Email : chlskfkt6810@kookmin.ac.kr
+Role : Object Detection, 데이터 라벨링
+GitHub : https://github.com/choinara0
+```
+
+### 4. 사용법
+사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
+
+첫 번째는 "사진 업로드" 방식입니다. "사진 업로드" 버튼 클릭시 사용자는 "업로드" 버튼을 클릭하고 얼굴의 정면이 보이는 사진을 업로드 합니다. 
+
+두 번째는 "Web-Cam Capture" 방식입니다. 사용자는 Web-Cam을 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. "웹캠 사용" 버튼 클릭시 사용자는 자신의 웹캠 화면에 얼굴의 정면이 나오도록 하고 "캡처" 버튼을 클릭합니다.
+
+마지막으로 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일을 확인할 수 있습니다. 
+
+### 5. 협업 및 개발
+
+#### 협업
+  - 버전 관리 : GitHub
+  - 회의 기록 및 정리 : Trello, Notion
+  - 비대면 미팅 : Google Meeting
+
+#### 개발
+  - Object Detection
+    - Tensorflow.js 사용
+    - 얼굴 인식 및 윤곽 인식
+      - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
+    - 얼굴형 판단 모델
+      - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
+ 
+  - Front-End
+    - React
+      - React-WebCam 라이브러리
+    - Mobx-react
+
+  - 데이터 라벨링
+    - 데이터 수집
+      - Kaggle
+    - Dataframe 생성
+      - Pandas
