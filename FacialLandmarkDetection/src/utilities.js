@@ -33,8 +33,16 @@ export const drawMesh = (predictions, ctx) => {
         //Pointlist.push(x);
         //Pointlist.push(y);
         //Pointlist.push(z);
-        
-        if (i % 2 == 0) {
+        const [x, y, z] = keypoints[i];
+        //if (cnt < 15) {
+        //  console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+        //}
+        console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+        ctx.beginPath();
+        ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
+        ctx.fillStyle = "SpringGreen";
+        ctx.fill();
+        /*if (i % 2 == 0) {
           const [x, y, z] = keypoints[i];
           if (cnt < 11) {
             console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
@@ -43,7 +51,7 @@ export const drawMesh = (predictions, ctx) => {
           ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
           ctx.fillStyle = "SpringGreen";
           ctx.fill();
-        }
+        }*/
       }
     });
   }

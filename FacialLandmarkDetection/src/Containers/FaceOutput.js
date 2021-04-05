@@ -62,41 +62,6 @@ function FaceOutputContainer() {
     const ctx = canvasRef.current.getContext("2d");
     drawMesh(face, ctx);
     // drawDot(ctx);
-
-    if (
-      typeof webcamRef.current !== "underfined" &&
-      webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
-    ) {
-      // Get Video Properties
-      const video = webcamRef.current.video;
-
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
-
-      // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
-
-      // Set canvas width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
-
-      // Make detections
-      const face = await net.estimateFaces({ input: video });
-      const imageElement = document.getElementById("test");
-      // const face = await net.estimateFaces({
-      //   input: imageElement,
-      // });
-
-      // console.log(face);
-
-      // console.log(document.getElementById("test"));
-      // Get canvas context for drawing
-      const ctx = canvasRef.current.getContext("2d");
-      drawMesh(face, ctx);
-      drawDot(ctx);
-    }
   };
 
   // Click the Button
@@ -127,8 +92,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 640,
+            width: 720,
+            height: 430,
           }}
         />
 
@@ -157,8 +122,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 640,
+            width: 720,
+            height: 430,
           }}
         />
 
