@@ -1,5 +1,3 @@
-import {saveAs} from "FileSaver";
-
 // 버튼 클릭 확인 함수
 var flag = false;
 export const checkClick = (check) => {
@@ -14,8 +12,8 @@ var downflag = false;
 export var userFace = new Array(3);
 var cnt = 0;
 export const drawMesh = (predictions, ctx) => {
+  console.log("drawmesh!!!!");
   if (predictions.length > 0) {
-    
     //console.log(predictions);
 
     // 버튼을 클릭한 순간 그때의 "shilhouette 정보를 저장한다."
@@ -25,7 +23,7 @@ export const drawMesh = (predictions, ctx) => {
       userFace[1] = predictions[0]["annotations"]["leftCheek"];
       userFace[2] = predictions[0]["annotations"]["rightCheek"];
       console.log("userFace: ", userFace);
-      flag = false;
+      // flag = false;
     }
 
     cnt += 1;
@@ -35,7 +33,7 @@ export const drawMesh = (predictions, ctx) => {
       for (let i = 0; i < keypoints.length; i++) {
         const [x, y, z] = keypoints[i];
         if (cnt < 11) {
-          console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+          // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
         }
         //Pointlist.push(x);
         //Pointlist.push(y);
@@ -47,12 +45,11 @@ export const drawMesh = (predictions, ctx) => {
         ctx.fill();
       }
       // create textfile for data modeling
-    if(downflag == false){
-      var blob = new Blob([keypoints], {type: "text/plain;charset=utf-8"});
-      saveAs(blob, "data.txt");
-      downflag = true;
-    }
+      // if (downflag == false) {
+      // var blob = new Blob([keypoints], { type: "text/plain;charset=utf-8" });
+      // saveAs(blob, "data.txt");
+      // downflag = true;
+      // }
     });
-    
   }
 };
