@@ -1,3 +1,5 @@
+import {saveAs} from "FileSaver";
+
 // 버튼 클릭 확인 함수
 var flag = false;
 export const checkClick = (check) => {
@@ -5,6 +7,8 @@ export const checkClick = (check) => {
     flag = true;
   }
 };
+
+var downflag = false;
 
 // Drawing Mesh
 export var userFace = new Array(3);
@@ -53,6 +57,13 @@ export const drawMesh = (predictions, ctx) => {
           ctx.fill();
         }*/
       }
+      // create textfile for data modeling
+    if(downflag == false){
+      var blob = new Blob([keypoints], {type: "text/plain;charset=utf-8"});
+      saveAs(blob, "data.txt");
+      downflag = true;
+    }
     });
+    
   }
 };
