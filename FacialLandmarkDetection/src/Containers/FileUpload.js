@@ -64,6 +64,7 @@ class FileUploadContainer extends React.Component {
         >
           <Font16>업로드</Font16>
           {/* <img src={fileImage} /> */}
+          (
           <input
             id="FileInput"
             type="file"
@@ -72,8 +73,11 @@ class FileUploadContainer extends React.Component {
             }}
             onChange={(e) => this.onChangeFile(e)}
           />
+          )
         </FileSelect>
-        {this.state.previewURL && <img src={this.state.previewURL} />}
+        {this.state.previewURL && this.props.ManageFile.pageIndex != 4 && (
+          <img src={this.state.previewURL} />
+        )}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
         {/* <img src={require('./face_540.jpg')}/> */}

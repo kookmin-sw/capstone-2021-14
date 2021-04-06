@@ -1,6 +1,6 @@
 ### Capstone-14의 GitHub Pages에 오신 것을 환영합니다. 
 
-# Your Face Your Hair
+# H A I ! 
 
 ### 1. 프로젝트 소개
 

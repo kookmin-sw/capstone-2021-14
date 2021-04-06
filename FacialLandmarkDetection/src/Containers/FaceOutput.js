@@ -5,7 +5,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import { drawMesh, checkClick } from "utilities";
 import { MobXProviderContext } from "mobx-react";
-
+import { saveAs } from "FileSaver";
 // const testImg = "../src/Containers/faceSam.png";
 import testImg from "./photo/Egg/1.jpg";
 import { inject, observer } from "mobx-react";
@@ -31,9 +31,10 @@ function FaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-    setInterval(() => {
-      detect(net);
-    }, 2000); // 1000ms
+    detect(net);
+    // setInterval(() => {
+    //   detect(net);
+    // }, 2000); // 1000ms
   };
 
   // Detect function
@@ -57,8 +58,18 @@ function FaceOutputContainer() {
     // console.log(face);
 
     // Get canvas context for drawing
+    console.log(face[0].scaledMesh);
+
+    if (ManageFile.pageIndex == 4) {
+      var blob = new Blob([face[0].scaledMesh], {
+        type: "text/plain;charset=utf-8",
+      });
+      saveAs(blob, "data.txt");
+    }
+
     const ctx = canvasRef.current.getContext("2d");
     drawMesh(face, ctx);
+
     // drawDot(ctx);
   };
 

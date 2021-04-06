@@ -5,6 +5,7 @@ import FaceInputContainer from "./FaceInput";
 
 import Container from "Components/Container";
 import { observer, inject } from "mobx-react";
+import EducationContainer from "./Education";
 @inject("ManageFile")
 @observer
 class HomeContainer extends React.Component {
@@ -24,6 +25,9 @@ class HomeContainer extends React.Component {
     this.props.ManageFile.pageIndex = 2;
   };
 
+  eduClick = () => {
+    this.props.ManageFile.pageIndex = 4;
+  };
   componentDidUpdate() {
     // alert("F");
   }
@@ -43,6 +47,10 @@ class HomeContainer extends React.Component {
                 <WebcamButton onClick={this.camClick}>
                   <Font15>웹캠 사용</Font15>
                 </WebcamButton>
+
+                <WebcamButton onClick={this.eduClick}>
+                  <Font15>학습하기</Font15>
+                </WebcamButton>
               </ButtonContainer>
             </>
           )}
@@ -53,6 +61,7 @@ class HomeContainer extends React.Component {
             <FaceInputContainer inputType={"cam"} />
           )}
           {ManageFile.pageIndex == 3 && <FaceOutputContainer />}
+          {ManageFile.pageIndex == 4 && <EducationContainer />}
         </Container>
       </>
     );
