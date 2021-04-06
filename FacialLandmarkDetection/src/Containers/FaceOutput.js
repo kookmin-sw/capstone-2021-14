@@ -4,8 +4,6 @@ import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import { drawMesh, checkClick } from "utilities";
-import { drawDot } from "./mask";
-import { getUserFace } from "./compare";
 import { MobXProviderContext } from "mobx-react";
 
 // const testImg = "../src/Containers/faceSam.png";
@@ -64,17 +62,6 @@ function FaceOutputContainer() {
     // drawDot(ctx);
   };
 
-  // Click the Button
-  const ButtonForUserFace = () => {
-    checkClick(true);
-  };
-
-  const checkUserFace = () => {
-    console.log("ok!");
-    getUserFace();
-    //console.log(userFace);
-  };
-
   runFacemesh();
   return (
     <div className="App">
@@ -92,8 +79,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 720,
-            height: 430,
+            width: 640,
+            height: 480,
           }}
         />
 
@@ -122,8 +109,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 720,
-            height: 430,
+            width: 640,
+            height: 480,
           }}
         />
 
