@@ -4,8 +4,6 @@ import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import { drawMesh, checkClick } from "utilities";
-import { drawDot } from "./mask";
-import { getUserFace } from "./compare";
 import { MobXProviderContext } from "mobx-react";
 import { saveAs } from "FileSaver";
 // const testImg = "../src/Containers/faceSam.png";
@@ -73,52 +71,6 @@ function FaceOutputContainer() {
     drawMesh(face, ctx);
 
     // drawDot(ctx);
-
-    if (
-      typeof webcamRef.current !== "underfined" &&
-      webcamRef.current !== null &&
-      webcamRef.current.video.readyState === 4
-    ) {
-      // Get Video Properties
-      const video = webcamRef.current.video;
-
-      const videoWidth = webcamRef.current.video.videoWidth;
-      const videoHeight = webcamRef.current.video.videoHeight;
-
-      // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
-
-      // Set canvas width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
-
-      // Make detections
-      const face = await net.estimateFaces({ input: video });
-      const imageElement = document.getElementById("test");
-      // const face = await net.estimateFaces({
-      //   input: imageElement,
-      // });
-
-      // console.log(face);
-
-      // console.log(document.getElementById("test"));
-      // Get canvas context for drawing
-      const ctx = canvasRef.current.getContext("2d");
-      drawMesh(face, ctx);
-      drawDot(ctx);
-    }
-  };
-
-  // Click the Button
-  const ButtonForUserFace = () => {
-    checkClick(true);
-  };
-
-  const checkUserFace = () => {
-    console.log("ok!");
-    getUserFace();
-    //console.log(userFace);
   };
 
   runFacemesh();
@@ -139,7 +91,7 @@ function FaceOutputContainer() {
             textAlign: "center",
             zindex: 9,
             width: 640,
-            height: 640,
+            height: 480,
           }}
         />
 
@@ -169,7 +121,7 @@ function FaceOutputContainer() {
             textAlign: "center",
             zindex: 9,
             width: 640,
-            height: 640,
+            height: 480,
           }}
         />
 
