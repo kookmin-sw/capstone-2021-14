@@ -1,13 +1,12 @@
+<<<<<<< HEAD
 // Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
 
+=======
+>>>>>>> 0b7f1019ce3e046da19c7337553bfef613e16077
 import React, { useRef, useEffect } from "react";
 import "./App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
-// OLD MODEL
-//import * as facemesh from "@tensorflow-models/facemesh";
-
-// NEW MODEL
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import { drawMesh, checkClick, userFace } from "./utilities";
@@ -22,12 +21,6 @@ function App() {
   const canvasRef = useRef(null);
   //  Load posenet
   const runFacemesh = async () => {
-    // OLD MODEL
-    // const net = await facemesh.load({
-    //   inputResolution: { width: 640, height: 480 },
-    //   scale: 0.8,
-    // });
-    // NEW MODEL
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
@@ -55,10 +48,6 @@ function App() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
-      // Make Detections
-      // OLD MODEL
-      //       const face = await net.estimateFaces(video);
-      // NEW MODEL
       const face = await net.estimateFaces({ input: video });
       console.log(face);
 
