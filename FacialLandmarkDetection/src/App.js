@@ -1,15 +1,10 @@
-<<<<<<< HEAD
-// Face Mesh - https://github.com/tensorflow/tfjs-models/tree/master/facemesh
-
-=======
->>>>>>> 0b7f1019ce3e046da19c7337553bfef613e16077
 import React, { useRef, useEffect } from "react";
 import "./App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
-import { drawMesh, checkClick, userFace } from "./utilities";
+import { drawMesh, checkClick } from "./utilities";
 //import { drawDot } from "./mask";
 import {getUserFace} from "./compare";
 
