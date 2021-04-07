@@ -13,7 +13,7 @@ import { useObserver } from "mobx-react";
 
 // @inject("ManageFile")
 // @observer
-
+export var downcheck = null;
 function useStores() {
   return React.useContext(MobXProviderContext);
 }
@@ -31,10 +31,16 @@ function FaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-    detect(net);
-    // setInterval(() => {
-    //   detect(net);
-    // }, 2000); // 1000ms
+    //detect(net);
+    downcheck = false;
+     let intervalId = setInterval(() => {
+       detect(net);
+     }, 1000); // 1000ms
+     
+     setTimeout(() => {
+       downcheck = true;
+       clearInterval(intervalId);
+     }, 5000);
   };
 
   // Detect function
@@ -58,14 +64,13 @@ function FaceOutputContainer() {
     // console.log(face);
 
     // Get canvas context for drawing
-    console.log(face[0].scaledMesh);
 
-    if (ManageFile.pageIndex == 4) {
+    /*if (ManageFile.pageIndex == 4) {
       var blob = new Blob([face[0].scaledMesh], {
         type: "text/plain;charset=utf-8",
       });
       saveAs(blob, "data.txt");
-    }
+    }*/
 
     const ctx = canvasRef.current.getContext("2d");
     drawMesh(face, ctx);
