@@ -60,11 +60,12 @@ function FaceOutputContainer() {
     // Get canvas context for drawing
     console.log(face[0].scaledMesh);
 
+    console.log(ManageFile.fileName);
     if (ManageFile.pageIndex == 4) {
       var blob = new Blob([face[0].scaledMesh], {
         type: "text/plain;charset=utf-8",
       });
-      saveAs(blob, "data.txt");
+      saveAs(blob, ManageFile.fileName.split(".")[0] + ".txt");
     }
 
     const ctx = canvasRef.current.getContext("2d");

@@ -7,8 +7,7 @@ class ManageFile {
 
   @observable imageUrl = "";
   @observable pageIndex = 0;
-  @observable counter = 0;
-  @observable downFlag = true;
+  @observable fileName = "";
 
   @action increase = (t) => {
     this.pageIndex = t;

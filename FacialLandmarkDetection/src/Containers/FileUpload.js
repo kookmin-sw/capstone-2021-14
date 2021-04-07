@@ -18,6 +18,7 @@ class FileUploadContainer extends React.Component {
     let reader = new FileReader();
     let file = e.target.files[0];
 
+    this.props.ManageFile.fileName = e.target.files[0].name;
     reader.onloadend = () => {
       this.props.ManageFile.imageUrl = reader.result;
       this.setState({
