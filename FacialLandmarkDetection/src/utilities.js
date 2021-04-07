@@ -1,5 +1,5 @@
 import {saveAs} from "FileSaver";
-
+import {downcheck} from "Containers/FaceOutput";
 // length = 130. dots for detecting face shape
 export var DOTS = [
     10, 21, 32, 34, 36, 50, 54, 58, 67, 68, 69, 71, 93, 101, 103,
@@ -13,7 +13,7 @@ export var DOTS = [
     436, 447, 454];
 
 // txt파일 다운로드 체크
-var downflag = false;
+//var downflag = false;
 
 // Drawing Mesh
 export const drawMesh = (predictions, ctx) => {
@@ -38,11 +38,10 @@ export const drawMesh = (predictions, ctx) => {
         }
       }
       // create textfile for data modeling
-
-      if(downflag == false){
+      if (downcheck) {
+        console.log("here");
         var blob = new Blob([finalData], {type: "text/plain;charset=utf-8"});
         saveAs(blob, "data.txt");
-        downflag = true;
       }
     });
   }
