@@ -44,7 +44,7 @@ function FaceOutputContainer() {
     intervalId = setInterval(() => {
       console.log("detect()");
       detect(net);
-    }, 1000); // 1000ms
+    }, 200); // 1000ms
   };
 
   // Detect function
@@ -295,7 +295,7 @@ const drawMesh = (predictions, ctx) => {
 
   counter++;
 
-  if (counter >= 10) {
+  if (counter >= 5) {
     console.log("CLEAR!!!!");
     clearInterval(intervalId);
     downcheck = true;
