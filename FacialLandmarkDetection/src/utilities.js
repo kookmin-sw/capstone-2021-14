@@ -1,5 +1,5 @@
-import {saveAs} from "FileSaver";
-import {downcheck} from "Containers/FaceOutput";
+import { saveAs } from "FileSaver";
+import { downcheck } from "Containers/FaceOutput";
 // length = 130. dots for detecting face shape
 export var DOTS = [
     10, 21, 32, 34, 36, 50, 54, 58, 67, 68, 69, 71, 93, 101, 103,
@@ -12,8 +12,6 @@ export var DOTS = [
     416, 418, 421, 422, 423, 424, 425, 426, 427, 428, 430, 431, 432, 433, 434, 435, 
     436, 447, 454];
 
-// txt파일 다운로드 체크
-//var downflag = false;
 
 // Drawing Mesh
 export const drawMesh = (predictions, ctx) => {
@@ -41,6 +39,7 @@ export const drawMesh = (predictions, ctx) => {
       if (downcheck) {
         console.log("here");
         var blob = new Blob([finalData], {type: "text/plain;charset=utf-8"});
+        // save txt file with photo file name
         saveAs(blob, "data.txt");
       }
     });

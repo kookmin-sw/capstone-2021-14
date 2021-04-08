@@ -1,4 +1,4 @@
-# Your Face Your Hair
+# H A I !
 
 **팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-14
 
