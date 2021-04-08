@@ -19,6 +19,8 @@ function useStores() {
 }
 let counter = 0;
 let intervalId;
+let pageIndex;
+
 function FaceOutputContainer() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -37,6 +39,8 @@ function FaceOutputContainer() {
     //detect(net);
     downcheck = false;
     counter = 0;
+    pageIndex = ManageFile.pageIndex;
+
     intervalId = setInterval(() => {
       console.log("detect()");
       detect(net);
@@ -317,7 +321,7 @@ const drawMesh = (predictions, ctx) => {
         }
       }
       // create textfile for data modeling
-      if (downcheck) {
+      if (downcheck && pageIndex == 4) {
         // console.log("here");
         var blob = new Blob([finalData], { type: "text/plain;charset=utf-8" });
         // save txt file with photo file name
