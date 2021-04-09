@@ -4,7 +4,9 @@ import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
-import { drawMesh } from "./utilities";
+import { drawMesh, checkClick } from "./utilities";
+//import { drawDot } from "./mask";
+import {getUserFace} from "./compare";
 
 //Components
 import HomeContainer from "./Containers/Home";
