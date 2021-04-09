@@ -16,7 +16,8 @@
 
 ### 2. 소개 영상 및 사용법
 
-#### - 200초 소개 동영상
+#### - 중간 보고서 작성
+        - [보고서 pdf 파일 링크](https://github.com/kookmin-sw/capstone-2021-14/blob/master/docs/%EC%BA%A1%EC%8A%A4%ED%86%A4%EB%94%94%EC%9E%90%EC%9D%B8-%EC%A4%91%EA%B0%84%EB%B3%B4%EA%B3%A0%EC%84%9C-%ED%8C%8014.pdf)
 
 #### - 사용법
 
