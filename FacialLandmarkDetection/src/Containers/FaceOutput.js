@@ -311,7 +311,7 @@ const drawMesh = (predictions, ctx) => {
         result = DOTS.includes(i);
         if (result) {
           const [x, y, z] = keypoints[i];
-          // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+          //console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
           ctx.beginPath();
           ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
           ctx.fillStyle = "SpringGreen";
