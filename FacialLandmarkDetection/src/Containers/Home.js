@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
-
+import RealtimeFaceOutputContainer from "./RealtimeFaceOutput";
 import Container from "Components/Container";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
@@ -25,6 +25,10 @@ class HomeContainer extends React.Component {
     this.props.ManageFile.pageIndex = 2;
   };
 
+  realTimeCamClick = () => {
+    this.props.ManageFile.pageIndex = 5;
+  };
+
   eduClick = () => {
     this.props.ManageFile.pageIndex = 4;
   };
@@ -45,7 +49,10 @@ class HomeContainer extends React.Component {
                   <Font15>사진 업로드</Font15>
                 </PicUploadButton>
                 <WebcamButton onClick={this.camClick}>
-                  <Font15>웹캠 사용</Font15>
+                  <Font15>웹캠 사용(캡쳐)</Font15>
+                </WebcamButton>
+                <WebcamButton onClick={this.realTimeCamClick}>
+                  <Font15>웹캠 사용(실시간)</Font15>
                 </WebcamButton>
 
                 <WebcamButton onClick={this.eduClick}>
@@ -62,6 +69,7 @@ class HomeContainer extends React.Component {
           )}
           {ManageFile.pageIndex == 3 && <FaceOutputContainer />}
           {ManageFile.pageIndex == 4 && <EducationContainer />}
+          {ManageFile.pageIndex == 5 && <RealtimeFaceOutputContainer />}
         </Container>
       </>
     );
