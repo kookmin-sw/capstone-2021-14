@@ -29,6 +29,24 @@ function FaceOutputContainer() {
   const { ManageFile } = useStores();
   // const imageRef = React.createRef();
 
+  const PrintResult = (type) => {
+    switch (type) {
+      case "0":
+        console.log("둥근형");
+        break;
+      case "1":
+        console.log("계란형");
+        break;
+      case "2":
+        console.log("각진형");
+        break;
+      case "3":
+        console.log("역삼각형");
+        break;
+    }
+  };
+
+  PrintResult("3");
   // Load facemesh
   const runFacemesh = async () => {
     const net = await facemesh.load(
@@ -157,11 +175,78 @@ function FaceOutputContainer() {
 
 // length = 130. dots for detecting face shape
 var DOTS = [
-  10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 
-  378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 
-  162, 21, 54, 103, 67, 109, 151, 337, 299, 333, 298, 301, 368, 264, 447, 
-  366, 401, 435, 367, 364, 394, 395, 369, 396, 175, 171, 140, 170, 169, 
-  135, 138, 215, 177, 137, 227, 34, 139, 71, 68, 104, 69, 108,
+  10,
+  338,
+  297,
+  332,
+  284,
+  251,
+  389,
+  356,
+  454,
+  323,
+  361,
+  288,
+  397,
+  365,
+  379,
+  378,
+  400,
+  377,
+  152,
+  148,
+  176,
+  149,
+  150,
+  136,
+  172,
+  58,
+  132,
+  93,
+  234,
+  127,
+  162,
+  21,
+  54,
+  103,
+  67,
+  109,
+  151,
+  337,
+  299,
+  333,
+  298,
+  301,
+  368,
+  264,
+  447,
+  366,
+  401,
+  435,
+  367,
+  364,
+  394,
+  395,
+  369,
+  396,
+  175,
+  171,
+  140,
+  170,
+  169,
+  135,
+  138,
+  215,
+  177,
+  137,
+  227,
+  34,
+  139,
+  71,
+  68,
+  104,
+  69,
+  108,
 ];
 
 // Drawing Mesh
@@ -191,7 +276,7 @@ const drawMesh = (predictions, ctx) => {
           ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
           ctx.fillStyle = "SpringGreen";
           ctx.fill();
-          
+
           //z값 제외
           finalData.push(x);
           finalData.push(y);
