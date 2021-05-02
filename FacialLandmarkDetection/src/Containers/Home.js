@@ -2,8 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
-
+import InitialContainer from "./Init";
 import Container from "Components/Container";
+import Content from "Components/Content";
+import Header from "Components/Header";
+import Footer from "Components/Footer";
+import NextButton from "../Components/NextButton";
+import PrevButton from "../Components/PrevButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
 @inject("ManageFile")
@@ -16,17 +21,17 @@ class HomeContainer extends React.Component {
   picClick = () => {
     // alert("사진 업로드");
     // this.setState({ buttonIndex: 1 });
-    this.props.ManageFile.pageIndex = 1;
+    this.props.ManageFile.pageIndex = 2;
   };
 
   camClick = () => {
     // alert("웹캠 사용");
     // this.setState({ buttonIndex: 2 });
-    this.props.ManageFile.pageIndex = 2;
+    this.props.ManageFile.pageIndex = 3;
   };
 
   eduClick = () => {
-    this.props.ManageFile.pageIndex = 4;
+    this.props.ManageFile.pageIndex = 5;
   };
   componentDidUpdate() {
     // alert("F");
@@ -37,31 +42,45 @@ class HomeContainer extends React.Component {
       <>
         {/* <FileUploadContainer/> */}
         <Container>
-          {ManageFile.pageIndex == 0 && (
-            <>
-              <Font50>분기 설정</Font50>
-              <ButtonContainer>
-                <PicUploadButton onClick={this.picClick}>
-                  <Font15>사진 업로드</Font15>
-                </PicUploadButton>
-                <WebcamButton onClick={this.camClick}>
-                  <Font15>웹캠 사용</Font15>
-                </WebcamButton>
+          <Header>
+            <Font50>H A I!</Font50>
+          </Header>
+          <Content>
+            {ManageFile.pageIndex == 0 && <InitialContainer />}
+            {ManageFile.pageIndex == 1 && (
+              <>
+                <Font50>분기 설정</Font50>
+                <ButtonContainer>
+                  <PicUploadButton onClick={this.picClick}>
+                    <Font15>사진 업로드</Font15>
+                  </PicUploadButton>
+                  <WebcamButton onClick={this.camClick}>
+                    <Font15>웹캠 사용</Font15>
+                  </WebcamButton>
 
-                <WebcamButton onClick={this.eduClick}>
-                  <Font15>학습하기</Font15>
-                </WebcamButton>
-              </ButtonContainer>
-            </>
-          )}
-          {ManageFile.pageIndex == 1 && (
-            <FaceInputContainer inputType={"file"} />
-          )}
-          {ManageFile.pageIndex == 2 && (
-            <FaceInputContainer inputType={"cam"} />
-          )}
-          {ManageFile.pageIndex == 3 && <FaceOutputContainer />}
-          {ManageFile.pageIndex == 4 && <EducationContainer />}
+                  <WebcamButton onClick={this.eduClick}>
+                    <Font15>학습하기</Font15>
+                  </WebcamButton>
+                </ButtonContainer>
+              </>
+            )}
+            {ManageFile.pageIndex == 2 && (
+              <FaceInputContainer inputType={"file"} />
+            )}
+            {ManageFile.pageIndex == 3 && (
+              <FaceInputContainer inputType={"cam"} />
+            )}
+            {ManageFile.pageIndex == 4 && <FaceOutputContainer />}
+            {ManageFile.pageIndex == 5 && <EducationContainer />}
+            <ButtonContainer>
+              {ManageFile.pageIndex != 0 && <PrevButton />}
+              {ManageFile.pageIndex != 2 && ManageFile.pageIndex != 3 && <NextButton />}
+            </ButtonContainer>
+          </Content>
+          
+          <Footer>
+            <Font15>Robolink AI web app free trial</Font15>
+          </Footer>
         </Container>
       </>
     );
@@ -99,13 +118,13 @@ const WebcamButton = styled.button`
 `;
 
 const Font50 = styled.p`
-  color: white;
+  color: #FDFFD5;
   font-size: 50px;
   font-weight: bold;
 `;
 
 const Font15 = styled.p`
-  color: white;
+  color: #FDFFD5;
   font-size: 15px;
   font-weight: bold;
 `;
