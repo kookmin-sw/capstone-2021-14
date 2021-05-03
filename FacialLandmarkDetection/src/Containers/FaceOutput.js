@@ -86,7 +86,8 @@ function FaceOutputContainer() {
   runFacemesh();
   return (
     <div className="App">
-      <header className="App-header">
+      <header>
+      {/* <header className="App-header"> */}
         {/* <img src={ManageFile.imageUrl} ref={imageRef} /> */}
         <img
           id="test"
@@ -100,8 +101,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: "50%",
+            height: "40%",
           }}
         />
 
@@ -130,8 +131,8 @@ function FaceOutputContainer() {
             right: 0,
             textAlign: "center",
             zindex: 9,
-            width: 640,
-            height: 480,
+            width: "50%",
+            height: "40%",
           }}
         />
 
