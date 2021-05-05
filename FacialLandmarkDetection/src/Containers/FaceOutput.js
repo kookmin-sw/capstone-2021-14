@@ -215,20 +215,36 @@ const drawMesh = (predictions, ctx) => {
       // create textfile for data modeling
       if (downcheck && pageIndex == 4) {
         //console.log("finalData: ", finalData);
-        // 추출한 좌표를 Shape Model에 input으로 넣는다.
+        let sum = 0.0;
+        for(let i = 0; i < finalData.length; i++) {
+          sum += finalData[i];
+        }
+        let mean = sum/finalData.length;
+        let devSum = 0;
+        for (let i = 0; i < finalData.length; i++) {
+          let dev = finalData[i] - mean;
+          devSum += dev * dev;
+        }
+        //표준편차
+        let stdDev = Math.sqrt(devSum/finalData.length);
+        for (let i = 0; i < finalData.length; i++) {
+          finalData[i] = (finalData[i] - mean) / stdDev;
+        }
+        console.log(finalData);
+
+
+        // 추출한 좌표를 Shape Model의 input으로 넣는다.
         let max = 0;
         let max_id = 0;
         const model = loadLayersModel('https://seonjongyoo.github.io/ModelServer/my-model.json'); 
         const tensor_shape = [1, 260];
         const input = tensor(finalData, tensor_shape);
-        //let encoder = new OneHotEncoder();
-        //let output = encoder.fit(DATA['260']);
         
         // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
-        //input.drop({ columns: ['260'], axis: 1, inplace: true });
         model.then(function (result) {
           const rvalue = result.predict(input);
           rvalue.data().then(function(data) {
+            console.log(data);
             for (let i = 0; i < data.length; i++) {
                 if (data[i] <= 1 && data[i] > max) {
                     max = data[i];
