@@ -85,71 +85,75 @@ function FaceOutputContainer() {
 
   runFacemesh();
   return (
-    <div className="App">
-      <header>
-      {/* <header className="App-header"> */}
-        {/* <img src={ManageFile.imageUrl} ref={imageRef} /> */}
-        <img
-          id="test"
-          src={ManageFile.imageUrl}
-          ref={imageRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: "50%",
-            height: "40%",
-          }}
-        />
+    <ImageContainer>
+      <img
+        id="test"
+        src={ManageFile.imageUrl}
+        ref={imageRef}
+        style={{
+          position: "absolute",
+          // marginLeft: "auto",
+          top: 0,
+          left: 0,
+          // zindex: 9,
+        }}
+        width={"100%"}
+        height={"100%"}
+        // style={{
+        //   // position: "absolute",
+        //   marginLeft: "auto",
+        //   marginRight: "auto",
+        //   left: 0,
+        //   right: 0,
+        //   textAlign: "center",
+        //   // zindex: 9,
+        //   // width: "50%",
+        //   // height: "40%",
+        // }}
+        // object-fit={"contain"}
+        // width={"100%"}
+      />
+      <canvas
+        ref={canvasRef}
+        // width={"100%"}
+        style={{
+          position: "absolute",
+          // marginLeft: "auto",
+          // background:"#ffff00",
+          // zindex: 9,
+          top: 0,
+          left: 0,
+        }}
+        width={"100%"}
+        height={"100%"}
+        
+        // style={{
+          // position: "absolute",
+          // marginLeft: "auto",
+          // marginRight: "auto",
+          // left: 0,
+          // right: 0,
+          // textAlign: "center",
+          // zindex: 9,
+          // height: "40%",
+        // }}
+        
+      />
 
-        {/* <Webcam
-          ref={webcamRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        /> */}
-
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: "50%",
-            height: "40%",
-          }}
-        />
-
-        {/* <button
-          onClick={ButtonForUserFace}
-          style={{ marginTop: "50em", marginRight: "8.5em" }}
-        >
-          Button
-        </button>
-        <button
-          onClick={checkUserFace}
-          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
-        >
-          Check My Face
-        </button> */}
-      </header>
-    </div>
+      {/* <button
+        onClick={ButtonForUserFace}
+        style={{ marginTop: "50em", marginRight: "8.5em" }}
+      >
+        Button
+      </button>
+      <button
+        onClick={checkUserFace}
+        style={{ marginTop: "-1.7em", marginLeft: "7em" }}
+      >
+        Check My Face
+      </button> */}
+    
+    </ImageContainer>
   );
 }
 
@@ -210,3 +214,29 @@ const drawMesh = (predictions, ctx) => {
 };
 
 export default FaceOutputContainer;
+
+
+const ImageContainer = styled.div`
+  ${'' /* position: 'relat'; */}
+  ${'' /* width: 90%; */}
+  ${'' /* height: 100%; */}
+  ${'' /* width: "auto"; */}
+  ${'' /* height: "auto"; */}
+  ${'' /* position: relative; */}
+  ${'' /* top: 0; */}
+  ${'' /* left: 0; */}
+  ${'' /* marginLeft: 0; */}
+  ${'' /* marginTop: 0; */}
+  ${'' /* background: #00ff00; */}
+  min-width: 90%;
+  min-height: 60vh;
+  position: relative;
+  top: 0;
+  left: 0;
+`
+
+const RelativeContainer = styled.div`
+  position: relative;
+  top: 0;
+  left: 0;
+`
