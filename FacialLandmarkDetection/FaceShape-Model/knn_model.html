@@ -42,11 +42,8 @@
             }
             
             
-            // 얼굴형 column(종속 변수)에 대해 one hot encoding
-            //let encoder = new dfd.OneHotEncoder();
-            //let dependVar = encoder.fit(DATA['260']);
-            //dependVar.print();
             console.log('Predictions:');
+            // 2번 째 인자로 k값을 받음 - 적절한 k값을 찾아야한다.
             const result = classifier.predictClass(independVar.loc({rows: [350]}).tensor, 3);
             console.log(result);
             /*classifier.predictClass(
