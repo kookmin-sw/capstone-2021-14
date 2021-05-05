@@ -28,9 +28,11 @@
                 });
             });*/
             let max = 0;
-            tf.loadLayersModel('./DeepLearningModel/my-model.json').then(function(model) {
+            let max_id = 0;
+
+            tf.loadLayersModel('https://seonjongyoo.github.io/ModelServer/my-model.json').then(function(model) {
                 dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
-                    input = DATA.loc({rows: [14]});
+                    let input = DATA.loc({rows: [14]});
                     
                     let encoder = new dfd.OneHotEncoder();
                     let output = encoder.fit(DATA['260']);
@@ -58,3 +60,4 @@
         </script>
     </body>
 </html>
+
