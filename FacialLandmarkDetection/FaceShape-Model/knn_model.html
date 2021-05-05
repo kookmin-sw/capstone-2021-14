@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load TensorFlow.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+     <!-- Load KNN Classifier -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+    <!-- Load Danfo.js -->
+    <script src="https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"></script>
+</head>
+<body>
+    <script>
+        dfd.read_csv('./dataset/norm-all-data-knn.csv').then(function(DATA) {
+            console.log(DATA);
+            DATA.print();
+
+            const classifier = knnClassifier.create();
+            
+            // 입력 받은 데이터의 column들의 값을 추출 - 독립 변수
+            // 92차원의 특징
+            let List = new Array(260);
+            for (let i = 0; i < 260; i++) {
+                List[i] = String(i);
+            }
+            independVar = DATA.loc({columns: List});
+            for (let i = 0; i < 101; i++) {
+                classifier.addExample(independVar.loc({rows: [i]}).tensor,"Egg");
+            }
+            for (let i = 101; i < 202; i++) {
+                classifier.addExample(independVar.loc({rows: [i]}).tensor,"Circle");
+            }
+            for (let i = 202; i < 303; i++) {
+                classifier.addExample(independVar.loc({rows: [i]}).tensor,"Rect");
+            }
+            for (let i = 303; i < 404; i++) {
+                classifier.addExample(independVar.loc({rows: [i]}).tensor,"RTriangle");
+            }
+            
+            
+            console.log('Predictions:');
+            // 2번 째 인자로 k값을 받음 - 적절한 k값을 찾아야한다.
+            const result = classifier.predictClass(independVar.loc({rows: [350]}).tensor, 3);
+            console.log(result);
+            /*classifier.predictClass(
+                input = tf.Tensor,
+                k = 3,
+            );*/
+            
+            
+        });
+    </script>
+</body>
+</html>
+
+

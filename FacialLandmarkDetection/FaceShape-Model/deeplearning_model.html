@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        
+        <!--
+            <script src="https://cdn.jsdelivr.net/npm/danfojs@0.2.4/lib/bundle.min.js"></script>
+        --> 
+        <script src="https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"></script>
+
+        <!--
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+        -->
+
+        <!-- Tensorflow.js load script -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis"></script>
+    </head>
+    <body>
+        <script>
+            // csv파일에 저장된 데이터를 load하여 Danfo.js의 dataframe으로 변환하여 data 변수에 저장한다.
+            dfd.read_csv('./dataset/norm_data2.csv').then(function(DATA) {
+                console.log(DATA);
+                DATA.print();
+            
+                // 얼굴 외곽 점들만 추출
+                // 입력 받은 데이터의 column들의 값을 추출 - 독립 변수: 144개
+                // 144차원의 특징
+                let List = new Array(260);
+                for (let i = 0; i < 260; i++) {
+                    List[i] = String(i);
+                }
+                let independVar = DATA.loc({columns: List});
+                independVar.print();
+            
+                // 얼굴형 column(종속 변수)에 대해 one hot encoding 실행
+                let encoder = new dfd.OneHotEncoder();
+                let dependVar = encoder.fit(DATA['260']);
+                dependVar.print();
+                
+                /*
+                // 입력층 생성
+                var X = tf.input({ shape: [260]});
+                
+                // 은닉층 생성
+                var H = tf.layers.dense({ units: 100, activation: 'relu'}).apply(X);
+            
+                //출력층 생성 - 활성함수로 softmax 사용
+                var Y = tf.layers.dense({ units: 4, activation: 'softmax'}).apply(H);
+                
+                model = tf.model({ inputs: X, outputs: Y });
+                */
+
+                const model = tf.sequential({
+                    layers: [
+                        tf.layers.dense({inputShape: (404, 260), units: 200, activation: 'relu'}),
+                        tf.layers.dense({units: 100, activation: 'relu'}),
+                        tf.layers.dense({units: 4, activation: 'softmax'}),
+                    ]
+                });
+                /*model.weights.forEach(w => {
+                    //console.log(w.name, w.shape);
+                    const newVals = tf.randomNormal(w.shape);
+                    w.val.assign(newVals);
+                });
+                */
+
+                model.compile({
+                    optimizer: 'adam',
+                    loss: 'categoricalCrossentropy',
+                    metrics: ['accuracy']
+                });
+                tfvis.show.modelSummary({name: 'Summary', tab: 'Model'}, model);
+                
+                _history = [];
+                function onBatchEnd(batch, logs) {
+                    console.log('Accuracy', logs.acc);
+                    _history.push(logs);
+                    tfvis.show.history({name: 'loss', tab: 'history'}, _history, ['loss']);
+                    tfvis.show.history({name: 'accuracy', tab: 'history'}, _history, ['acc']);
+                }
+
+                model.fit(independVar.tensor, dependVar.tensor, {
+                    epochs: 60,
+                    batchSize: 32,
+                    callbacks: {onBatchEnd}
+                }).then(info => {
+                    console.log('Final accuracy', info.history.acc);
+                    const prediction = new dfd.DataFrame(model.predict(independVar.tensor));
+                    prediction.print();
+                    dependVar.print();
+                    model.summary();
+                    model.save('localstorage://my-model');
+                });
+                
+                
+                /*
+                // 분류 모델은 손실함수로 categoricalCrossentropy사용
+                var compileParameter = { optimizer: tf.train.adam(), loss: 'categoricalCrossentropy', metrics:['accuracy'] };
+                //var compileParameter = { optimizer: tf.train.adadelta(), loss: 'categoricalCrossentropy', metrics:['accuracy'] };
+                
+                model.compile(compileParameter);
+            
+                // 학습 과정 시각화
+                tfvis.show.modelSummary({name: 'Summary', tab: 'Model'}, model);
+            
+                // 데이터로 모델을 학습
+                _history = [];
+                var fitParameter = {
+                    epochs: 100,
+                    batchSize: 40,
+                    callbacks: {
+                        onBatchEnd:
+                        function(epoch, logs) {
+                            console.log('epoch', epoch, logs, 'RMSE=>', Math.sqrt(logs.loss));
+                            _history.push(logs);
+            
+                            // loss값의 그래프와 accuracy값의 그래프 시각화
+                            tfvis.show.history({name: 'loss', tab: 'history'}, _history, ['loss']);
+                            tfvis.show.history({name: 'accuracy', tab: 'history'}, _history, ['acc']);
+                        }
+                    }
+                }
+                
+                model.fit(independVar.tensor, dependVar.tensor, fitParameter).then(function (result) {
+                    // Use Model
+                    prediction = new dfd.DataFrame(model.predict(independVar.tensor));
+                    prediction.print();
+                    dependVar.print();
+                });
+                */
+                
+                
+            });
+            
+    </script>
+    </body>
+</html>
