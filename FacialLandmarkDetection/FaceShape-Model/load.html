@@ -28,10 +28,11 @@
                 });
             });*/
             let max = 0;
-            tf.loadLayersModel('./DeepLearningModel/my-model.json').then(function(model) {
+            tf.loadLayersModel('./model-JsonFile/my-model.json').then(function(model) {
                 dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
                     input = DATA.loc({rows: [14]});
-                    
+                    console.log(input)
+                    console.log(input.tensor)
                     let encoder = new dfd.OneHotEncoder();
                     let output = encoder.fit(DATA['260']);
                     console.log(output);

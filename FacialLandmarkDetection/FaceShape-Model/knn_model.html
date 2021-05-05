@@ -20,9 +20,7 @@
             DATA.print();
 
             const classifier = knnClassifier.create();
-            
-            // 입력 받은 데이터의 column들의 값을 추출 - 독립 변수
-            // 92차원의 특징
+
             let List = new Array(260);
             for (let i = 0; i < 260; i++) {
                 List[i] = String(i);
@@ -41,11 +39,6 @@
                 classifier.addExample(independVar.loc({rows: [i]}).tensor,"RTriangle");
             }
             
-            
-            // 얼굴형 column(종속 변수)에 대해 one hot encoding
-            //let encoder = new dfd.OneHotEncoder();
-            //let dependVar = encoder.fit(DATA['260']);
-            //dependVar.print();
             console.log('Predictions:');
             const result = classifier.predictClass(independVar.loc({rows: [350]}).tensor, 3);
             console.log(result);
