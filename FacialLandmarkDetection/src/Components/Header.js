@@ -7,7 +7,7 @@ const Header = styled.div`
   align-items:center;
   justify-content: center;
 	width: 90%;
-	height: 15%;
+	min-height: 15%;
   ${'' /* background-color: #ff0000; */}
   ${'' /* margin-top: 24px; */}
   ${'' /* border-radius: 12px; */}
