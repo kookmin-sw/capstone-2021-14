@@ -6,7 +6,7 @@ const Footer = styled.div`
   flex-direction:column;
   align-items:center;
   width: 90%;
-  height: 5%;
+  min-height: 5%;
   justify-content: center;
   ${'' /* background-color: #9400D3;
   margin-top: 24px; */}

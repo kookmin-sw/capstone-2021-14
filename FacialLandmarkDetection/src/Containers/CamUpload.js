@@ -12,6 +12,10 @@ class CamUploadContainer extends React.Component {
     isCapture: false,
   };
 
+  componentWillUnmount(){
+    this.state.isCapture = false;
+  }
+
   setRef = (webcam) => {
     this.webcam = webcam;
   };
@@ -54,16 +58,17 @@ class CamUploadContainer extends React.Component {
         <ImageContainer>
           <Webcam
               audio={false}
-              height={"100%"}
+              // height={"100%"}
               ref={this.setRef}
               mirrored={true}
               screenshotFormat="image/jpeg"
-              width={"50%"}
+              width={"100%"}
               videoConstraints={videoConstraints}
-              object-fit={"cover"}
+              object-fit={"contain"}
+              screenshotQuality={1}
             />
           {this.state.isCapture && (
-            <img src={ManageFile.imageUrl} width={"50%"} height={"100%"} object-fit={"contain"}/>
+            <img src={ManageFile.imageUrl} width={"100%"} height={"auto"} object-fit="contain"/>
           )}
         </ImageContainer>
           
@@ -99,12 +104,13 @@ export default CamUploadContainer;
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 80%;
-  display: flex;
+  height: 90%;
+  ${'' /* display: flex; */}
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  ${'' /* margin: 20px; */}
   background: #ff0000;
+  object-fit: contain;
 `;
 
 const ButtonContainer = styled.div`
@@ -125,7 +131,7 @@ const CaptureButton = styled.button`
   border-radius: 30px;
 `;
 
-const Font15 = styled.p`
+const Font15 = styled.div`
   color: white;
   font-size: 15px;
   font-weight: bold;
