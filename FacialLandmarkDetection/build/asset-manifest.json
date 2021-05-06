@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/capstone-2021-14/static/css/main.40b3399c.chunk.css",
+    "main.js": "/capstone-2021-14/static/js/main.12ed50ae.chunk.js",
+    "main.js.map": "/capstone-2021-14/static/js/main.12ed50ae.chunk.js.map",
+    "runtime-main.js": "/capstone-2021-14/static/js/runtime-main.0feebddd.js",
+    "runtime-main.js.map": "/capstone-2021-14/static/js/runtime-main.0feebddd.js.map",
+    "static/js/2.183a32c3.chunk.js": "/capstone-2021-14/static/js/2.183a32c3.chunk.js",
+    "static/js/2.183a32c3.chunk.js.map": "/capstone-2021-14/static/js/2.183a32c3.chunk.js.map",
+    "index.html": "/capstone-2021-14/index.html",
+    "precache-manifest.1e4de43fe730900c8add3b6fb3c3f292.js": "/capstone-2021-14/precache-manifest.1e4de43fe730900c8add3b6fb3c3f292.js",
+    "service-worker.js": "/capstone-2021-14/service-worker.js",
+    "static/css/main.40b3399c.chunk.css.map": "/capstone-2021-14/static/css/main.40b3399c.chunk.css.map",
+    "static/js/2.183a32c3.chunk.js.LICENSE.txt": "/capstone-2021-14/static/js/2.183a32c3.chunk.js.LICENSE.txt",
+    "static/media/1.jpg": "/capstone-2021-14/static/media/1.19fb8872.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0feebddd.js",
+    "static/js/2.183a32c3.chunk.js",
+    "static/css/main.40b3399c.chunk.css",
+    "static/js/main.12ed50ae.chunk.js"
+  ]
+}
