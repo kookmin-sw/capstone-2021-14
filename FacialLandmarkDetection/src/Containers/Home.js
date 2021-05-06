@@ -3,6 +3,7 @@ import styled from "styled-components";
 import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
 import InitialContainer from "./Init";
+import RealtimeFaceOutputContainer from "./RealtimeFaceOutput";
 import Container from "Components/Container";
 import Content from "Components/Content";
 import Header from "Components/Header";
@@ -29,6 +30,10 @@ class HomeContainer extends React.Component {
     // alert("웹캠 사용");
     // this.setState({ buttonIndex: 2 });
     this.props.ManageFile.pageIndex = 3;
+  };
+
+  realTimeCamClick = () => {
+    this.props.ManageFile.pageIndex = 5;
   };
 
   eduClick = () => {

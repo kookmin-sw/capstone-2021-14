@@ -11,6 +11,7 @@ import testImg from "./photo/Egg/1.jpg";
 import { inject, observer } from "mobx-react";
 import { useObserver } from "mobx-react";
 import { loadLayersModel, tensor } from "@tensorflow/tfjs";
+import ManageFile from "stores/ManageFile";
 //import { read_csv, OneHotEncoder } from "danfojs-node";
 
 // @inject("ManageFile")
@@ -22,6 +23,7 @@ function useStores() {
 let counter = 0;
 let intervalId;
 let pageIndex;
+const FaceType = ['둥근형','역삼각형','계란형','각진형']
 
 function FaceOutputContainer() {
   const webcamRef = useRef(null);
@@ -80,82 +82,88 @@ function FaceOutputContainer() {
     }*/
 
     const ctx = canvasRef.current.getContext("2d");
-    drawMesh(face, ctx);
+    ManageFile.faceType = drawMesh(face, ctx);
 
     // drawDot(ctx);
   };
 
   runFacemesh();
   return (
-    <ImageContainer>
-      <img
-        id="test"
-        src={ManageFile.imageUrl}
-        ref={imageRef}
-        style={{
-          position: "absolute",
-          // marginLeft: "auto",
-          top: 0,
-          left: 0,
-          // zindex: 9,
-        }}
-        width={"100%"}
-        height={"100%"}
-        // style={{
-        //   // position: "absolute",
-        //   marginLeft: "auto",
-        //   marginRight: "auto",
-        //   left: 0,
-        //   right: 0,
-        //   textAlign: "center",
-        //   // zindex: 9,
-        //   // width: "50%",
-        //   // height: "40%",
-        // }}
-        // object-fit={"contain"}
-        // width={"100%"}
-      />
-      <canvas
-        ref={canvasRef}
-        // width={"100%"}
-        style={{
-          position: "absolute",
-          // marginLeft: "auto",
-          // background:"#ffff00",
-          // zindex: 9,
-          top: 0,
-          left: 0,
-        }}
-        width={"100%"}
-        height={"100%"}
-        
-        // style={{
-          // position: "absolute",
-          // marginLeft: "auto",
-          // marginRight: "auto",
-          // left: 0,
-          // right: 0,
-          // textAlign: "center",
-          // zindex: 9,
-          // height: "40%",
-        // }}
-        
-      />
-
-      {/* <button
-        onClick={ButtonForUserFace}
-        style={{ marginTop: "50em", marginRight: "8.5em" }}
-      >
-        Button
-      </button>
-      <button
-        onClick={checkUserFace}
-        style={{ marginTop: "-1.7em", marginLeft: "7em" }}
-      >
-        Check My Face
-      </button> */}
-    
-    </ImageContainer>
+    <>
+      {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
+      <p style={{color:'gray',cursor:'none'}}>당신의 <p style={{color:'blue',display:"inline-block"}}>얼굴형</p>을 확인해보세요.</p>
+      <p>인식 중 . . .</p>
+      <ImageContainer>
+        <img
+          id="test"
+          src={ManageFile.imageUrl}
+          ref={imageRef}
+          style={{
+            position: "absolute",
+            // marginLeft: "auto",
+            top: 0,
+            left: 0,
+            // zindex: 9,
+          }}
+          width={"100%"}
+          height={"100%"}
+          // style={{
+          //   // position: "absolute",
+          //   marginLeft: "auto",
+          //   marginRight: "auto",
+          //   left: 0,
+          //   right: 0,
+          //   textAlign: "center",
+          //   // zindex: 9,
+          //   // width: "50%",
+          //   // height: "40%",
+          // }}
+          // object-fit={"contain"}
+          // width={"100%"}
+        />
+        <canvas
+          ref={canvasRef}
+          // width={"100%"}
+          style={{
+            position: "absolute",
+            // marginLeft: "auto",
+            // background:"#ffff00",
+            // zindex: 9,
+            top: 0,
+            left: 0,
+          }}
+          width={"100%"}
+          height={"100%"}
+          
+          // style={{
+            // position: "absolute",
+            // marginLeft: "auto",
+            // marginRight: "auto",
+            // left: 0,
+            // right: 0,
+            // textAlign: "center",
+            // zindex: 9,
+            // height: "40%",
+          // }}
+        />
+        {/* <div style={{width:500,height:500,marginTop:800}}>
+          asdasdasd
+        </div> */}
+        {/* <button
+          onClick={ButtonForUserFace}
+          style={{ marginTop: "50em", marginRight: "8.5em" }}
+        >
+          Button
+        </button>
+        <button
+          onClick={checkUserFace}
+          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
+        >
+          Check My Face
+        </button> */}
+      
+      </ImageContainer>
+    </>
   );
 }
 
@@ -210,15 +218,15 @@ const drawMesh = (predictions, ctx) => {
           ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
           ctx.fillStyle = "SpringGreen";
           ctx.fill();
-          
+
           //z값 제외
           finalData.push(x);
           finalData.push(y);
         }
       }
-      // create textfile for data modeling
-      if (downcheck && pageIndex == 4) {
-        //console.log("finalData: ", finalData);
+
+      if(downcheck)
+      {
         let sum = 0.0;
         for(let i = 0; i < finalData.length; i++) {
           sum += finalData[i];
@@ -258,8 +266,20 @@ const drawMesh = (predictions, ctx) => {
             // 예측값(tensor)에서 최댓값과 인덱스 추출
             console.log(max);
             console.log("Your Face ID is ", max_id);
+            alert("당신의 얼굴형은 " + FaceType[max_id] +"입니다!");
+            return;
+            // ManageFile.faceType = FaceType[max_id]
+            // ManageFile.faceType = "ffff"
           });
         })
+      }
+      
+
+
+      // create textfile for data modeling
+      if (downcheck && pageIndex == 5) {
+        //console.log("finalData: ", finalData);
+        
         
         
         // console.log("here");
