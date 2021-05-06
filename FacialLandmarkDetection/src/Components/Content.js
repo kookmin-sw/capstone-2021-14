@@ -11,7 +11,7 @@ const Content = styled.div`
   ${'' /* height: 100vh; */}
 	${'' /* margin-top: 12px; */}
 	${'' /* margin-bottom: 18px; */}
-  background-color: #ff0000;
+  ${'' /* background-color: #ff0000; */}
   ${'' /* margin-top: 24px; */}
   ${'' /* border-radius: 12px; */}
   ${'' /* box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5); */}
