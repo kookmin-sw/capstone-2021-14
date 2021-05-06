@@ -109,7 +109,7 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   ${'' /* margin: 20px; */}
-  background: #ff0000;
+  ${'' /* background: #ff0000; */}
   object-fit: contain;
 `;
 
