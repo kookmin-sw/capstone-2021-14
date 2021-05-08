@@ -2,11 +2,12 @@
 <html>
     <head>
         <script src="https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"></script>
-        <!-- Tensorflow.js load script -->
+        
         <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js"></script>
     </head>
     <body>
         <script>
+            console.log(tf)
             /*let max = 0;
             tf.loadLayersModel('localstorage://my-model').then(function(model) {
                 dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
@@ -34,29 +35,29 @@
                 dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
                     let input = DATA.loc({rows: [14]});
                     
-                    let encoder = new dfd.OneHotEncoder();
-                    let output = encoder.fit(DATA['260']);
-                    console.log(output);
-                    // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
-                    input.drop({ columns: ['260'], axis: 1, inplace: true });
-                    const rvalue = model.predict(input.tensor);
-                    rvalue.data().then(function(data) {
-                        for (let i = 0; i < data.length; i++) {
-                            if (data[i] <= 1 && data[i] > max) {
-                                max = data[i];
-                                max_id = i;
-                            }
-                        }
-                        // 예측값(tensor)에서 최댓값과 인덱스 추출
-                        console.log(max);
-                        console.log(max_id);
-                        let result = output.iloc({columns: [String(max_id)]});
-                        //얼굴형을 string으로 넘겨준다.
-                        shape = result.columns[0];
-                        console.log(shape);
-                    });
-                });
-            });
+            //         let encoder = new dfd.OneHotEncoder();
+            //         let output = encoder.fit(DATA['260']);
+            //         console.log(output);
+            //         // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
+            //         input.drop({ columns: ['260'], axis: 1, inplace: true });
+            //         const rvalue = model.predict(input.tensor);
+            //         rvalue.data().then(function(data) {
+            //             for (let i = 0; i < data.length; i++) {
+            //                 if (data[i] <= 1 && data[i] > max) {
+            //                     max = data[i];
+            //                     max_id = i;
+            //                 }
+            //             }
+            //             // 예측값(tensor)에서 최댓값과 인덱스 추출
+            //             console.log(max);
+            //             console.log(max_id);
+            //             let result = output.iloc({columns: [String(max_id)]});
+            //             //얼굴형을 string으로 넘겨준다.
+            //             shape = result.columns[0];
+            //             console.log(shape);
+            //         });
+            //     });
+            // });
         </script>
     </body>
 </html>
