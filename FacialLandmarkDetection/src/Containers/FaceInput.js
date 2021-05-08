@@ -15,22 +15,20 @@ class FaceInputContainer extends React.Component {
     const { inputType } = this.props;
 
     const ConfirmButtonClick = () => {
-      this.props.ManageFile.pageIndex = 3;
+      this.props.ManageFile.pageIndex = 4;
       // alert(this.props.ManageFile.pageIndex);
     };
 
     return (
       <>
         {/* {this.props.ManageFile.pageIndex} */}
-        <Container>
-          {inputType == "file" ? (
-            <FileUploadContainer />
-          ) : (
-            <CamUploadContainer />
-          )}
+        {inputType == "file" ? (
+          <FileUploadContainer />
+        ) : (
+          <CamUploadContainer />
+        )}
 
-          <ConfirmButton onClick={ConfirmButtonClick}>확인!</ConfirmButton>
-        </Container>
+        <ConfirmButton onClick={ConfirmButtonClick}>확인!</ConfirmButton>
       </>
     );
   }

@@ -3,9 +3,32 @@ import styled from "styled-components";
 import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
 import RealtimeFaceOutputContainer from "./RealtimeFaceOutput";
+import InitialContainer from "./Init";
 import Container from "Components/Container";
+import Content from "Components/Content";
+import Header from "Components/Header";
+import Footer from "Components/Footer";
+import NextButton from "../Components/NextButton";
+import PrevButton from "../Components/PrevButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
+// import tf from "../tfjs";
+
+// require("./danfojs");
+// require("./tfjs");
+async function getWeather() {
+  return await fetch(
+    "https:////cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"
+  ).then();
+}
+
+export const appendScript = (scriptToAppend) => {
+  const script = document.createElement("script");
+  script.src = scriptToAppend;
+  script.async = true;
+  document.body.appendChild(script);
+};
+
 @inject("ManageFile")
 @observer
 class HomeContainer extends React.Component {
@@ -16,13 +39,13 @@ class HomeContainer extends React.Component {
   picClick = () => {
     // alert("사진 업로드");
     // this.setState({ buttonIndex: 1 });
-    this.props.ManageFile.pageIndex = 1;
+    this.props.ManageFile.pageIndex = 2;
   };
 
   camClick = () => {
     // alert("웹캠 사용");
     // this.setState({ buttonIndex: 2 });
-    this.props.ManageFile.pageIndex = 2;
+    this.props.ManageFile.pageIndex = 3;
   };
 
   realTimeCamClick = () => {
@@ -30,8 +53,72 @@ class HomeContainer extends React.Component {
   };
 
   eduClick = () => {
-    this.props.ManageFile.pageIndex = 4;
+    this.props.ManageFile.pageIndex = 5;
   };
+
+  async componentDidMount() {
+    const script = document.createElement("script");
+    // scriptKakaoJS.id = "KakaoJSSDK";
+
+    // script.id = "danfojs";
+    // script.src = "//cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js";
+    script.src = "//cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js";
+
+    script.async = true;
+
+    // console.log(tf);
+    // var a = fetch(
+    //   "https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"
+    // ).then((res) => {
+    //   console.log(res);
+    //   console.log(res.body);
+    //   return res;
+    // });
+
+    // console.log(a.input);
+    // .then((res) => console.log(res))
+    // console.log(a);
+    document.body.appendChild(script);
+    script.text = 'console.log("www");';
+
+    // console.log(script.src);
+    // console.log(script.id);
+    // console.log(script);
+    // script.src = "//cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js";
+    // document.body.appendChild(script);
+
+    // console.log(tf);
+    // let max = 0;
+    // tf.loadLayersModel("./DeepLearningModel/my-model.json").then(function (
+    //   model
+    // ) {
+    //   dfd.read_csv("./dataset/norm-all-data.csv").then(function (DATA) {
+    //     input = DATA.loc({ rows: [14] });
+
+    //     let encoder = new dfd.OneHotEncoder();
+    //     let output = encoder.fit(DATA["260"]);
+    //     console.log(output);
+    //     // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
+    //     input.drop({ columns: ["260"], axis: 1, inplace: true });
+    //     const rvalue = model.predict(input.tensor);
+    //     rvalue.data().then(function (data) {
+    //       for (let i = 0; i < data.length; i++) {
+    //         if (data[i] <= 1 && data[i] > max) {
+    //           max = data[i];
+    //           max_id = i;
+    //         }
+    //       }
+    //       // 예측값(tensor)에서 최댓값과 인덱스 추출
+    //       console.log(max);
+    //       console.log(max_id);
+    //       let result = output.iloc({ columns: [String(max_id)] });
+    //       //얼굴형을 string으로 넘겨준다.
+    //       shape = result.columns[0];
+    //       console.log(shape);
+    //     });
+    //   });
+    // });
+  }
   componentDidUpdate() {
     // alert("F");
   }
@@ -41,35 +128,47 @@ class HomeContainer extends React.Component {
       <>
         {/* <FileUploadContainer/> */}
         <Container>
-          {ManageFile.pageIndex == 0 && (
-            <>
-              <Font50>분기 설정</Font50>
-              <ButtonContainer>
-                <PicUploadButton onClick={this.picClick}>
-                  <Font15>사진 업로드</Font15>
-                </PicUploadButton>
-                <WebcamButton onClick={this.camClick}>
-                  <Font15>웹캠 사용(캡쳐)</Font15>
-                </WebcamButton>
-                <WebcamButton onClick={this.realTimeCamClick}>
-                  <Font15>웹캠 사용(실시간)</Font15>
-                </WebcamButton>
+          <Header>
+            <Font50>H A I!</Font50>
+          </Header>
+          <Content>
+            {ManageFile.pageIndex == 0 && <InitialContainer />}
+            {ManageFile.pageIndex == 1 && (
+              <>
+                <Font50>분기 설정</Font50>
+                <ButtonContainer>
+                  <PicUploadButton onClick={this.picClick}>
+                    <Font15>사진 업로드</Font15>
+                  </PicUploadButton>
+                  <WebcamButton onClick={this.camClick}>
+                    <Font15>웹캠 사용</Font15>
+                  </WebcamButton>
 
-                <WebcamButton onClick={this.eduClick}>
-                  <Font15>학습하기</Font15>
-                </WebcamButton>
-              </ButtonContainer>
-            </>
-          )}
-          {ManageFile.pageIndex == 1 && (
-            <FaceInputContainer inputType={"file"} />
-          )}
-          {ManageFile.pageIndex == 2 && (
-            <FaceInputContainer inputType={"cam"} />
-          )}
-          {ManageFile.pageIndex == 3 && <FaceOutputContainer />}
-          {ManageFile.pageIndex == 4 && <EducationContainer />}
-          {ManageFile.pageIndex == 5 && <RealtimeFaceOutputContainer />}
+                  <WebcamButton onClick={this.eduClick}>
+                    <Font15>학습하기</Font15>
+                  </WebcamButton>
+                </ButtonContainer>
+              </>
+            )}
+            {ManageFile.pageIndex == 2 && (
+              <FaceInputContainer inputType={"file"} />
+            )}
+            {ManageFile.pageIndex == 3 && (
+              <FaceInputContainer inputType={"cam"} />
+            )}
+            {ManageFile.pageIndex == 4 && <FaceOutputContainer />}
+            {ManageFile.pageIndex == 5 && <EducationContainer />}
+            <ButtonContainer>
+              {ManageFile.pageIndex != 0 && <PrevButton />}
+              {ManageFile.pageIndex != 2 && ManageFile.pageIndex != 3 && (
+                <NextButton />
+              )}
+            </ButtonContainer>
+          </Content>
+
+          <Footer>
+            <Font15>Robolink AI web app free trial</Font15>
+          </Footer>
         </Container>
       </>
     );
@@ -107,13 +206,13 @@ const WebcamButton = styled.button`
 `;
 
 const Font50 = styled.p`
-  color: white;
+  color: #fdffd5;
   font-size: 50px;
   font-weight: bold;
 `;
 
 const Font15 = styled.p`
-  color: white;
+  color: #fdffd5;
   font-size: 15px;
   font-weight: bold;
 `;
