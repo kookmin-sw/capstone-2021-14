@@ -5,26 +5,21 @@ import { observer, inject } from "mobx-react";
 @inject("ManageFile")
 @observer
 
-class PrevButton extends React.Component{
-	prevClick = () => {
-    if (this.props.ManageFile.pageIndex === 3){
-      this.props.ManageFile.pageIndex = 1;  
-    } else {
-      this.props.ManageFile.pageIndex = this.props.ManageFile.pageIndex - 1;
-    }
-    
+class HomeButton extends React.Component{
+	homeClick = () => {
+    this.props.ManageFile.pageIndex = 1;
   };
 	
 	render(){
 		return(
-			<Prev onClick={this.prevClick}>
-				<Font20>PREV</Font20>
-			</Prev>
+			<Home onClick={this.homeClick}>
+				<Font20>HOME</Font20>
+			</Home>
 		);
 	};
 };
 
-export default PrevButton;
+export default HomeButton;
 
 const Font20 = styled.div`
 	color: white;
@@ -32,7 +27,7 @@ const Font20 = styled.div`
 	font-weight: bold;
 `
 
-const Prev = styled.button`
+const Home = styled.button`
 	color: white;
 	background-color: #87ceea;
 	width: 120px;

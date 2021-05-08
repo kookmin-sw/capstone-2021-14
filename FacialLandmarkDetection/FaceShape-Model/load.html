@@ -28,13 +28,12 @@
                     });
                 });
             });*/
+            let max = 0;
+            let max_id = 0;
 
-            // let max = 0;
-            // console.log("!!");
-            // tf.loadLayersModel('localstorage://model-JsonFile/my-model.json').then(function(model) {
-            //     console.log("22222");
-            //     dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
-            //         input = DATA.loc({rows: [14]});
+            tf.loadLayersModel('https://seonjongyoo.github.io/ModelServer/my-model.json').then(function(model) {
+                dfd.read_csv('./dataset/norm-all-data.csv').then(function(DATA) {
+                    let input = DATA.loc({rows: [14]});
                     
             //         let encoder = new dfd.OneHotEncoder();
             //         let output = encoder.fit(DATA['260']);
@@ -62,3 +61,4 @@
         </script>
     </body>
 </html>
+

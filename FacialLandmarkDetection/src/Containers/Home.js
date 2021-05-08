@@ -2,25 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import FaceOutputContainer from "./FaceOutput";
 import FaceInputContainer from "./FaceInput";
-import RealtimeFaceOutputContainer from "./RealtimeFaceOutput";
 import InitialContainer from "./Init";
+import RealtimeFaceOutputContainer from "./RealtimeFaceOutput";
 import Container from "Components/Container";
 import Content from "Components/Content";
 import Header from "Components/Header";
 import Footer from "Components/Footer";
 import NextButton from "../Components/NextButton";
 import PrevButton from "../Components/PrevButton";
+import HomeButton from "../Components/HomeButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
-// import tf from "../tfjs";
-
-// require("./danfojs");
-// require("./tfjs");
-async function getWeather() {
-  return await fetch(
-    "https:////cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"
-  ).then();
-}
 
 export const appendScript = (scriptToAppend) => {
   const script = document.createElement("script");
@@ -49,7 +41,7 @@ class HomeContainer extends React.Component {
   };
 
   realTimeCamClick = () => {
-    this.props.ManageFile.pageIndex = 5;
+    this.props.ManageFile.pageIndex = 6;
   };
 
   eduClick = () => {
@@ -135,13 +127,17 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex == 0 && <InitialContainer />}
             {ManageFile.pageIndex == 1 && (
               <>
-                <Font50>분기 설정</Font50>
+                {/* <Font50>분기 설정</Font50> */}
                 <ButtonContainer>
                   <PicUploadButton onClick={this.picClick}>
                     <Font15>사진 업로드</Font15>
                   </PicUploadButton>
                   <WebcamButton onClick={this.camClick}>
-                    <Font15>웹캠 사용</Font15>
+                    <Font15>웹캠 캡쳐</Font15>
+                  </WebcamButton>
+
+                  <WebcamButton onClick={this.realTimeCamClick}>
+                    <Font15>실시간 웹캠 얼굴인식</Font15>
                   </WebcamButton>
 
                   <WebcamButton onClick={this.eduClick}>
@@ -158,14 +154,18 @@ class HomeContainer extends React.Component {
             )}
             {ManageFile.pageIndex == 4 && <FaceOutputContainer />}
             {ManageFile.pageIndex == 5 && <EducationContainer />}
-            <ButtonContainer>
-              {ManageFile.pageIndex != 0 && <PrevButton />}
-              {ManageFile.pageIndex != 2 && ManageFile.pageIndex != 3 && (
-                <NextButton />
-              )}
-            </ButtonContainer>
+            {ManageFile.pageIndex == 6 && <RealtimeFaceOutputContainer />}
           </Content>
-
+          <ButtonContainer>
+            {ManageFile.pageIndex != 0 && ManageFile.pageIndex != 4 && (
+              <PrevButton />
+            )}
+            {ManageFile.pageIndex != 1 &&
+              ManageFile.pageIndex != 2 &&
+              ManageFile.pageIndex != 4 &&
+              ManageFile.pageIndex != 3 && <NextButton />}
+            {ManageFile.pageIndex == 4 && <HomeButton />}
+          </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
           </Footer>
@@ -178,7 +178,7 @@ class HomeContainer extends React.Component {
 export default HomeContainer;
 
 const ButtonContainer = styled.div`
-  width: 70%;
+  width: 90%;
   height: 70px;
   display: flex;
   align-items: center;
@@ -187,8 +187,8 @@ const ButtonContainer = styled.div`
 
 const PicUploadButton = styled.button`
   color: black;
-  width: 40%;
-  height: 70%;
+  width: 120px;
+  height: 40px;
   background-color: red;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
@@ -197,21 +197,21 @@ const PicUploadButton = styled.button`
 
 const WebcamButton = styled.button`
   color: black;
-  width: 40%;
-  height: 70%;
+  width: 120px;
+  height: 40px;
   background-color: blue;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 30px;
 `;
 
-const Font50 = styled.p`
+const Font50 = styled.div`
   color: #fdffd5;
   font-size: 50px;
   font-weight: bold;
 `;
 
-const Font15 = styled.p`
+const Font15 = styled.div`
   color: #fdffd5;
   font-size: 15px;
   font-weight: bold;
