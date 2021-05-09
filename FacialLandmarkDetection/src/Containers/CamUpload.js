@@ -21,7 +21,7 @@ class CamUploadContainer extends React.Component {
   };
 
   capture = () => {
-    const imgSrc = this.webcam.getScreenshot();
+    const imgSrc = this.webcam.getScreenshot({width: 640, height: 640});
     const { ManageFile } = this.props;
     this.captureImage(imgSrc, (m_url) => {
       ManageFile.imageUrl = m_url;
@@ -63,6 +63,8 @@ class CamUploadContainer extends React.Component {
               mirrored={true}
               screenshotFormat="image/jpeg"
               width={"100%"}
+
+              
               videoConstraints={videoConstraints}
               object-fit={"contain"}
               screenshotQuality={1}
