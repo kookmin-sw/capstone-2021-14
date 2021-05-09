@@ -167,8 +167,8 @@ function FaceOutputContainer() {
             left: 0,
             // zindex: 9,
           }}
-          width={"100%"}
-          height={"100%"}
+          width={"640px"}
+          height={"640px"}
           // style={{
           //   // position: "absolute",
           //   marginLeft: "auto",
@@ -194,8 +194,8 @@ function FaceOutputContainer() {
             top: 0,
             left: 0,
           }}
-          width={"100%"}
-          height={"100%"}
+          width={"640px"}
+          height={"640px"}
 
           // style={{
           // position: "absolute",
