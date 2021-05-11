@@ -465,6 +465,10 @@ const drawMesh = (predictions, ctx) => {
         // save txt file with photo file name
         saveAs(blob, "data.txt");
       }
+      console.log(keypoints[234][0], keypoints[234][1]);
+      console.log(keypoints[454][0], keypoints[454][1]);
+      console.log(keypoints[10][0], keypoints[10][1]);
+      console.log(keypoints[152][0], keypoints[152][1]);
     });
   }
 };

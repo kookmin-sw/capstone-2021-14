@@ -155,13 +155,16 @@ var DOTS = [
 ];
 
 const checkFace = (keypoints) => {
+  var std = 77;
+  var user = keypoints[454][0] - keypoints[234][0];
+  var ratio = user / std;
   var A = keypoints[10][0] - keypoints[234][0];
   var B = keypoints[454][0] - keypoints[10][0];
   var C = keypoints[10][0] - keypoints[152][0];
 
-  if (A - B > 20) console.log("turn Left");
-  else if (A - B < -20) console.log("turn Right");
-  else if (Math.abs(C) > 20) console.log("a");
+  if (A - B > 10 * ratio) console.log("turn Left");
+  else if (A - B < -10 * ratio) console.log("turn Right");
+  else if (Math.abs(C) > 10 * ratio) console.log("a");
   else console.log("good");
 };
 
