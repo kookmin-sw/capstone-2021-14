@@ -167,8 +167,8 @@ function FaceOutputContainer() {
             left: 0,
             // zindex: 9,
           }}
-          width={"640px"}
-          height={"640px"}
+          width={"90%"}
+          height={"auto"}
           // style={{
           //   // position: "absolute",
           //   marginLeft: "auto",
@@ -194,8 +194,8 @@ function FaceOutputContainer() {
             top: 0,
             left: 0,
           }}
-          width={"640px"}
-          height={"640px"}
+          width={"90%"}
+          height={"auto"}
 
           // style={{
           // position: "absolute",
@@ -483,11 +483,13 @@ const ImageContainer = styled.div`
   ${"" /* marginLeft: 0; */}
   ${"" /* marginTop: 0; */}
   ${"" /* background: #00ff00; */}
-  min-width: 90%;
-  min-height: 60vh;
+  min-width: 100%;
+  min-height: 30vh;
   position: relative;
   top: 0;
   left: 0;
+  align-items: center;
+  justify-sentence: center;
 `;
 
 const RelativeContainer = styled.div`
