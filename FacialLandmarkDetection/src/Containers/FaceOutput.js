@@ -46,14 +46,14 @@ function FaceOutputContainer() {
     pageIndex = ManageFile.pageIndex;
 
     intervalId = setInterval(() => {
-      console.log("detect()");
+      console.log("Start detection!");
       detect(net);
-    }, 2000); // 200ms
+    }, 200); // 200ms
   };
 
   // Detect function
   const detect = async (net) => {
-    console.log("RR");
+    console.log("Start prediction!");
 
     const image = imageRef.current;
     // console.log(image);
@@ -233,7 +233,7 @@ function FaceOutputContainer() {
 
 // length = 130. dots for detecting face shape
 // 데모 영상 촬영용 좌표
-var DOTS = [
+/*var DOTS = [
   10,
   338,
   297,
@@ -365,14 +365,14 @@ var DOTS = [
   32,
   211,
 ];
-
-/*var DOTS = [
+*/
+var DOTS = [
   10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 
   378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 
   162, 21, 54, 103, 67, 109, 151, 337, 299, 333, 298, 301, 368, 264, 447, 
   366, 401, 435, 367, 364, 394, 395, 369, 396, 175, 171, 140, 170, 169, 
   135, 138, 215, 177, 137, 227, 34, 139, 71, 68, 104, 69, 108,
-];*/
+];
 
 // Drawing Mesh
 const drawMesh = (predictions, ctx) => {
@@ -406,8 +406,8 @@ const drawMesh = (predictions, ctx) => {
           finalData.push(y);
         }
       }
-
-      if (downcheck) {
+      //put Keypoints to Shape Model
+      /*if (downcheck) {
         let sum = 0.0;
         for (let i = 0; i < finalData.length; i++) {
           sum += finalData[i];
@@ -431,7 +431,7 @@ const drawMesh = (predictions, ctx) => {
         const model = loadLayersModel(
           "https://seonjongyoo.github.io/ModelServer/my-model.json"
         );
-        const tensor_shape = [1, 260];
+        const tensor_shape = [1, 144];
         const input = tensor(finalData, tensor_shape);
 
         // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
@@ -454,7 +454,7 @@ const drawMesh = (predictions, ctx) => {
             // ManageFile.faceType = "ffff"
           });
         });
-      }
+      }*/
 
       // create textfile for data modeling
       if (downcheck && pageIndex == 5) {
