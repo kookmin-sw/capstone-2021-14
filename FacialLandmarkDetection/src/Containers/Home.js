@@ -137,7 +137,7 @@ class HomeContainer extends React.Component {
                   </WebcamButton>
 
                   <WebcamButton onClick={this.realTimeCamClick}>
-                    <Font15>실시간 웹캠 얼굴인식</Font15>
+                    <Font15>실시간 웹캠</Font15>
                   </WebcamButton>
 
                   <WebcamButton onClick={this.eduClick}>
@@ -189,7 +189,7 @@ const PicUploadButton = styled.button`
   color: black;
   width: 120px;
   height: 40px;
-  background-color: red;
+  background-color: #007166;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 30px;
@@ -199,7 +199,7 @@ const WebcamButton = styled.button`
   color: black;
   width: 120px;
   height: 40px;
-  background-color: blue;
+  background-color: #007166;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
   border-radius: 30px;
