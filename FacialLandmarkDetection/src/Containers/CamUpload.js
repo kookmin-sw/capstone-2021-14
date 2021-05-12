@@ -21,7 +21,7 @@ class CamUploadContainer extends React.Component {
   };
 
   capture = () => {
-    const imgSrc = this.webcam.getScreenshot({width: 640, height: 640});
+    const imgSrc = this.webcam.getScreenshot();
     const { ManageFile } = this.props;
     this.captureImage(imgSrc, (m_url) => {
       ManageFile.imageUrl = m_url;
@@ -62,15 +62,14 @@ class CamUploadContainer extends React.Component {
               ref={this.setRef}
               mirrored={true}
               screenshotFormat="image/jpeg"
-              width={"100%"}
-
-              
+              width={"90%"}
+              height={"auto"}
               videoConstraints={videoConstraints}
               object-fit={"contain"}
               screenshotQuality={1}
             />
           {this.state.isCapture && (
-            <img src={ManageFile.imageUrl} width={"100%"} height={"auto"} object-fit="contain"/>
+            <img src={ManageFile.imageUrl} width={"90%"} height={"auto"} object-fit="contain"/>
           )}
         </ImageContainer>
           
@@ -116,21 +115,21 @@ const ImageContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  width: 60%;
-  height: 70px;
+  ${'' /* width: 60%; */}
+  ${'' /* height: 70px; */}
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 10px;
 `;
 const CaptureButton = styled.button`
-  color: "black";
-  width: 50%;
-  height: 70%;
-  background-color: green;
+  color: #19c6dd;
+  height: 35px;
+  width: 60px;
+  background-color: #19c6dd;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
-  border-radius: 30px;
+  border-radius: 5px;
 `;
 
 const Font15 = styled.div`

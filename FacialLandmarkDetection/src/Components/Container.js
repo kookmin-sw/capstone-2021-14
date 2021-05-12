@@ -11,8 +11,9 @@ const Container = styled.div`
   ${'' /* height: 70vh; */}
   min-height: 70vh;
   width: 80vw;
-  background: #15CB71;
-  background: linear-gradient(to bottom, #58F0AB 10%,#00D000);
+  ${'' /* background: #15CB71; */}
+  ${'' /* background: linear-gradient(to bottom, #58F0AB 10%,#00D000); */}
+  background: linear-gradient(to bottom right, #8d5aff 30%, #6236ff);
   margin-top: 24px;
   border-radius: 6px;
   box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);

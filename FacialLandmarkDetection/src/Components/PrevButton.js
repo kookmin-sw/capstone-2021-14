@@ -34,12 +34,12 @@ const Font20 = styled.div`
 
 const Prev = styled.button`
 	color: white;
-	background-color: #87ceea;
+	background-color: #00cfbb;
 	width: 120px;
 	height: 40px;
 	box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);
 	border: none;
-  border-radius: 30px;
+  	border-radius: 30px;
 	align-items: center;
-  justify-content: space-around;
+  	justify-content: space-around;
 `

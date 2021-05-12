@@ -150,8 +150,8 @@ function FaceOutputContainer() {
   return (
     <>
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      <p style={{ color: "gray", cursor: "none" }}>
-        당신의 <p style={{ color: "blue", display: "inline-block" }}>얼굴형</p>
+      <p style={{ color: "white", cursor: "none"}}>
+        당신의 <p fontweight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
       </p>
       <p>인식 중 . . .</p>
@@ -167,8 +167,8 @@ function FaceOutputContainer() {
             left: 0,
             // zindex: 9,
           }}
-          width={"640px"}
-          height={"640px"}
+          width={"90%"}
+          height={"auto"}
           // style={{
           //   // position: "absolute",
           //   marginLeft: "auto",
@@ -193,9 +193,10 @@ function FaceOutputContainer() {
             // zindex: 9,
             top: 0,
             left: 0,
+
           }}
-          width={"640px"}
-          height={"640px"}
+          width={"90%"}
+          height={"auto"}
 
           // style={{
           // position: "absolute",
@@ -487,11 +488,13 @@ const ImageContainer = styled.div`
   ${"" /* marginLeft: 0; */}
   ${"" /* marginTop: 0; */}
   ${"" /* background: #00ff00; */}
-  min-width: 90%;
-  min-height: 60vh;
+  min-width: 100%;
+  min-height: 30vh;
   position: relative;
-  top: 0;
-  left: 0;
+  top: 10px;
+  left: 10px;
+  align-items: center;
+  justify-sentence: center;
 `;
 
 const RelativeContainer = styled.div`
