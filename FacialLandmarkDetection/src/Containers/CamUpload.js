@@ -115,21 +115,21 @@ const ImageContainer = styled.div`
 `;
 
 const ButtonContainer = styled.div`
-  width: 60%;
-  height: 70px;
+  ${'' /* width: 60%; */}
+  ${'' /* height: 70px; */}
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 10px;
 `;
 const CaptureButton = styled.button`
-  color: "black";
-  width: 50%;
-  height: 70%;
-  background-color: green;
+  color: #19c6dd;
+  height: 35px;
+  width: 60px;
+  background-color: #19c6dd;
   box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.3);
   border: none;
-  border-radius: 30px;
+  border-radius: 5px;
 `;
 
 const Font15 = styled.div`
