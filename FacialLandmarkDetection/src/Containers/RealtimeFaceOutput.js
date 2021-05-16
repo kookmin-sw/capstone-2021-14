@@ -40,7 +40,7 @@ function RealtimeFaceOutputContainer() {
     intervalId = setInterval(() => {
       console.log("detect()");
       detect(net);
-    }, 2000); // 1000ms
+    }, 200); // 1000ms
   };
 
   // Detect function
@@ -53,19 +53,23 @@ function RealtimeFaceOutputContainer() {
       // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
+      console.log(`Video: ${videoWidth}`)
       const videoHeight = webcamRef.current.video.videoHeight;
+      console.log(`Video: ${videoHeight}`)
       // Set video width
-      webcamRef.current.video.width = videoWidth;
-      webcamRef.current.video.height = videoHeight;
+      // webcamRef.current.video.width = videoWidth;
+      // webcamRef.current.video.height = videoHeight;
       // Set canvas width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
+      console.log(`Canvas: ${canvasRef.current.width}`)
+      console.log(`Canvas: ${canvasRef.current.height}`)
       // Make Detections
       // OLD MODEL
       //       const face = await net.estimateFaces(video);
       // NEW MODEL
       const face = await net.estimateFaces({ input: video });
-      console.log(face);
+      // console.log(face);
 
       // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
@@ -76,68 +80,96 @@ function RealtimeFaceOutputContainer() {
   };
 
   runFacemesh();
+
+  const videoConstraints = {
+    width: 1280,
+    height: 720,
+    facingMode: "user",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={ManageFile.imageUrl} ref={imageRef} /> */}
-        {/* <img
-          id="test"
-          src={ManageFile.imageUrl}
-          ref={imageRef}
-          style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
-          }}
-        /> */}
+    <>
+      {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
+      <p style={{ color: "white", cursor: "none"}}>
+        당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
+        을 확인해보세요.
+      </p>
+      <p>인식 중 . . .</p>
+      <ImageContainer>
         <Webcam
           ref={webcamRef}
+          videoConstraints={videoConstraints}
           style={{
-            position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
+            position:"relative",
+            top: 0,
             left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
+            // width: "90%",
+            // height: "auto",
           }}
+          // width={"90%"}
+          // height={"auto"}
         />
         <canvas
           ref={canvasRef}
           style={{
             position: "absolute",
-            marginLeft: "auto",
-            marginRight: "auto",
+            top: 0,
             left: 0,
-            right: 0,
-            textAlign: "center",
-            zindex: 9,
-            width: 640,
-            height: 480,
+            // left: '5%',
+            // left: 0,
+            // padding: 20,
+            // background: "#00ff00"
           }}
+          // width={"90%"}
+          // height={"auto"}
+          // object-fit={"contain"}
         />
-        {/* <button
-          onClick={ButtonForUserFace}
-          style={{ marginTop: "50em", marginRight: "8.5em" }}
-        >
-          Button
-        </button>
-        <button
-          onClick={checkUserFace}
-          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
-        >
-          Check My Face
-        </button> */}
-      </header>
-    </div>
+      </ImageContainer>
+    </>
+    // {/* <div className="App">
+    //   <header className="App-header">
+    //     <Webcam
+    //       ref={webcamRef}
+    //       style={{
+    //         position: "absolute",
+    //         marginLeft: "auto",
+    //         marginRight: "auto",
+    //         left: 0,
+    //         right: 0,
+    //         textAlign: "center",
+    //         zindex: 9,
+    //         width: 640,
+    //         // height: 480,
+    //       }}
+    //     />
+    //     <canvas
+    //       ref={canvasRef}
+    //       style={{
+    //         position: "absolute",
+    //         marginLeft: "auto",
+    //         marginRight: "auto",
+    //         left: 0,
+    //         right: 0,
+    //         textAlign: "center",
+    //         zindex: 9,
+    //         width: 640,
+    //         height: 480,
+    //       }}
+    //     /> */}
+    //     {/* <button
+    //       onClick={ButtonForUserFace}
+    //       style={{ marginTop: "50em", marginRight: "8.5em" }}
+    //     >
+    //       Button
+    //     </button>
+    //     <button
+    //       onClick={checkUserFace}
+    //       style={{ marginTop: "-1.7em", marginLeft: "7em" }}
+    //     >
+    //       Check My Face
+    //     </button> */}
+    //   </header>
+    // </div>
   );
 }
 
@@ -205,3 +237,14 @@ const drawMesh = (predictions, ctx) => {
 };
 
 export default RealtimeFaceOutputContainer;
+
+const ImageContainer = styled.div`
+  width: 100%;
+  ${'' /* height: 90%; */}
+  position: relative;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-sentence: center;
+  ${'' /* object-fit: contain; */}
+`;
