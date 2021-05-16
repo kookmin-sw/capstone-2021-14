@@ -157,14 +157,17 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex == 6 && <RealtimeFaceOutputContainer />}
           </Content>
           <ButtonContainer>
-            {ManageFile.pageIndex != 0 && ManageFile.pageIndex != 4 && (
-              <PrevButton />
-            )}
+            {ManageFile.pageIndex != 0 &&
+             ManageFile.pageIndex != 4 &&
+             ManageFile.pageIndex != 6 && <PrevButton />}
             {ManageFile.pageIndex != 1 &&
               ManageFile.pageIndex != 2 &&
               ManageFile.pageIndex != 4 &&
-              ManageFile.pageIndex != 3 && <NextButton />}
-            {ManageFile.pageIndex == 4 && <HomeButton />}
+              ManageFile.pageIndex != 3 &&
+              ManageFile.pageIndex != 5 &&
+              ManageFile.pageIndex != 6 && <NextButton />}
+            {(ManageFile.pageIndex == 4 ||
+             ManageFile.pageIndex == 6) && (<HomeButton />)}
           </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
