@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 
 const Content = styled.div`
@@ -7,7 +6,7 @@ const Content = styled.div`
   align-items:center;
 	justify-content: space-around;
 	width: 100%;
-	min-height: 60vh;
+	min-height: 50vh;
   ${'' /* height: 100vh; */}
 	${'' /* margin-top: 12px; */}
 	${'' /* margin-bottom: 18px; */}

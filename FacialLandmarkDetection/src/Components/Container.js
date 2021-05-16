@@ -1,7 +1,4 @@
-import React from 'react'
 import styled from 'styled-components'
-
-
 
 const Container = styled.div`
   display: flex;
@@ -9,8 +6,12 @@ const Container = styled.div`
   align-items:center;
   ${'' /* min-height: 70vh; */}
   ${'' /* height: 70vh; */}
-  min-height: 70vh;
+  
+  height: auto;
+  ${'' /* height: 100vh; */}
+  ${'' /* overflow: hidden; */}
   width: 80vw;
+  ${'' /* position: relative; */}
   ${'' /* background: #15CB71; */}
   ${'' /* background: linear-gradient(to bottom, #58F0AB 10%,#00D000); */}
   background: linear-gradient(to bottom right, #8d5aff 30%, #6236ff);
