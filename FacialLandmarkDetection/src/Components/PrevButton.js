@@ -7,8 +7,9 @@ import { observer, inject } from "mobx-react";
 
 class PrevButton extends React.Component{
 	prevClick = () => {
-    if (this.props.ManageFile.pageIndex === 3){
-      this.props.ManageFile.pageIndex = 1;  
+		const pIndex = this.props.ManageFile.pageIndex;
+    if (pIndex === 3 || pIndex === 5 || pIndex === 6){
+      this.props.ManageFile.pageIndex = 1;
     } else {
       this.props.ManageFile.pageIndex = this.props.ManageFile.pageIndex - 1;
     }
