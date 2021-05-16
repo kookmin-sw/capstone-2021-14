@@ -151,7 +151,7 @@ function FaceOutputContainer() {
     <>
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
       <p style={{ color: "white", cursor: "none"}}>
-        당신의 <p fontweight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
+        당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
       </p>
       <p>인식 중 . . .</p>
@@ -161,69 +161,23 @@ function FaceOutputContainer() {
           src={ManageFile.imageUrl}
           ref={imageRef}
           style={{
-            position: "absolute",
-            // marginLeft: "auto",
+            position: "relative",
             top: 0,
             left: 0,
-            // zindex: 9,
           }}
           width={"90%"}
           height={"auto"}
-          // style={{
-          //   // position: "absolute",
-          //   marginLeft: "auto",
-          //   marginRight: "auto",
-          //   left: 0,
-          //   right: 0,
-          //   textAlign: "center",
-          //   // zindex: 9,
-          //   // width: "50%",
-          //   // height: "40%",
-          // }}
-          // object-fit={"contain"}
-          // width={"100%"}
         />
         <canvas
           ref={canvasRef}
-          // width={"100%"}
           style={{
             position: "absolute",
-            // marginLeft: "auto",
-            // background:"#ffff00",
-            // zindex: 9,
             top: 0,
-            left: 0,
-
+            left: '5%',
           }}
           width={"90%"}
           height={"auto"}
-
-          // style={{
-          // position: "absolute",
-          // marginLeft: "auto",
-          // marginRight: "auto",
-          // left: 0,
-          // right: 0,
-          // textAlign: "center",
-          // zindex: 9,
-          // height: "40%",
-          // }}
         />
-        {/* <div style={{width:500,height:500,marginTop:800}}>
-          asdasdasd
-        </div> */}
-        {/* <button
-          onClick={ButtonForUserFace}
-          style={{ marginTop: "50em", marginRight: "8.5em" }}
-        >
-          Button
-        </button>
-        <button
-          onClick={checkUserFace}
-          style={{ marginTop: "-1.7em", marginLeft: "7em" }}
-        >
-          Check My Face
-        </button> */}
       </ImageContainer>
     </>
   );
@@ -477,28 +431,11 @@ const drawMesh = (predictions, ctx) => {
 export default FaceOutputContainer;
 
 const ImageContainer = styled.div`
-  ${"" /* position: 'relat'; */}
-  ${"" /* width: 90%; */}
-  ${"" /* height: 100%; */}
-  ${"" /* width: "auto"; */}
-  ${"" /* height: "auto"; */}
-  ${"" /* position: relative; */}
-  ${"" /* top: 0; */}
-  ${"" /* left: 0; */}
-  ${"" /* marginLeft: 0; */}
-  ${"" /* marginTop: 0; */}
-  ${"" /* background: #00ff00; */}
   min-width: 100%;
-  min-height: 30vh;
-  position: relative;
-  top: 10px;
-  left: 10px;
-  align-items: center;
-  justify-sentence: center;
-`;
-
-const RelativeContainer = styled.div`
+  min-height: 50vh;
   position: relative;
   top: 0;
   left: 0;
+  align-items: center;
+  justify-sentence: center;
 `;
