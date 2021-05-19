@@ -6,7 +6,7 @@ import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import { drawMesh, checkClick } from "./utilities";
 //import { drawDot } from "./mask";
-import {getUserFace} from "./compare";
+import { getUserFace } from "./compare";
 
 //Components
 import HomeContainer from "./Containers/Home";

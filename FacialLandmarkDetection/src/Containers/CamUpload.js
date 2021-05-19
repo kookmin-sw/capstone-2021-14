@@ -12,7 +12,7 @@ class CamUploadContainer extends React.Component {
     isCapture: false,
   };
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.state.isCapture = false;
   }
 
@@ -57,22 +57,27 @@ class CamUploadContainer extends React.Component {
       <>
         <ImageContainer>
           <Webcam
-              audio={false}
-              // height={"100%"}
-              ref={this.setRef}
-              mirrored={true}
-              screenshotFormat="image/jpeg"
+            audio={false}
+            // height={"100%"}
+            ref={this.setRef}
+            mirrored={true}
+            screenshotFormat="image/jpeg"
+            width={"90%"}
+            height={"auto"}
+            videoConstraints={videoConstraints}
+            object-fit={"contain"}
+            screenshotQuality={1}
+          />
+          {this.state.isCapture && (
+            <img
+              src={ManageFile.imageUrl}
               width={"90%"}
               height={"auto"}
-              videoConstraints={videoConstraints}
-              object-fit={"contain"}
-              screenshotQuality={1}
+              object-fit="contain"
             />
-          {this.state.isCapture && (
-            <img src={ManageFile.imageUrl} width={"90%"} height={"auto"} object-fit="contain"/>
           )}
         </ImageContainer>
-          
+
         <ButtonContainer>
           <CaptureButton onClick={this.capture}>
             <Font15>캡쳐</Font15>
@@ -106,17 +111,17 @@ export default CamUploadContainer;
 const ImageContainer = styled.div`
   width: 100%;
   height: 90%;
-  ${'' /* display: flex; */}
+  ${"" /* display: flex; */}
   align-items: center;
   justify-content: center;
-  ${'' /* margin: 20px; */}
-  ${'' /* background: #ff0000; */}
+  ${"" /* margin: 20px; */}
+  ${"" /* background: #ff0000; */}
   object-fit: contain;
 `;
 
 const ButtonContainer = styled.div`
-  ${'' /* width: 60%; */}
-  ${'' /* height: 70px; */}
+  ${"" /* width: 60%; */}
+  ${"" /* height: 70px; */}
   display: flex;
   align-items: center;
   justify-content: center;
