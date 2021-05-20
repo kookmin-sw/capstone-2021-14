@@ -134,7 +134,7 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex == 1 && (
               <>
                 {/* <Font50>분기 설정</Font50> */}
-                <ButtonContainer>
+                <AnimationButtonContainer>
                   <ButtonItem>
                     <Fade left cascade>
                       <div style={{ display: "flex", alignItems: "center" }}>
@@ -201,7 +201,7 @@ class HomeContainer extends React.Component {
                       </Font20>
                     </Fade>
                   </ButtonItem>
-                </ButtonContainer>
+                </AnimationButtonContainer>
               </>
             )}
             {ManageFile.pageIndex == 2 && (
@@ -214,9 +214,8 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex == 5 && <EducationContainer />}
             {ManageFile.pageIndex == 6 && <RealtimeFaceOutputContainer />}
           </Content>
-<<<<<<< HEAD
           <ButtonContainer>
-            {ManageFile.pageIndex != 0 &&
+          {ManageFile.pageIndex != 0 &&
              ManageFile.pageIndex != 4 &&
              ManageFile.pageIndex != 6 && <PrevButton />}
             {ManageFile.pageIndex != 1 &&
@@ -228,18 +227,6 @@ class HomeContainer extends React.Component {
             {(ManageFile.pageIndex == 4 ||
              ManageFile.pageIndex == 6) && (<HomeButton />)}
           </ButtonContainer>
-=======
-          {/* <ButtonContainer> */}
-          {ManageFile.pageIndex != 0 && ManageFile.pageIndex != 4 && (
-            <PrevButton />
-          )}
-          {ManageFile.pageIndex != 1 &&
-            ManageFile.pageIndex != 2 &&
-            ManageFile.pageIndex != 4 &&
-            ManageFile.pageIndex != 3 && <NextButton />}
-          {ManageFile.pageIndex == 4 && <HomeButton />}
-          {/* </ButtonContainer> */}
->>>>>>> 0acff5bd102e2b9918b37abf00b145b11e6d3def
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
           </Footer>
@@ -254,8 +241,10 @@ export default HomeContainer;
 const ButtonItem = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 24px;
+  margin-bottom: 24px;
 `;
-const ButtonContainer = styled.div`
+const AnimationButtonContainer = styled.div`
   width: 75%;
   height: 75%;
   /* display: flex; */
@@ -266,10 +255,24 @@ const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${'' /* padding-vertical: 50px; */}
   /* align-items: flex-start !important; */
 `;
 
+const ButtonContainer = styled.div`
+  width: 90%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+`
+
 const PicUploadButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #3d978f;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
   color: black;
   width: 120px;
   height: 40px;
@@ -280,6 +283,11 @@ const PicUploadButton = styled.button`
 `;
 
 const WebcamButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #3d978f;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
   color: black;
   width: 120px;
   height: 40px;
@@ -303,7 +311,7 @@ const Font15 = styled.div`
 
 const Font20 = styled.p`
   color: #fdffd5;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   /* display: flex; */
   /* align-items: center; */
