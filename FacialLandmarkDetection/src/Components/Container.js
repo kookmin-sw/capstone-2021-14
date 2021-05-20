@@ -5,13 +5,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  ${"" /* min-height: 70vh; */}
-  ${"" /* height: 70vh; */}
-  min-height: 70vh;
-  /* width: 80vw; */
+  height: auto;
   width: 955px;
-  ${"" /* background: #15CB71; */}
-  ${"" /* background: linear-gradient(to bottom, #58F0AB 10%,#00D000); */}
   background: linear-gradient(to bottom right, #8d5aff 30%, #6236ff);
   margin-top: 24px;
   border-radius: 6px;
