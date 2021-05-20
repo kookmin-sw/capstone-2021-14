@@ -62,8 +62,10 @@ class CamUploadContainer extends React.Component {
             ref={this.setRef}
             mirrored={true}
             screenshotFormat="image/jpeg"
-            width={"90%"}
-            height={"auto"}
+            style={{
+              width: '90%',
+              height: 'auto',
+            }}
             videoConstraints={videoConstraints}
             object-fit={"contain"}
             screenshotQuality={1}
@@ -71,8 +73,10 @@ class CamUploadContainer extends React.Component {
           {this.state.isCapture && (
             <img
               src={ManageFile.imageUrl}
-              width={"90%"}
-              height={"auto"}
+              style={{
+                width: '90%',
+                height: 'auto',
+              }}
               object-fit="contain"
             />
           )}
@@ -111,7 +115,8 @@ export default CamUploadContainer;
 const ImageContainer = styled.div`
   width: 100%;
   height: 90%;
-  ${"" /* display: flex; */}
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   ${"" /* margin: 20px; */}
@@ -128,6 +133,11 @@ const ButtonContainer = styled.div`
   margin: 10px;
 `;
 const CaptureButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
   color: #19c6dd;
   height: 35px;
   width: 60px;
