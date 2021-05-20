@@ -311,7 +311,7 @@ const Font15 = styled.div`
 
 const Font20 = styled.p`
   color: #fdffd5;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   /* display: flex; */
   /* align-items: center; */
