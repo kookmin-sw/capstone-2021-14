@@ -19,6 +19,14 @@ let intervalId;
 let pageIndex;
 
 function RealtimeFaceOutputContainer() {
+  useEffect(() => {
+    console.log("RealTimeFaceOutput mounted");
+    return() => {
+      console.log('RealTimeFaceOutput unmounted');
+      clearInterval(intervalId);
+    }
+  });
+
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
 
@@ -53,15 +61,15 @@ function RealtimeFaceOutputContainer() {
       // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
-      console.log(`Video: ${videoWidth}`);
+      // console.log(`Video: ${videoWidth}`);
       const videoHeight = webcamRef.current.video.videoHeight;
-      console.log(`Video: ${videoHeight}`);
+      // console.log(`Video: ${videoHeight}`);
       // Set video width
       // webcamRef.current.video.width = videoWidth;
       // webcamRef.current.video.height = videoHeight;
       // Set canvas width
-      canvasRef.current.width = videoWidth;
-      canvasRef.current.height = videoHeight;
+      // canvasRef.current.width = videoWidth;
+      // canvasRef.current.height = videoHeight;
       console.log(`Canvas: ${canvasRef.current.width}`);
       console.log(`Canvas: ${canvasRef.current.height}`);
       // Make Detections
@@ -81,12 +89,6 @@ function RealtimeFaceOutputContainer() {
 
   runFacemesh();
 
-  const videoConstraints = {
-    width: 1280,
-    height: 720,
-    facingMode: "user",
-  };
-
   return (
     <>
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
@@ -98,16 +100,12 @@ function RealtimeFaceOutputContainer() {
       <ImageContainer>
         <Webcam
           ref={webcamRef}
-          // videoConstraints={videoConstraints}
           style={{
             position: "relative",
             top: 0,
-            left: 0,
+            left: '5%',
             width: "90%",
-            // height: "auto",
           }}
-          // width={"100%"}
-          // height={"auto"}
         />
         <canvas
           ref={canvasRef}
@@ -115,62 +113,11 @@ function RealtimeFaceOutputContainer() {
             position: "absolute",
             top: 0,
             left: "5%",
-            // left: 0,
-            // padding: 20,
-            // background: "#ff0000"
             width: "90%",
-            // border: "1px solid green",
           }}
-          // width={"90%"}
-          // height={"auto"}
-          // object-fit={"contain"}
         />
       </ImageContainer>
     </>
-    // {/* <div className="App">
-    //   <header className="App-header">
-    //     <Webcam
-    //       ref={webcamRef}
-    //       style={{
-    //         position: "absolute",
-    //         marginLeft: "auto",
-    //         marginRight: "auto",
-    //         left: 0,
-    //         right: 0,
-    //         textAlign: "center",
-    //         zindex: 9,
-    //         width: 640,
-    //         // height: 480,
-    //       }}
-    //     />
-    //     <canvas
-    //       ref={canvasRef}
-    //       style={{
-    //         position: "absolute",
-    //         marginLeft: "auto",
-    //         marginRight: "auto",
-    //         left: 0,
-    //         right: 0,
-    //         textAlign: "center",
-    //         zindex: 9,
-    //         width: 640,
-    //         height: 480,
-    //       }}
-    //     /> */}
-    //     {/* <button
-    //       onClick={ButtonForUserFace}
-    //       style={{ marginTop: "50em", marginRight: "8.5em" }}
-    //     >
-    //       Button
-    //     </button>
-    //     <button
-    //       onClick={checkUserFace}
-    //       style={{ marginTop: "-1.7em", marginLeft: "7em" }}
-    //     >
-    //       Check My Face
-    //     </button> */}
-    //   </header>
-    // </div>
   );
 }
 
@@ -365,20 +312,11 @@ export default RealtimeFaceOutputContainer;
 
 const ImageContainer = styled.div`
   width: 100%;
-<<<<<<< HEAD
-  ${'' /* height: 90%; */}
-=======
   ${"" /* height: 90%; */}
->>>>>>> 0acff5bd102e2b9918b37abf00b145b11e6d3def
   position: relative;
   top: 0;
   left: 0;
   align-items: center;
   justify-sentence: center;
-<<<<<<< HEAD
-  ${'' /* object-fit: contain; */}
-`;
-=======
   ${"" /* object-fit: contain; */}
 `;
->>>>>>> 0acff5bd102e2b9918b37abf00b145b11e6d3def
