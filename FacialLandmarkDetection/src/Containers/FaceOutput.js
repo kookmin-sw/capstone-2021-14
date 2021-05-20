@@ -84,10 +84,10 @@ function FaceOutputContainer() {
   return (
     <>
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      <p style={{ color: "white", cursor: "none"}}>
+      <div style={{ color: "white", cursor: "none"}}>
         당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
-      </p>
+      </div>
       {/* <p>{!isDetected ? '인식중...' : '인식 완료'}</p> */}
       <p>인식중. . .</p>
       <ImageContainer>

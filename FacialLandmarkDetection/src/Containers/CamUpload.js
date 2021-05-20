@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import Container from "Components/Container";
+// import Container from "Components/Container";
 import Webcam from "react-webcam";
 import { observer, inject } from "mobx-react";
 
@@ -13,7 +13,7 @@ class CamUploadContainer extends React.Component {
   };
 
   componentWillUnmount() {
-    this.state.isCapture = false;
+    this.setState({isCapture: false});
   }
 
   setRef = (webcam) => {

@@ -14,7 +14,7 @@ import HomeButton from "../Components/HomeButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
 import Fade from "react-reveal/Fade";
-import Reveal from "react-reveal/Reveal";
+// import Reveal from "react-reveal/Reveal";
 
 // import * as cv from "opencv4nodejs";
 
@@ -121,7 +121,7 @@ class HomeContainer extends React.Component {
   }
   render() {
     const { ManageFile } = this.props;
-    let count = 0;
+    // let count = 0;
     return (
       <>
         {/* <FileUploadContainer/> */}
@@ -130,8 +130,8 @@ class HomeContainer extends React.Component {
             <Font50>H A I!</Font50>
           </Header>
           <Content>
-            {ManageFile.pageIndex == 0 && <InitialContainer />}
-            {ManageFile.pageIndex == 1 && (
+            {ManageFile.pageIndex === 0 && <InitialContainer />}
+            {ManageFile.pageIndex === 1 && (
               <>
                 {/* <Font50>분기 설정</Font50> */}
                 <AnimationButtonContainer>
@@ -204,28 +204,28 @@ class HomeContainer extends React.Component {
                 </AnimationButtonContainer>
               </>
             )}
-            {ManageFile.pageIndex == 2 && (
+            {ManageFile.pageIndex === 2 && (
               <FaceInputContainer inputType={"file"} />
             )}
-            {ManageFile.pageIndex == 3 && (
+            {ManageFile.pageIndex === 3 && (
               <FaceInputContainer inputType={"cam"} />
             )}
-            {ManageFile.pageIndex == 4 && <FaceOutputContainer />}
-            {ManageFile.pageIndex == 5 && <EducationContainer />}
-            {ManageFile.pageIndex == 6 && <RealtimeFaceOutputContainer />}
+            {ManageFile.pageIndex === 4 && <FaceOutputContainer />}
+            {ManageFile.pageIndex === 5 && <EducationContainer />}
+            {ManageFile.pageIndex === 6 && <RealtimeFaceOutputContainer />}
           </Content>
           <ButtonContainer>
-          {ManageFile.pageIndex != 0 &&
-             ManageFile.pageIndex != 4 &&
-             ManageFile.pageIndex != 6 && <PrevButton />}
-            {ManageFile.pageIndex != 1 &&
-              ManageFile.pageIndex != 2 &&
-              ManageFile.pageIndex != 4 &&
-              ManageFile.pageIndex != 3 &&
-              ManageFile.pageIndex != 5 &&
-              ManageFile.pageIndex != 6 && <NextButton />}
-            {(ManageFile.pageIndex == 4 ||
-             ManageFile.pageIndex == 6) && (<HomeButton />)}
+          {ManageFile.pageIndex !== 0 &&
+             ManageFile.pageIndex !== 4 &&
+             ManageFile.pageIndex !== 6 && <PrevButton />}
+            {ManageFile.pageIndex !== 1 &&
+              ManageFile.pageIndex !== 2 &&
+              ManageFile.pageIndex !== 4 &&
+              ManageFile.pageIndex !== 3 &&
+              ManageFile.pageIndex !== 5 &&
+              ManageFile.pageIndex !== 6 && <NextButton />}
+            {(ManageFile.pageIndex === 4 ||
+             ManageFile.pageIndex === 6) && (<HomeButton />)}
           </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
