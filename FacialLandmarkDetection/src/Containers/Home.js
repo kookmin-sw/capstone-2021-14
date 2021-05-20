@@ -13,6 +13,10 @@ import PrevButton from "../Components/PrevButton";
 import HomeButton from "../Components/HomeButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
+import Fade from "react-reveal/Fade";
+import Reveal from "react-reveal/Reveal";
+
+// import * as cv from "opencv4nodejs";
 
 export const appendScript = (scriptToAppend) => {
   const script = document.createElement("script");
@@ -54,11 +58,12 @@ class HomeContainer extends React.Component {
 
     // script.id = "danfojs";
     // script.src = "//cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js";
-    script.src = "//cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.4.0/dist/tf.min.js";
+    // script.src = "opencv.js";
+    // script.src = "http://code.jquery.com/jquery-3.2.1.min.js";
+    // script.type = "text/javascript";
+    // script.async = true;
 
-    script.async = true;
-
-    // console.log(tf);
+    // console.log(script);
     // var a = fetch(
     //   "https://cdn.jsdelivr.net/npm/danfojs@0.1.2/dist/index.min.js"
     // ).then((res) => {
@@ -116,6 +121,7 @@ class HomeContainer extends React.Component {
   }
   render() {
     const { ManageFile } = this.props;
+    let count = 0;
     return (
       <>
         {/* <FileUploadContainer/> */}
@@ -129,20 +135,72 @@ class HomeContainer extends React.Component {
               <>
                 {/* <Font50>분기 설정</Font50> */}
                 <ButtonContainer>
-                  <PicUploadButton onClick={this.picClick}>
-                    <Font15>사진 업로드</Font15>
-                  </PicUploadButton>
-                  <WebcamButton onClick={this.camClick}>
-                    <Font15>웹캠 캡쳐</Font15>
-                  </WebcamButton>
+                  <ButtonItem>
+                    <Fade left cascade>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <PicUploadButton onClick={this.picClick}>
+                          <Font15>사진 업로드</Font15>
+                        </PicUploadButton>
+                      </div>
+                    </Fade>
+                    <Fade right cascade delay={2000}>
+                      <Font20>
+                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
+                        있습니다.
+                      </Font20>
+                    </Fade>
+                  </ButtonItem>
 
-                  <WebcamButton onClick={this.realTimeCamClick}>
-                    <Font15>실시간 웹캠</Font15>
-                  </WebcamButton>
+                  <ButtonItem>
+                    <Fade left cascade delay={500}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <WebcamButton onClick={this.camClick}>
+                          <Font15>웹캠 캡쳐</Font15>
+                        </WebcamButton>
+                      </div>
+                    </Fade>
 
-                  <WebcamButton onClick={this.eduClick}>
-                    <Font15>학습하기</Font15>
-                  </WebcamButton>
+                    <Fade right cascade delay={2500}>
+                      <Font20>
+                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
+                        있습니다.
+                      </Font20>
+                    </Fade>
+                  </ButtonItem>
+
+                  <ButtonItem>
+                    <Fade left cascade delay={1000}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <WebcamButton onClick={this.realTimeCamClick}>
+                          <Font15>실시간 웹캠</Font15>
+                        </WebcamButton>
+                      </div>
+                    </Fade>
+
+                    <Fade right cascade delay={3000}>
+                      <Font20>
+                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
+                        있습니다.
+                      </Font20>
+                    </Fade>
+                  </ButtonItem>
+
+                  <ButtonItem>
+                    <Fade left cascade delay={1500}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <WebcamButton onClick={this.eduClick}>
+                          <Font15>학습하기</Font15>
+                        </WebcamButton>
+                      </div>
+                    </Fade>
+
+                    <Fade right cascade delay={3500}>
+                      <Font20>
+                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
+                        있습니다.
+                      </Font20>
+                    </Fade>
+                  </ButtonItem>
                 </ButtonContainer>
               </>
             )}
@@ -156,16 +214,16 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex == 5 && <EducationContainer />}
             {ManageFile.pageIndex == 6 && <RealtimeFaceOutputContainer />}
           </Content>
-          <ButtonContainer>
-            {ManageFile.pageIndex != 0 && ManageFile.pageIndex != 4 && (
-              <PrevButton />
-            )}
-            {ManageFile.pageIndex != 1 &&
-              ManageFile.pageIndex != 2 &&
-              ManageFile.pageIndex != 4 &&
-              ManageFile.pageIndex != 3 && <NextButton />}
-            {ManageFile.pageIndex == 4 && <HomeButton />}
-          </ButtonContainer>
+          {/* <ButtonContainer> */}
+          {ManageFile.pageIndex != 0 && ManageFile.pageIndex != 4 && (
+            <PrevButton />
+          )}
+          {ManageFile.pageIndex != 1 &&
+            ManageFile.pageIndex != 2 &&
+            ManageFile.pageIndex != 4 &&
+            ManageFile.pageIndex != 3 && <NextButton />}
+          {ManageFile.pageIndex == 4 && <HomeButton />}
+          {/* </ButtonContainer> */}
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
           </Footer>
@@ -177,12 +235,22 @@ class HomeContainer extends React.Component {
 
 export default HomeContainer;
 
-const ButtonContainer = styled.div`
-  width: 90%;
-  height: 70px;
+const ButtonItem = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+`;
+const ButtonContainer = styled.div`
+  width: 75%;
+  height: 75%;
+  /* display: flex; */
+  /* display: none; */
+  /* background: black; */
+  /* align-items: center; */
+  /* justify-content: space-around; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* align-items: flex-start !important; */
 `;
 
 const PicUploadButton = styled.button`
@@ -215,4 +283,12 @@ const Font15 = styled.div`
   color: #fdffd5;
   font-size: 15px;
   font-weight: bold;
+`;
+
+const Font20 = styled.p`
+  color: #fdffd5;
+  font-size: 20px;
+  font-weight: bold;
+  /* display: flex; */
+  /* align-items: center; */
 `;

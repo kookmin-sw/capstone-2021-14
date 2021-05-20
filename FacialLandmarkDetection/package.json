@@ -1,6 +1,6 @@
 {
   "name": "posenet",
-  "homepage" : "https://kookmin-sw.github.io/capstone-2021-14/",
+  "homepage": "https://kookmin-sw.github.io/capstone-2021-14/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -46,6 +46,8 @@
     "mini-css-extract-plugin": "0.9.0",
     "mobx": "^6.1.8",
     "mobx-react": "^7.1.0",
+    "opencv-react": "^0.0.5",
+    "opencv4nodejs": "^5.6.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.1.0",
@@ -57,6 +59,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dev-utils": "^10.2.1",
     "react-dom": "^16.13.1",
+    "react-reveal": "^1.2.2",
     "react-webcam": "^5.2.0",
     "resolve": "1.15.0",
     "resolve-url-loader": "3.1.1",
@@ -167,5 +170,8 @@
   },
   "devDependencies": {
     "gh-pages": "^3.1.0"
+  },
+  "opencv4nodejs": {
+    "disableAutoBuild": 1
   }
 }
