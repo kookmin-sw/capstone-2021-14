@@ -15,7 +15,16 @@ class FaceInputContainer extends React.Component {
     const { inputType } = this.props;
 
     const ConfirmButtonClick = () => {
-      this.props.ManageFile.pageIndex = 4;
+      if(this.props.ManageFile.imageUrl === ""){
+        if(this.props.inputType === "file"){
+          alert("사진을 업로드 해주세요.");
+        } else {
+          alert("사진을 캡쳐 해주세요.");
+        }
+      } else{
+        this.props.ManageFile.pageIndex = 4;
+      }
+
       // alert(this.props.ManageFile.pageIndex);
     };
 
@@ -39,6 +48,11 @@ class FaceInputContainer extends React.Component {
 export default FaceInputContainer;
 
 const ConfirmButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
   background-color: #19c6dd;
   ${'' /* border: 1px solid gray; */}
   box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);
