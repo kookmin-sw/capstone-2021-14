@@ -6,7 +6,7 @@ class ManageFile {
   }
 
   @observable imageUrl = "";
-  @observable pageIndex = 1;
+  @observable pageIndex = 0;
   @observable fileName = "";
   @observable faceType = "";
 
