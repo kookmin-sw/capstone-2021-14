@@ -15,7 +15,16 @@ class FaceInputContainer extends React.Component {
     const { inputType } = this.props;
 
     const ConfirmButtonClick = () => {
-      this.props.ManageFile.pageIndex = 4;
+      if(this.props.ManageFile.imageUrl === ""){
+        if(this.props.inputType === "file"){
+          alert("사진을 업로드 해주세요.");
+        } else {
+          alert("사진을 캡쳐 해주세요.");
+        }
+      } else{
+        this.props.ManageFile.pageIndex = 4;
+      }
+
       // alert(this.props.ManageFile.pageIndex);
     };
 
@@ -28,7 +37,9 @@ class FaceInputContainer extends React.Component {
           <CamUploadContainer />
         )}
 
-        <ConfirmButton onClick={ConfirmButtonClick}>확인!</ConfirmButton>
+        <ConfirmButton onClick={ConfirmButtonClick}>
+          <Font15>확인!</Font15>
+        </ConfirmButton>
       </>
     );
   }
@@ -36,8 +47,26 @@ class FaceInputContainer extends React.Component {
 
 export default FaceInputContainer;
 
-const ConfirmButton = styled.div`
-  background-color: green;
-  border: 1px solid gray;
+const ConfirmButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
+  background-color: #19c6dd;
+  ${'' /* border: 1px solid gray; */}
+  box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);
   padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+  height: 35px;
+  width: 60px;
+  justify-content: center;
+  align-items: center;
+  border: none;
 `;
+
+const Font15 = styled.div`
+  color: white;
+  font-size: 15px;
+  ${'' /* font-weight: bold; */}
+`

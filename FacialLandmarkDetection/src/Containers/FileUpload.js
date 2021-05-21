@@ -59,7 +59,7 @@ class FileUploadContainer extends React.Component {
     return (
       <>
       {/* // <Container> */}
-        <Font16>파일을 업로드 해 주세요</Font16>
+        <Font30>파일을 업로드 해 주세요</Font30>
 
         <FileSelect
           onClick={() => document.getElementById("FileInput").click()}
@@ -76,7 +76,7 @@ class FileUploadContainer extends React.Component {
           />
         </FileSelect>
         {this.state.previewURL && this.props.ManageFile.pageIndex != 4 && (
-          <img src={this.state.previewURL} width={"640px"} height={"640px"}/>
+          <img src={this.state.previewURL} width={"90%"} height={"auto"}/>
         )}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
@@ -91,11 +91,11 @@ export default FileUploadContainer;
 
 const FileSelect = styled.div`
   border: none;
-  ${'' /* width: 686px; */}
-  ${'' /* height: 46px; */}
-  width: 50%;
-  height: 20%;
-  background-color: #87ceea;
+  width: 686px;
+  height: 46px;
+  ${'' /* width: 50%; */}
+  ${'' /* height: 20%; */}
+  background-color: #00cfbb;
   object-fit: contain;
   border-radius: 3px;
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.3);
@@ -106,6 +106,7 @@ const FileSelect = styled.div`
   outline: 0;
   border: ${(props) => (props.active ? "solid 2px #0933b3" : "none")};
   &:hover {
+    cursor: pointer;
     border: solid 2px #0933b3;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
   }
@@ -117,9 +118,15 @@ const FileSelect = styled.div`
     margin-left: 10px;
   }
 `;
-
 const Font16 = styled.div`
   color: white;
+  font-size: 16px;
+  font-weight: bold;
+`;
+const Font30 = styled.div`
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
 `;
 const UploadButton = styled.button`
   width: 300px;

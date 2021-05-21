@@ -7,8 +7,9 @@ import { observer, inject } from "mobx-react";
 
 class PrevButton extends React.Component{
 	prevClick = () => {
-    if (this.props.ManageFile.pageIndex === 3){
-      this.props.ManageFile.pageIndex = 1;  
+		const pIndex = this.props.ManageFile.pageIndex;
+    if (pIndex === 3 || pIndex === 5 || pIndex === 6){
+      this.props.ManageFile.pageIndex = 1;
     } else {
       this.props.ManageFile.pageIndex = this.props.ManageFile.pageIndex - 1;
     }
@@ -33,8 +34,13 @@ const Font20 = styled.div`
 `
 
 const Prev = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
 	color: white;
-	background-color: #87ceea;
+	background-color: #00cfbb;
 	width: 120px;
 	height: 40px;
 	box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);
