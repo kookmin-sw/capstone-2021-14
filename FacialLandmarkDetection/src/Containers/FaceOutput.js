@@ -295,10 +295,10 @@ const drawMesh = (predictions, ctx) => {
         console.log(finalData);
 
         // 추출한 좌표를 Shape Model의 input으로 넣는다.
-        /*let max = 0;
+        let max = 0;
         let max_id = 0;
         const model = tf.loadLayersModel(
-          "https://seonjongyoo.github.io/ModelServer/my-model.json"
+          "https://seonjongyoo.github.io/ModelServer/model.json"
         );
         const tensor_shape = [1, 144];
         const input = tf.tensor(finalData, tensor_shape);
@@ -322,7 +322,7 @@ const drawMesh = (predictions, ctx) => {
             // ManageFile.faceType = FaceType[max_id]
             // ManageFile.faceType = "ffff"
           });
-        });*/
+        });
       }
 
       // create textfile for data modeling
