@@ -76,7 +76,7 @@ class FileUploadContainer extends React.Component {
           />
         </FileSelect>
         {this.state.previewURL && this.props.ManageFile.pageIndex != 4 && (
-          <img src={this.state.previewURL} width={"90%"} height={"auto"}/>
+          <img src={this.state.previewURL} width={"640px"} height={"640px"}/>
         )}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
