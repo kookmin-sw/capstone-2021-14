@@ -40,7 +40,7 @@ function RealtimeFaceOutputContainer() {
     intervalId = setInterval(() => {
       console.log("detect()");
       detect(net);
-    }, 2000); // 1000ms
+    }, 200); // 1000ms
   };
 
   // Detect function
@@ -154,6 +154,12 @@ var DOTS = [
   397, 400, 401, 411, 416, 418, 421, 422, 423, 424, 425, 426, 427, 428, 430, 431, 432, 433, 434, 435, 436, 447, 454,
 ];
 
+var DOTS_Border = [
+  10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 
+  379, 378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 
+  234, 127, 162, 21, 54, 103, 67, 109 
+]
+
 const checkFace = (keypoints) => {
   var std = 77;
   var user = keypoints[454][0] - keypoints[234][0];
@@ -186,8 +192,17 @@ const drawMesh = (predictions, ctx) => {
       var finalData = [];
       // Draw Dots
       for (let i = 0; i < keypoints.length; i++) {
+        /*const start = keypoints[i].topLeft;
+        const end = keypoints[i].bottomRight;
+        console.log(start)
+        console.log(end)
+        const size = [end[0] - start[0], end[1] - start[1]];
+  
+        // Render a rectangle over each detected face.
+        ctx.fillRect(start[0], start[1], size[0], size[1]);
+        */
         // 먼저, index가 DOTS에 포함된 index인지 확인
-        result = DOTS.includes(i);
+        result = DOTS_Border.includes(i);
         if (result) {
           const [x, y, z] = keypoints[i];
           // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
