@@ -28,6 +28,11 @@ const Font20 = styled.div`
 `
 
 const Next = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
 	color: white;
 	background: #00cfbb;
 	width: 120px;

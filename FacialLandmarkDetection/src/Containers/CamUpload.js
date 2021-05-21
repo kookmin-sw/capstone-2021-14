@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-import Container from "Components/Container";
+// import Container from "Components/Container";
 import Webcam from "react-webcam";
 import { observer, inject } from "mobx-react";
 
@@ -12,8 +12,8 @@ class CamUploadContainer extends React.Component {
     isCapture: false,
   };
 
-  componentWillUnmount(){
-    this.state.isCapture = false;
+  componentWillUnmount() {
+    this.setState({isCapture: false});
   }
 
   setRef = (webcam) => {
@@ -57,22 +57,31 @@ class CamUploadContainer extends React.Component {
       <>
         <ImageContainer>
           <Webcam
-              audio={false}
-              // height={"100%"}
-              ref={this.setRef}
-              mirrored={true}
-              screenshotFormat="image/jpeg"
-              width={"90%"}
-              height={"auto"}
-              videoConstraints={videoConstraints}
-              object-fit={"contain"}
-              screenshotQuality={1}
-            />
+            audio={false}
+            // height={"100%"}
+            ref={this.setRef}
+            mirrored={true}
+            screenshotFormat="image/jpeg"
+            style={{
+              width: '90%',
+              height: 'auto',
+            }}
+            videoConstraints={videoConstraints}
+            object-fit={"contain"}
+            screenshotQuality={1}
+          />
           {this.state.isCapture && (
-            <img src={ManageFile.imageUrl} width={"90%"} height={"auto"} object-fit="contain"/>
+            <img
+              src={ManageFile.imageUrl}
+              style={{
+                width: '90%',
+                height: 'auto',
+              }}
+              object-fit="contain"
+            />
           )}
         </ImageContainer>
-          
+
         <ButtonContainer>
           <CaptureButton onClick={this.capture}>
             <Font15>캡쳐</Font15>
@@ -106,23 +115,29 @@ export default CamUploadContainer;
 const ImageContainer = styled.div`
   width: 100%;
   height: 90%;
-  ${'' /* display: flex; */}
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  ${'' /* margin: 20px; */}
-  ${'' /* background: #ff0000; */}
+  ${"" /* margin: 20px; */}
+  ${"" /* background: #ff0000; */}
   object-fit: contain;
 `;
 
 const ButtonContainer = styled.div`
-  ${'' /* width: 60%; */}
-  ${'' /* height: 70px; */}
+  ${"" /* width: 60%; */}
+  ${"" /* height: 70px; */}
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
 `;
 const CaptureButton = styled.button`
+	&:hover {
+    cursor: pointer;
+    border: solid 2px #0933b3;
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
+  }
   color: #19c6dd;
   height: 35px;
   width: 60px;
