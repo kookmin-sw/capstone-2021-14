@@ -1,6 +1,6 @@
 {
   "name": "posenet",
-  "homepage" : "https://kookmin-sw.github.io/capstone-2021-14/",
+  "homepage": "https://kookmin-sw.github.io/capstone-2021-14/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -47,6 +47,7 @@
     "mobx": "^6.1.8",
     "mobx-react": "^7.1.0",
     "optimize-css-assets-webpack-plugin": "5.0.3",
+    "pandas-js": "^0.2.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
