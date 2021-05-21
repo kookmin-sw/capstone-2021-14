@@ -184,6 +184,7 @@ const drawMesh = (predictions, ctx) => {
     predictions.forEach((prediction, result) => {
       const keypoints = prediction.scaledMesh;
       var finalData = [];
+      // console.log(keypoints);
       // Draw Dots
       for (let i = 0; i < keypoints.length; i++) {
         // 먼저, index가 DOTS에 포함된 index인지 확인
