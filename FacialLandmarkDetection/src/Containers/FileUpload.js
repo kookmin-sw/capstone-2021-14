@@ -91,7 +91,7 @@ export default FileUploadContainer;
 
 const FileSelect = styled.div`
   border: none;
-  width: 686px;
+  width: 70%;
   height: 46px;
   ${'' /* width: 50%; */}
   ${'' /* height: 20%; */}
