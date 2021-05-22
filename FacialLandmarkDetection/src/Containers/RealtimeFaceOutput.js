@@ -25,6 +25,7 @@ const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
 function preprocess(img)
 {
+  console.log("image in preprocess() = "+img);
     //convert the image data to a tensor 
     let tensor = tf.browser.fromPixels(img)
     //resize to 224 X 224
@@ -62,7 +63,7 @@ function RealtimeFaceOutputContainer() {
     );
     const image = imageRef.current;
     Input_image = image;
-
+    console.log(Input_image);
     console.log("init counter");
     //detect(net);
     downcheck = false;
@@ -73,7 +74,7 @@ function RealtimeFaceOutputContainer() {
       // console.log("detect()");
       console.log("isFront: ", isFront);
       detect(net);
-    }, 1000); // 1000ms로 고정
+    }, 200); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
@@ -150,6 +151,7 @@ function RealtimeFaceOutputContainer() {
     }
     else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
+      
       count++;
     }
   };

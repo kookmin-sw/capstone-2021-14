@@ -78,6 +78,7 @@ function FaceOutputContainer() {
 
     //const values = gantTensor.arraySync();
     Input_image = image;
+    
     //const arr = Array.from(values);
     //console.log(values);
 
