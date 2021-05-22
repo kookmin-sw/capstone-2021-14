@@ -6,7 +6,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: auto;
-  width: 955px;
+  ${'' /* width: 955px; */}
+  width: 70vw;
   background: linear-gradient(to bottom right, #8d5aff 30%, #6236ff);
   margin-top: 24px;
   border-radius: 6px;

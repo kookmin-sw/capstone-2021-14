@@ -143,7 +143,7 @@ class HomeContainer extends React.Component {
                         </PicUploadButton>
                       </div>
                     </Fade>
-                    <Fade right cascade delay={2000}>
+                    <Fade right cascade delay={1500}>
                       <Font20>
                         웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
                         있습니다.
@@ -160,7 +160,7 @@ class HomeContainer extends React.Component {
                       </div>
                     </Fade>
 
-                    <Fade right cascade delay={2500}>
+                    <Fade right cascade delay={2000}>
                       <Font20>
                         웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
                         있습니다.
@@ -177,7 +177,7 @@ class HomeContainer extends React.Component {
                       </div>
                     </Fade>
 
-                    <Fade right cascade delay={3000}>
+                    <Fade right cascade delay={2500}>
                       <Font20>
                         웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
                         있습니다.
@@ -255,6 +255,7 @@ const AnimationButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${'' /* padding: 10px; */}
   ${'' /* padding-vertical: 50px; */}
   /* align-items: flex-start !important; */
 `;
@@ -319,9 +320,20 @@ const Font15 = styled.div`
 
 const Font20 = styled.p`
   color: #fdffd5;
-  font-size: 16px;
+  font-size: 1rem;
+  @media screen and (min-width: 0px) and (max-width: 767.98px) {
+    font-size: 0.9rem;
+  };
+  
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    font-size: 0.9rem;
+  };
+  @media screen and (min-width: 1280px) {
+    font-size: 1.1rem;
+  };
   font-weight: bold;
   cursor: default;
+  margin-left: 20px;
   /* display: flex; */
   /* align-items: center; */
 `;
