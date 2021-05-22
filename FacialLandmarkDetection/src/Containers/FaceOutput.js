@@ -13,7 +13,7 @@ import { useObserver } from "mobx-react";
 import { loadLayersModel, tensor } from "@tensorflow/tfjs";
 import ManageFile from "stores/ManageFile";
 //import { read_csv, OneHotEncoder } from "danfojs-node";
-
+import * as tf from "@tensorflow/tfjs";
 // @inject("ManageFile")
 // @observer
 export var downcheck = null;
@@ -41,7 +41,19 @@ function FaceOutputContainer() {
       facemesh.SupportedPackages.mediapipeFacemesh
     );
 
-    console.log("init counter");
+    // const image = imageRef.current;
+    // const gantTensor = tf.browser.fromPixels(image);
+    // // console.log(gantTensor.shape.print);
+    // const test = gantTensor.print();
+
+    // console.log(gantTensor);
+    // const values = gantTensor.arraySync();
+    // // const arr = Array.from(values);
+    // console.log(values);
+
+    //
+    // console.log(arr);
+    // console.log("init counter");
     //detect(net);
     downcheck = false;
     counter = 0;
@@ -58,7 +70,15 @@ function FaceOutputContainer() {
     console.log("Start prediction!");
 
     const image = imageRef.current;
-    // console.log(image);
+    // const gantTensor = tf.browser.fromPixels(image);
+    // // console.log(gantTensor.shape.print);
+    // // const test = gantTensor.print();
+
+    // const values = gantTensor.dataSync();
+    // const arr = Array.from(values);
+    // console.log(values);
+    // console.log(arr);
+
     const imageWidth = imageRef.current.width;
     // console.log(imageWidth);
     const imageHeight = imageRef.current.height;
@@ -73,6 +93,7 @@ function FaceOutputContainer() {
       predictIrises: false,
     });
 
+    // console.log(face);
     const ctx = canvasRef.current.getContext("2d");
     ManageFile.faceType = drawMesh(face, ctx);
 
@@ -84,8 +105,14 @@ function FaceOutputContainer() {
   return (
     <>
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      <div style={{ color: "white", cursor: "none"}}>
-        당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
+      <div style={{ color: "white", cursor: "none" }}>
+        당신의{" "}
+        <p
+          fontWeight={"bold"}
+          style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}
+        >
+          얼굴형
+        </p>
         을 확인해보세요.
       </div>
       {/* <p>{!isDetected ? '인식중...' : '인식 완료'}</p> */}
@@ -98,9 +125,9 @@ function FaceOutputContainer() {
           style={{
             position: "relative",
             top: 0,
-            left: '5%',
-            width: '90%',
-            height: 'auto',
+            left: "5%",
+            width: "90%",
+            height: "auto",
           }}
         />
         <canvas
@@ -108,9 +135,9 @@ function FaceOutputContainer() {
           style={{
             position: "absolute",
             top: 0,
-            left: '5%',
-            width: '90%',
-            height: 'auto',
+            left: "5%",
+            width: "90%",
+            height: "auto",
           }}
         />
       </ImageContainer>
@@ -119,11 +146,78 @@ function FaceOutputContainer() {
 }
 
 var DOTS = [
-  10, 338, 297, 332, 284, 251, 389, 356, 454, 323, 361, 288, 397, 365, 379, 
-  378, 400, 377, 152, 148, 176, 149, 150, 136, 172, 58, 132, 93, 234, 127, 
-  162, 21, 54, 103, 67, 109, 151, 337, 299, 333, 298, 301, 368, 264, 447, 
-  366, 401, 435, 367, 364, 394, 395, 369, 396, 175, 171, 140, 170, 169, 
-  135, 138, 215, 177, 137, 227, 34, 139, 71, 68, 104, 69, 108,
+  10,
+  338,
+  297,
+  332,
+  284,
+  251,
+  389,
+  356,
+  454,
+  323,
+  361,
+  288,
+  397,
+  365,
+  379,
+  378,
+  400,
+  377,
+  152,
+  148,
+  176,
+  149,
+  150,
+  136,
+  172,
+  58,
+  132,
+  93,
+  234,
+  127,
+  162,
+  21,
+  54,
+  103,
+  67,
+  109,
+  151,
+  337,
+  299,
+  333,
+  298,
+  301,
+  368,
+  264,
+  447,
+  366,
+  401,
+  435,
+  367,
+  364,
+  394,
+  395,
+  369,
+  396,
+  175,
+  171,
+  140,
+  170,
+  169,
+  135,
+  138,
+  215,
+  177,
+  137,
+  227,
+  34,
+  139,
+  71,
+  68,
+  104,
+  69,
+  108,
 ];
 
 // Drawing Mesh

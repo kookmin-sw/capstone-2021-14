@@ -185,7 +185,7 @@ class HomeContainer extends React.Component {
                     </Fade>
                   </ButtonItem>
 
-                  <ButtonItem>
+                  {/* <ButtonItem>
                     <Fade left cascade delay={1500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.eduClick}>
@@ -200,7 +200,7 @@ class HomeContainer extends React.Component {
                         있습니다.
                       </Font20>
                     </Fade>
-                  </ButtonItem>
+                  </ButtonItem> */}
                 </AnimationButtonContainer>
               </>
             )}
@@ -215,17 +215,18 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex === 6 && <RealtimeFaceOutputContainer />}
           </Content>
           <ButtonContainer>
-          {ManageFile.pageIndex !== 0 &&
-             ManageFile.pageIndex !== 4 &&
-             ManageFile.pageIndex !== 6 && <PrevButton />}
+            {ManageFile.pageIndex !== 0 &&
+              ManageFile.pageIndex !== 4 &&
+              ManageFile.pageIndex !== 6 && <PrevButton />}
             {ManageFile.pageIndex !== 1 &&
               ManageFile.pageIndex !== 2 &&
               ManageFile.pageIndex !== 4 &&
               ManageFile.pageIndex !== 3 &&
               ManageFile.pageIndex !== 5 &&
               ManageFile.pageIndex !== 6 && <NextButton />}
-            {(ManageFile.pageIndex === 4 ||
-             ManageFile.pageIndex === 6) && (<HomeButton />)}
+            {(ManageFile.pageIndex === 4 || ManageFile.pageIndex === 6) && (
+              <HomeButton />
+            )}
           </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
@@ -255,8 +256,7 @@ const AnimationButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  ${'' /* padding-vertical: 50px; */}
-  /* align-items: flex-start !important; */
+  ${"" /* padding-vertical: 50px; */}/* align-items: flex-start !important; */
 `;
 
 const ButtonContainer = styled.div`
@@ -265,10 +265,10 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-`
+`;
 
 const PicUploadButton = styled.button`
-	&:hover {
+  &:hover {
     cursor: pointer;
     border: solid 2px #3d978f;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
@@ -283,7 +283,7 @@ const PicUploadButton = styled.button`
 `;
 
 const WebcamButton = styled.button`
-	&:hover {
+  &:hover {
     cursor: pointer;
     border: solid 2px #3d978f;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
