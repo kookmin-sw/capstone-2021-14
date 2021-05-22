@@ -12,8 +12,6 @@ import { inject, observer } from "mobx-react";
 import { useObserver } from "mobx-react";
 //import { loadLayersModel, tensor } from "@tensorflow/tfjs";
 import ManageFile from "stores/ManageFile";
-//import { read_csv, OneHotEncoder } from "danfojs-node";
-import { Series, DataFrame } from 'pandas-js';
 
 //dfd.read_csv('../FaceShape-Model/dataset/Standardization_Data.csv');
 /*const csvUrl = 'https://seonjongyoo.github.io/ModelServer/Standardization_Data.csv';
