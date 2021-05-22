@@ -8,6 +8,7 @@ import { observer, inject } from "mobx-react";
 class HomeButton extends React.Component{
 	homeClick = () => {
     this.props.ManageFile.pageIndex = 1;
+		this.props.ManageFile.faceType = "";
   };
 	
 	render(){
