@@ -19,6 +19,12 @@ class ManageFile {
     this.ttt = 100;
     console.log("HI");
   };
+
+  @action setFaceType = (t) => {
+    this.faceType = t;
+    console.log("Set!");
+    // console.log(`this.faceType: ${this.faceType}`)
+  }
 }
 
 export default new ManageFile();

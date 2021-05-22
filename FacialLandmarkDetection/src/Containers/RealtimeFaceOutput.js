@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import "../App.css";
 import styled from "styled-components";
-// import * as tf from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 // import { drawMesh, checkClick } from "utilities";
 import { MobXProviderContext } from "mobx-react";
@@ -22,9 +22,30 @@ let intervalId;
 // let pageIndex;
 let isFront = 0;
 // let isWorking = undefined;
+let count = 0;
+let Input_image;
+const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
+
+function preprocess(img) {
+  console.log(img);
+  //convert the image data to a tensor
+  console.log("0");
+  let tensor = tf.browser.fromPixels(img);
+  console.log("1");
+  //resize to 224 X 224
+  const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
+  // Normalize the image
+  const offset = tf.scalar(255.0);
+  const normalized = tf.scalar(1.0).sub(resized.div(offset));
+  //We add a dimension to get a batch shape
+  const batched = normalized.expandDims(0);
+  console.log("2");
+  return batched;
+}
 
 function RealtimeFaceOutputContainer() {
   const [isFront, setIsFront] = useState(0);
+  const [isCapture, setIsCapture] = useState(false);
   useEffect(() => {
     document.title = `업데이트 횟수 : ${isFront}`;
   });
@@ -38,16 +59,44 @@ function RealtimeFaceOutputContainer() {
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const imageRef = useRef(null);
 
   const { ManageFile } = useStores();
   // const imageRef = React.createRef();
+
+  const capture = () => {
+    console.log("Capture!!!!!!!!!!!!!!!!");
+    const imgSrc = webcamRef.current.getScreenshot();
+    // const { ManageFile } = this.props;
+    captureImage(imgSrc, (m_url) => {
+      ManageFile.imageUrl = m_url;
+      setIsCapture(true);
+    });
+  };
+
+  const captureImage = (imageBase64, cb) => {
+    var img = new Image();
+    img.src = imageBase64;
+    img.onload = () => {
+      var canvas = document.createElement("canvas");
+      // var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d");
+      ctx.setTransform(1, 0, 0, 1, img.width / 2, img.height / 2);
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+      cb(canvas.toDataURL("image/jpeg"));
+    };
+  };
 
   // Load facemesh
   const runFacemesh = async () => {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-
+    const image = imageRef.current;
+    // Input_image = image;
+    // console.log(Input_image);
     console.log("init counter");
     //detect(net);
     downcheck = false;
@@ -58,7 +107,7 @@ function RealtimeFaceOutputContainer() {
       // console.log("detect()");
       // console.log("isFront: ", isFront);
       detect(net);
-    }, 200); // 1000ms
+    }, 200); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
@@ -92,6 +141,41 @@ function RealtimeFaceOutputContainer() {
           }
         }
         checkFace(keypoints);
+        if (count == 6) {
+          capture();
+          let max = 0;
+          let max_id = 0;
+          const model = tf.loadLayersModel(
+            "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
+          );
+          console.log("Complete to load Model");
+          // console.log(imageRef.current);
+          const img = preprocess(imageRef.current);
+          // const img = imageRef.current;
+          console.log("Checking...");
+          model.then(function (result) {
+            console.log("Wait a minute please...");
+            const rvalue = result.predict(img);
+            console.log("Just a moment!");
+            console.log(rvalue);
+            rvalue.data().then(function (data) {
+              console.log(data);
+              for (let i = 0; i < data.length; i++) {
+                if (data[i] > max) {
+                  max = data[i];
+                  max_id = i;
+                }
+              }
+              // 예측값(tensor)에서 최댓값과 인덱스 추출
+              console.log(max);
+              console.log("Your Face ID is ", max_id);
+              alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              return;
+              // ManageFile.faceType = FaceType[max_id]
+              // ManageFile.faceType = "ffff"
+            });
+          });
+        }
       });
     }
   };
@@ -104,40 +188,25 @@ function RealtimeFaceOutputContainer() {
     var B = keypoints[454][0] - keypoints[10][0];
     var C = keypoints[10][0] - keypoints[152][0];
 
-    // const { ManageFile } = useStores();
+    if (count <= 5) {
+      if (A - B > 10 * ratio) {
+        console.log("turn Left");
+        count = 0;
+      } else if (A - B < -10 * ratio) {
+        console.log("turn Right");
+        count = 0;
+      } else if (Math.abs(C) > 10 * ratio) {
+        console.log("a");
+        count = 0;
+      } else {
+        console.log("good");
+        count++;
+      }
+    } else if (count == 6) {
+      console.log("Send to model And go to result page"); // To do
 
-    // console.log(isFront);
-
-    ManageFile.decrease();
-    // ManageFileContainer.ttt = 50;
-    // if (A - B > 10 * ratio) {
-    //   if (ManageFile.ttt != 0) {
-    //     // setIsFront(0);
-    //     ManageFile.ttt = 0;
-    //     // isFront = 0;
-    //     console.log("turn Left");
-    //   }
-    // } else if (A - B < -10 * ratio) {
-    //   // isFront = 0;
-    //   if (ManageFile.ttt != 0) {
-    //     // setIsFront(0);
-    //     // isFront = 0;
-    //     ManageFile.ttt = 0;
-    //     console.log("turn Right");
-    //   }
-    // } else if (Math.abs(C) > 10 * ratio) {
-    //   // isFront = 0;
-    //   if (ManageFile.ttt != 0) {
-    //     // setIsFront(0);
-    //     ManageFile.ttt = 0;
-    //   }
-    // } else {
-    //   // isFront = 1;
-    //   if (ManageFile.ttt != 1) {
-    //     console.log("good");
-    //     // setIsFront(1);
-    //     ManageFile.ttt = 1;
-    //   }
+      count++;
+    }
   };
 
   // Detect function
@@ -183,7 +252,7 @@ function RealtimeFaceOutputContainer() {
       {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
       {/* {isFront} */}
       {/* <FaceCheckContainer type={isFront} /> */}
-      {ManageFile.ttt}
+      {/* {ManageFile.ttt} */}
       <div style={{ color: "white", cursor: "none" }}>
         당신의
         <p
@@ -209,6 +278,9 @@ function RealtimeFaceOutputContainer() {
             width: "90%",
             height: "auto",
           }}
+          screenshotFormat="image/jpeg"
+          object-fit={"contain"}
+          screenshotQuality={1}
         />
         <canvas
           ref={canvasRef}
@@ -219,6 +291,22 @@ function RealtimeFaceOutputContainer() {
             width: "90%",
           }}
         />
+        {/* {ManageFile.imageUrl} */}
+        {
+          <img
+            src={ManageFile.imageUrl}
+            // ref={this.setImageRef}
+            ref={imageRef}
+            style={{
+              position: "relative",
+              top: 0,
+              left: "5%",
+              width: "90%",
+              height: "auto",
+            }}
+            object-fit="contain"
+          />
+        }
       </ImageContainer>
     </>
   );

@@ -76,7 +76,7 @@ class FileUploadContainer extends React.Component {
           />
         </FileSelect>
         {this.state.previewURL && this.props.ManageFile.pageIndex != 4 && (
-          <img src={this.state.previewURL} width={"90%"} height={"auto"}/>
+          <img src={this.state.previewURL} style={{width: '480px', height: 'auto', marginTop: '15px', marginBottom: '15px'}} />
         )}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
@@ -91,7 +91,7 @@ export default FileUploadContainer;
 
 const FileSelect = styled.div`
   border: none;
-  width: 686px;
+  width: 70%;
   height: 46px;
   ${'' /* width: 50%; */}
   ${'' /* height: 20%; */}
@@ -127,6 +127,9 @@ const Font30 = styled.div`
   color: white;
   font-size: 30px;
   font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  cursor: default;
 `;
 const UploadButton = styled.button`
   width: 300px;

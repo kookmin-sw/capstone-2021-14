@@ -48,6 +48,7 @@
     "mobx-react": "^7.1.0",
     "opencv-react": "^0.0.5",
     "optimize-css-assets-webpack-plugin": "5.0.3",
+    "pandas-js": "^0.2.4",
     "pnp-webpack-plugin": "1.6.4",
     "postcss-flexbugs-fixes": "4.1.0",
     "postcss-loader": "3.0.0",
