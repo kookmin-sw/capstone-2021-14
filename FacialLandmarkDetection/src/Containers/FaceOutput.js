@@ -12,6 +12,9 @@ import { inject, observer } from "mobx-react";
 import { useObserver } from "mobx-react";
 //import { loadLayersModel, tensor } from "@tensorflow/tfjs";
 import ManageFile from "stores/ManageFile";
+import FaceTypeContainer from './FaceType';
+//import { read_csv, OneHotEncoder } from "danfojs-node";
+// import { Series, DataFrame } from 'pandas-js';
 
 //dfd.read_csv('../FaceShape-Model/dataset/Standardization_Data.csv');
 /*const csvUrl = 'https://seonjongyoo.github.io/ModelServer/Standardization_Data.csv';
@@ -75,6 +78,7 @@ function FaceOutputContainer() {
 
     //const values = gantTensor.arraySync();
     Input_image = image;
+    
     //const arr = Array.from(values);
     //console.log(values);
 
@@ -123,13 +127,14 @@ function FaceOutputContainer() {
 
   return (
     <>
-      {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      <div style={{ color: "white", cursor: "none"}}>
-        당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
+      <div style={{ color: "white", cursor: "default"}}>
+        당신의 <p fontWeight={"bold"} style={{ cursor: "default", color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
       </div>
       {/* <p>{!isDetected ? '인식중...' : '인식 완료'}</p> */}
       <p>인식중. . .</p>
+      <p fontWeight={"bold"} fontSize={15} style={{cursor: "default",}}>약 1분정도 소요됩니다.</p>      
+      <FaceTypeContainer />
       <ImageContainer>
         <img
           id="test"
@@ -353,7 +358,9 @@ const drawMesh = (predictions, ctx) => {
             // 예측값(tensor)에서 최댓값과 인덱스 추출
             console.log(max);
             console.log("Your Face ID is ", max_id);
-            alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+            // alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+            ManageFile.setFaceType(FaceType[max_id]);
+            console.log(`this.faceType: ${ManageFile.faceType}`)
             return;
             // ManageFile.faceType = FaceType[max_id]
             // ManageFile.faceType = "ffff"
