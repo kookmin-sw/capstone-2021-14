@@ -117,7 +117,8 @@ function FaceOutputContainer() {
     });
 
     const ctx = canvasRef.current.getContext("2d");
-    ManageFile.faceType = drawMesh(face, ctx);
+    // ManageFile.faceType = drawMesh(face, ctx);
+    drawMesh(face, ctx);
 
     // drawDot(ctx);
   };
