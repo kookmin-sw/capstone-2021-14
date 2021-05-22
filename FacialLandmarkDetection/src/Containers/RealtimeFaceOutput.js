@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import "../App.css";
 import styled from "styled-components";
-// import * as tf from "@tensorflow/tfjs";
+import * as tf from "@tensorflow/tfjs";
 import * as facemesh from "@tensorflow-models/face-landmarks-detection";
 // import { drawMesh, checkClick } from "utilities";
 import { MobXProviderContext } from "mobx-react";
@@ -20,6 +20,23 @@ let intervalId;
 let isFront;
 // let isWorking = undefined;
 let count = 0;
+let Input_image;
+const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
+
+function preprocess(img)
+{
+  console.log("image in preprocess() = "+img);
+    //convert the image data to a tensor 
+    let tensor = tf.browser.fromPixels(img)
+    //resize to 224 X 224
+    const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat()
+    // Normalize the image 
+    const offset = tf.scalar(255.0);
+    const normalized = tf.scalar(1.0).sub(resized.div(offset));
+    //We add a dimension to get a batch shape 
+    const batched = normalized.expandDims(0)
+    return batched
+}
 
 function RealtimeFaceOutputContainer() {
   // const [isFront, setIsFront] = useState(false);
@@ -34,6 +51,7 @@ function RealtimeFaceOutputContainer() {
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const imageRef = useRef(null);
 
   const { ManageFile } = useStores();
   // const imageRef = React.createRef();
@@ -43,7 +61,9 @@ function RealtimeFaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-
+    const image = imageRef.current;
+    Input_image = image;
+    console.log(Input_image);
     console.log("init counter");
     //detect(net);
     downcheck = false;
@@ -54,20 +74,11 @@ function RealtimeFaceOutputContainer() {
       // console.log("detect()");
       console.log("isFront: ", isFront);
       detect(net);
-    }, 1000); // 1000ms로 고정
+    }, 200); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
-    // console.log("downcheck=" + downcheck);
-  
-    //   counter++;
-  
-    //   if (counter >= 5) {
-    //     console.log("CLEAR!!!!");
-    //     clearInterval(intervalId);
-    //     downcheck = true;
-    //   }
-  
+
     if (predictions.length > 0) {
       predictions.forEach((prediction, result) => {
         const keypoints = prediction.scaledMesh;
@@ -88,6 +99,38 @@ function RealtimeFaceOutputContainer() {
           }
         }
         checkFace(keypoints);
+        if (count == 6) {
+          let max = 0;
+          let max_id = 0;
+          const model = tf.loadLayersModel(
+            "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
+          );
+          console.log("Complete to load Model");
+          const img = preprocess(Input_image);
+          console.log("Checking...")
+          model.then(function (result) {
+            console.log("Wait a minute please...");
+            const rvalue = result.predict(img);
+            console.log("Just a moment!");
+            console.log(rvalue);
+            rvalue.data().then(function (data) {
+              console.log(data);
+              for (let i = 0; i < data.length; i++) {
+                if (data[i] > max) {
+                  max = data[i];
+                  max_id = i;
+                }
+              }
+              // 예측값(tensor)에서 최댓값과 인덱스 추출
+              console.log(max);
+              console.log("Your Face ID is ", max_id);
+              alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              return;
+              // ManageFile.faceType = FaceType[max_id]
+              // ManageFile.faceType = "ffff"
+            });
+          })
+        }
       });
     }
   };
@@ -108,9 +151,9 @@ function RealtimeFaceOutputContainer() {
     }
     else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
+      
       count++;
     }
-
   };
 
   // Detect function
