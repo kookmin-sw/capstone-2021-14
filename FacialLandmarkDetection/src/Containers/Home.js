@@ -139,7 +139,7 @@ class HomeContainer extends React.Component {
                     <Fade left cascade>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <PicUploadButton onClick={this.picClick}>
-                          <Font15>사진 업로드</Font15>
+                          <ButtonFont15>사진 업로드</ButtonFont15>
                         </PicUploadButton>
                       </div>
                     </Fade>
@@ -155,7 +155,7 @@ class HomeContainer extends React.Component {
                     <Fade left cascade delay={500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.camClick}>
-                          <Font15>웹캠 캡쳐</Font15>
+                          <ButtonFont15>웹캠 캡쳐</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
@@ -172,7 +172,7 @@ class HomeContainer extends React.Component {
                     <Fade left cascade delay={1000}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.realTimeCamClick}>
-                          <Font15>실시간 웹캠</Font15>
+                          <ButtonFont15>실시간 웹캠</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
@@ -185,11 +185,11 @@ class HomeContainer extends React.Component {
                     </Fade>
                   </ButtonItem>
 
-                  <ButtonItem>
+                  {/* <ButtonItem>
                     <Fade left cascade delay={1500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.eduClick}>
-                          <Font15>학습하기</Font15>
+                          <ButtonFont15>학습하기</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
@@ -200,7 +200,7 @@ class HomeContainer extends React.Component {
                         있습니다.
                       </Font20>
                     </Fade>
-                  </ButtonItem>
+                  </ButtonItem> */}
                 </AnimationButtonContainer>
               </>
             )}
@@ -301,18 +301,27 @@ const Font50 = styled.div`
   color: #fdffd5;
   font-size: 50px;
   font-weight: bold;
+  cursor: default;
+`;
+
+const ButtonFont15 = styled.div`
+  color: #fdffd5;
+  font-size: 15px;
+  font-weight: bold;
 `;
 
 const Font15 = styled.div`
   color: #fdffd5;
   font-size: 15px;
   font-weight: bold;
+  cursor: default;
 `;
 
 const Font20 = styled.p`
   color: #fdffd5;
   font-size: 16px;
   font-weight: bold;
+  cursor: default;
   /* display: flex; */
   /* align-items: center; */
 `;
