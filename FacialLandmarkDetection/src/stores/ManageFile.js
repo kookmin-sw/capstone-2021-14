@@ -16,6 +16,12 @@ class ManageFile {
   @action decrease = () => {
     this.counter++;
   };
+
+  @action setFaceType = (t) => {
+    this.faceType = t;
+    console.log("Set!");
+    // console.log(`this.faceType: ${this.faceType}`)
+  }
 }
 
 export default new ManageFile();
