@@ -51,7 +51,8 @@ function useStores() {
 let counter = 0;
 let intervalId;
 let pageIndex;
-const FaceType = ["둥근형", "계란형", "각진형", "역삼각형"];
+const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
+let Input_image;
 
 function FaceOutputContainer() {
   // const [isDetected, setDetected] = useState(false);
@@ -68,6 +69,19 @@ function FaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
+    const image = imageRef.current;
+    //const gantTensor = tf.browser.fromPixels(image);
+    // console.log(gantTensor.shape.print);
+    //const test = gantTensor.print();
+    //console.log(test);
+
+    //const values = gantTensor.arraySync();
+    Input_image = image;
+    //const arr = Array.from(values);
+    //console.log(values);
+
+    //console.log(arr);
+
 
     console.log("init counter");
     //detect(net);
@@ -238,6 +252,21 @@ var ST = [
   91.61551072899658, 36.31096074286701, 92.16752870943432, 37.24320600124049
 ]
 
+function preprocess(img)
+{
+    //convert the image data to a tensor 
+    let tensor = tf.browser.fromPixels(img)
+    //resize to 224 X 224
+    const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat()
+    // Normalize the image 
+    const offset = tf.scalar(255.0);
+    const normalized = tf.scalar(1.0).sub(resized.div(offset));
+    //We add a dimension to get a batch shape 
+    const batched = normalized.expandDims(0)
+    return batched
+}
+
+
 // Drawing Mesh
 const drawMesh = (predictions, ctx) => {
   // console.log("downcheck=" + downcheck);
@@ -255,21 +284,28 @@ const drawMesh = (predictions, ctx) => {
       // Draw Dots
       for (let i = 0; i < keypoints.length; i++) {
         // 먼저, index가 DOTS에 포함된 index인지 확인
+        //console.log("here")
+        //console.log(keypoints[i][0], keypoints[i][1]);
+        //console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+        const [x, y, z] = keypoints[i];
         result = DOTS_Border.includes(i);
         if (result) {
-          const [x, y, z] = keypoints[i];
           //console.log("here")
           //console.log(keypoints[i][0], keypoints[i][1]);
           //console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
-          ctx.beginPath();
-          ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
-          ctx.fillStyle = "SpringGreen";
-          ctx.fill();
+          //ctx.beginPath();
+          //ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
+          //ctx.fillStyle = "SpringGreen";
+          //ctx.fill();
 
           //z값 제외
           finalData.push(x);
           finalData.push(y);
         }
+        ctx.beginPath();
+        ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
+        ctx.fillStyle = "SpringGreen";
+        ctx.fill();
       }
       //put Keypoints to Shape Model
       if (downcheck) {
@@ -292,24 +328,26 @@ const drawMesh = (predictions, ctx) => {
         for (let i = 0; i < finalData.length; i++) {
           finalData[i] = (finalData[i] - mean) / stdDev;
         }*/
-        console.log(finalData);
-
+        //console.log(finalData);
+        //console.log(Input_image);
         // 추출한 좌표를 Shape Model의 input으로 넣는다.
         let max = 0;
         let max_id = 0;
         const model = tf.loadLayersModel(
-          "https://seonjongyoo.github.io/ModelServer/model.json"
+          "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
         );
-        const tensor_shape = [1, 144];
-        const input = tf.tensor(finalData, tensor_shape);
-
-        // 현재는 볼 쪽의 점들도 포함한 dataset으로 추후 이 점들을 제외한 데이터 사용
+        console.log("Complete to load Model");
+        const img = preprocess(Input_image);
+        console.log("Checking...")
         model.then(function (result) {
-          const rvalue = result.predict(input);
+          console.log("Wait a minute please...");
+          const rvalue = result.predict(img);
+          console.log("Just a moment!");
+          console.log(rvalue);
           rvalue.data().then(function (data) {
             console.log(data);
             for (let i = 0; i < data.length; i++) {
-              if (data[i] <= 1 && data[i] > max) {
+              if (data[i] > max) {
                 max = data[i];
                 max_id = i;
               }
@@ -322,7 +360,7 @@ const drawMesh = (predictions, ctx) => {
             // ManageFile.faceType = FaceType[max_id]
             // ManageFile.faceType = "ffff"
           });
-        });
+        })
       }
 
       // create textfile for data modeling
