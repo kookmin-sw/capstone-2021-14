@@ -132,7 +132,7 @@ function FaceOutputContainer() {
       </div>
       {/* <p>{!isDetected ? '인식중...' : '인식 완료'}</p> */}
       <p>인식중. . .</p>
-      <p fonrWeight={"bold"} fontSize={15} style={{cursor: "default",}}>약 1분정도 소요됩니다.</p>      
+      <p fontWeight={"bold"} fontSize={15} style={{cursor: "default",}}>약 1분정도 소요됩니다.</p>      
       <ImageContainer>
         <img
           id="test"
