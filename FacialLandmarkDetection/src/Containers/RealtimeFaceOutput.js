@@ -19,6 +19,7 @@ let intervalId;
 // let pageIndex;
 let isFront;
 // let isWorking = undefined;
+let count = 0;
 
 function RealtimeFaceOutputContainer() {
   // const [isFront, setIsFront] = useState(false);
@@ -53,7 +54,7 @@ function RealtimeFaceOutputContainer() {
       // console.log("detect()");
       console.log("isFront: ", isFront);
       detect(net);
-    }, 200); // 1000ms
+    }, 1000); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
@@ -98,11 +99,18 @@ function RealtimeFaceOutputContainer() {
     var A = keypoints[10][0] - keypoints[234][0];
     var B = keypoints[454][0] - keypoints[10][0];
     var C = keypoints[10][0] - keypoints[152][0];
-  
-    if (A - B > 10 * ratio) console.log("turn Left");
-    else if (A - B < -10 * ratio) console.log("turn Right");
-    else if (Math.abs(C) > 10 * ratio) console.log("a");
-    else console.log("good");
+
+    if (count <= 5) {
+      if (A - B > 10 * ratio) { console.log("turn Left"); count = 0; }
+      else if (A - B < -10 * ratio) { console.log("turn Right"); count = 0; }
+      else if (Math.abs(C) > 10 * ratio) { console.log("a"); count = 0; }
+      else { console.log("good"); count++; }
+    }
+    else if (count == 6) {
+      console.log("Send to model And go to result page"); // To do
+      count++;
+    }
+
   };
 
   // Detect function

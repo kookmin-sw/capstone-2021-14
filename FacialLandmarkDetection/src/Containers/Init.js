@@ -24,17 +24,20 @@ const Font30 = styled.div`
   color: #FDFFD5;
   font-size: 30px;
   font-weight: normal;
+	cursor: default;
 `;
 
 const Font20 = styled.div`
   color: #FDFFD5;
   font-size: 20px;
   font-weight: normal;
+	cursor: default;
 `;
 
 const Font15 = styled.div`
   color: #FDFFD5;
   font-size: 15px;
   font-weight: normal;
+	cursor: default;
 `;
 

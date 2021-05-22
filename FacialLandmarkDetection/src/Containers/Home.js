@@ -139,11 +139,11 @@ class HomeContainer extends React.Component {
                     <Fade left cascade>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <PicUploadButton onClick={this.picClick}>
-                          <Font15>사진 업로드</Font15>
+                          <ButtonFont15>사진 업로드</ButtonFont15>
                         </PicUploadButton>
                       </div>
                     </Fade>
-                    <Fade right cascade delay={2000}>
+                    <Fade right cascade delay={1500}>
                       <Font20>
                         웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
                         있습니다.
@@ -155,7 +155,24 @@ class HomeContainer extends React.Component {
                     <Fade left cascade delay={500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.camClick}>
-                          <Font15>웹캠 캡쳐</Font15>
+                          <ButtonFont15>웹캠 캡쳐</ButtonFont15>
+                        </WebcamButton>
+                      </div>
+                    </Fade>
+
+                    <Fade right cascade delay={2000}>
+                      <Font20>
+                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
+                        있습니다.
+                      </Font20>
+                    </Fade>
+                  </ButtonItem>
+
+                  <ButtonItem>
+                    <Fade left cascade delay={1000}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <WebcamButton onClick={this.realTimeCamClick}>
+                          <ButtonFont15>실시간 웹캠</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
@@ -168,28 +185,11 @@ class HomeContainer extends React.Component {
                     </Fade>
                   </ButtonItem>
 
-                  <ButtonItem>
-                    <Fade left cascade delay={1000}>
-                      <div style={{ display: "flex", alignItems: "center" }}>
-                        <WebcamButton onClick={this.realTimeCamClick}>
-                          <Font15>실시간 웹캠</Font15>
-                        </WebcamButton>
-                      </div>
-                    </Fade>
-
-                    <Fade right cascade delay={3000}>
-                      <Font20>
-                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
-                        있습니다.
-                      </Font20>
-                    </Fade>
-                  </ButtonItem>
-
-                  <ButtonItem>
+                  {/* <ButtonItem>
                     <Fade left cascade delay={1500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.eduClick}>
-                          <Font15>학습하기</Font15>
+                          <ButtonFont15>학습하기</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
@@ -200,7 +200,7 @@ class HomeContainer extends React.Component {
                         있습니다.
                       </Font20>
                     </Fade>
-                  </ButtonItem>
+                  </ButtonItem> */}
                 </AnimationButtonContainer>
               </>
             )}
@@ -255,6 +255,7 @@ const AnimationButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${'' /* padding: 10px; */}
   ${'' /* padding-vertical: 50px; */}
   /* align-items: flex-start !important; */
 `;
@@ -301,18 +302,38 @@ const Font50 = styled.div`
   color: #fdffd5;
   font-size: 50px;
   font-weight: bold;
+  cursor: default;
+`;
+
+const ButtonFont15 = styled.div`
+  color: #fdffd5;
+  font-size: 15px;
+  font-weight: bold;
 `;
 
 const Font15 = styled.div`
   color: #fdffd5;
   font-size: 15px;
   font-weight: bold;
+  cursor: default;
 `;
 
 const Font20 = styled.p`
   color: #fdffd5;
-  font-size: 16px;
+  font-size: 1rem;
+  @media screen and (min-width: 0px) and (max-width: 767.98px) {
+    font-size: 0.9rem;
+  };
+  
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    font-size: 0.9rem;
+  };
+  @media screen and (min-width: 1280px) {
+    font-size: 1.1rem;
+  };
   font-weight: bold;
+  cursor: default;
+  margin-left: 20px;
   /* display: flex; */
   /* align-items: center; */
 `;
