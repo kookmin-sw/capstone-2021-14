@@ -7,7 +7,9 @@ import styled from 'styled-components';
 class FaceTypeContainer extends Component {
   render(){
     return(
-      <FaceType>당신의 얼굴형은 <p style={{display: 'inline-block', fontSize: '24px', color: 'blue', fontWeight: 'bold'}}>{this.props.ManageFile.faceType}</p>입니다.</FaceType>
+      <>
+        {this.props.ManageFile.faceType != "" && <FaceType>당신의 얼굴형은 <p style={{display: 'inline-block', fontSize: '24px', color: 'blue', fontWeight: 'bold'}}>{this.props.ManageFile.faceType}</p>입니다.</FaceType> }
+      </>
     )
   }
 }
