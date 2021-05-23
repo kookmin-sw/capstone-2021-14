@@ -12,6 +12,8 @@ class HomeButton extends React.Component{
 		this.props.ManageFile.fileName = "";
 		this.props.ManageFile.faceType = "";
 		this.props.ManageFile.isFront = undefined;
+		this.props.ManageFile.genderButtonIndex = 0;
+		this.props.ManageFile.isCapture = false;
   };
 	
 	render(){
