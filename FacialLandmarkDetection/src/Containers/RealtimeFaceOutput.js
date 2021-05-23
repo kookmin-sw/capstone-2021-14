@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import "../App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
@@ -9,9 +9,9 @@ import { MobXProviderContext } from "mobx-react";
 // import { useObserver } from "mobx-react";
 import Webcam from "react-webcam";
 import ManageFileContainer from "../stores/ManageFile";
-
+import MaleIcon from "./faceSample3.png";
 import FaceCheckContainer from "./FaceCheck";
-import FrontContainer from './Front';
+import FrontContainer from "./Front";
 // @inject("ManageFile")
 // @observer
 export var downcheck = null;
@@ -29,7 +29,20 @@ const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
 function preprocess(img) {
   //convert the image data to a tensor
-  let tensor = tf.browser.fromPixels(img);
+  // console.log(`data: ${img.data}`);
+  // img.width = imageWidth;
+  // img.height = imageHeight;
+  // console.log(`imageWidth: ${imageWidth}`);
+  // console.log(`imageHeight: ${imageHeight}`);
+  // console.log(img);
+  let tensor = tf.browser.fromPixels({
+    data,
+    width: img.width,
+    height: img.height,
+  });
+  // let tensor = tf.browser.fromPixels(img);
+  console.log(`tensor: ${tensor}`);
+  // console.log("1");
   //resize to 224 X 224
   const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
   // Normalize the image
@@ -124,7 +137,7 @@ function RealtimeFaceOutputContainer() {
         if (count == 6) {
           capture();
           // setIsCapture(true);
-          
+
           let max = 0;
           let max_id = 0;
           const model = tf.loadLayersModel(
@@ -139,9 +152,9 @@ function RealtimeFaceOutputContainer() {
           const imageHeight = canvasRef.current.height;
           imageRef.current.width = imageWidth;
           imageRef.current.height = imageHeight;
-          
+
           // console.log(`current width: ${imageWidth}`);
-          // console.log(`current height: ${imageHeight}`);    
+          // console.log(`current height: ${imageHeight}`);
           // console.log(`Input Image: ${imageRef.current}`);
           const img = preprocess(imageRef.current);
           // console.log(`img: ${img}`);
@@ -187,12 +200,24 @@ function RealtimeFaceOutputContainer() {
     var C = keypoints[10][0] - keypoints[152][0];
 
     if (count <= 5) {
-      if (A - B > 10 * ratio) { console.log("turn Left"); ManageFile.setIsFront(false); count = 0; }
-      else if (A - B < -10 * ratio) { console.log("turn Right"); ManageFile.setIsFront(false); count = 0; }
-      else if (Math.abs(C) > 10 * ratio) { console.log("a"); ManageFile.setIsFront(false); count = 0; }
-      else { console.log("good"); ManageFile.setIsFront(true); count++; }
-    }
-    else if (count == 6) {
+      if (A - B > 10 * ratio) {
+        console.log("turn Left");
+        ManageFile.setIsFront(false);
+        count = 0;
+      } else if (A - B < -10 * ratio) {
+        console.log("turn Right");
+        ManageFile.setIsFront(false);
+        count = 0;
+      } else if (Math.abs(C) > 10 * ratio) {
+        console.log("a");
+        ManageFile.setIsFront(false);
+        count = 0;
+      } else {
+        console.log("good");
+        ManageFile.setIsFront(true);
+        count++;
+      }
+    } else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
       clearInterval(intervalId);
 
@@ -242,7 +267,7 @@ function RealtimeFaceOutputContainer() {
       {/* <p>인식 중 . . .</p> */}
       <FrontContainer />
       <ImageContainer>
-        <Webcam
+        <MyWebcam
           ref={webcamRef}
           style={{
             position: "relative",
@@ -254,9 +279,11 @@ function RealtimeFaceOutputContainer() {
           screenshotFormat="image/jpeg"
           object-fit={"contain"}
           screenshotQuality={1}
+          active={ManageFile.isCapture}
         />
-        <canvas
+        <MyCanvas
           ref={canvasRef}
+          active={ManageFile.isCapture}
           style={{
             position: "absolute",
             top: 0,
@@ -269,6 +296,8 @@ function RealtimeFaceOutputContainer() {
           <img
             id="test"
             src={ManageFile.imageUrl}
+            // src={stateSrc}
+            // src={MaleIcon}
             // ref={this.setImageRef}
             ref={imageRef}
             style={{
@@ -278,7 +307,7 @@ function RealtimeFaceOutputContainer() {
               width: "90%",
               // width: "auto",
               height: "auto",
-              // display: "none",
+              display: "none",
             }}
             object-fit="contain"
             // width="640"
@@ -431,5 +460,13 @@ const ImageContainer = styled.div`
   top: 0;
   left: 0;
   align-items: center;
-  justify-sentence: center;
+  justify-content: center;
+`;
+
+const MyWebcam = styled(Webcam)`
+  display: ${(props) => (props.active ? "none" : "block")};
+`;
+
+const MyCanvas = styled.canvas`
+  display: ${(props) => (props.active ? "none" : "block")};
 `;
