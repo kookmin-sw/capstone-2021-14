@@ -21,7 +21,7 @@
 ```markdown
 Student ID: 20163125
 Email : cane1226@gmail.com
-Role : 팀장, Project manager, Front-End 개발, 데이터 라벨링
+Role : 팀장, Project manager, Front-End 개발
 GitHub : https://github.com/cane21
 ```
 
@@ -29,7 +29,7 @@ GitHub : https://github.com/cane21
 ```markdown
 Student ID: 20163124
 Email : tjdals1668@kookmin.ac.kr
-Role : Object Detection, 데이터 수집, 데이터 라벨링
+Role : Object Detection, 데이터 라벨링
 GitHub : https://github.com/ysmin709
 ```
 
@@ -37,7 +37,7 @@ GitHub : https://github.com/ysmin709
 ```markdown
 Student ID: 20163128
 Email : sjongyuuu@gmail.com
-Role : Object Detection, 머신러닝 모델 개발, 데이터 라벨링
+Role : Object Detection, 모델 개발
 GitHub : https://github.com/SeonJongYoo
 ```
 
@@ -46,7 +46,7 @@ GitHub : https://github.com/SeonJongYoo
 ```markdown
 Student ID: 20163162
 Email : vaite714@gmail.com
-Role : Front-End 개발, 데이터 라벨링
+Role : Front-End 개발
 GitHub : https://github.com/Cha-Y-S
 ```
 
@@ -54,7 +54,7 @@ GitHub : https://github.com/Cha-Y-S
 ```markdown
 Student ID: 20163163
 Email : chlskfkt6810@kookmin.ac.kr
-Role : Object Detection, 데이터 라벨링
+Role : Object Detection
 GitHub : https://github.com/choinara0
 ```
 
@@ -63,9 +63,9 @@ GitHub : https://github.com/choinara0
 
 첫 번째는 "사진 업로드" 방식입니다. "사진 업로드" 버튼 클릭시 사용자는 "업로드" 버튼을 클릭하고 얼굴의 정면이 보이는 사진을 업로드 합니다. 
 
-두 번째는 "Web-Cam Capture" 방식입니다. 사용자는 Web-Cam을 통해 실시간으로 자신의 모습을 캡쳐한 사진을 사용할 수 있습니다. "웹캠 사용" 버튼 클릭시 사용자는 자신의 웹캠 화면에 얼굴의 정면이 나오도록 하고 "캡처" 버튼을 클릭합니다.
+두 번째는 "Web-Cam" 방식입니다. 사용자는 Web-Cam을 통해 실시간으로 5초간 정면을 정확히 바라보면 자동으로 얼굴형을 분석합니다.
 
-마지막으로 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일을 확인할 수 있습니다. 
+이후 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일과 어울리지 않는 헤어 스타일을 추천받을 수 있습니다. 
 
 ### 5. 협업 및 개발
 
@@ -79,6 +79,7 @@ GitHub : https://github.com/choinara0
     - Tensorflow.js 사용
     - 얼굴 인식 및 윤곽 인식
       - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
+      - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
     - 얼굴형 판단 모델
       - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
  
@@ -89,6 +90,8 @@ GitHub : https://github.com/choinara0
 
   - 데이터 라벨링
     - 데이터 수집
-      - Kaggle
+      - Kaggle, GitHub
     - Dataframe 생성
       - Pandas
+    - 데이터 전처리
+      - OpenCV
