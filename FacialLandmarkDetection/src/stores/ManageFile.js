@@ -6,9 +6,11 @@ class ManageFile {
   }
 
   @observable imageUrl = "";
-  @observable pageIndex = 0;
+  @observable pageIndex = 7;
   @observable fileName = "";
-  @observable faceType = "";
+  @observable faceType = "역삼각형";
+  @observable isFront = undefined;
+  genderButtonIndex = 0;
 
   @action increase = (t) => {
     this.pageIndex = t;
@@ -21,6 +23,11 @@ class ManageFile {
     this.faceType = t;
     console.log("Set!");
     // console.log(`this.faceType: ${this.faceType}`)
+  }
+
+  @action setIsFront = (b) => {
+    this.isFront = b;
+    console.log("Set Front!");
   }
 }
 
