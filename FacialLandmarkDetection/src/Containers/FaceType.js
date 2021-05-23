@@ -31,7 +31,7 @@ class FaceTypeContainer extends Component {
 export default FaceTypeContainer;
 
 const FaceType = styled.p`
-  font-size: 30px;
+  font-size: 24px;
   cursor: default;
   ${'' /* font-weight: bold; */}
   ${'' /* color: 'green'; */}
