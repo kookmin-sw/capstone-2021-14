@@ -28,11 +28,18 @@ let Input_image;
 const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
 function preprocess(img) {
-  console.log(img);
+  const data = new Uint8Array(img.data);
   //convert the image data to a tensor
-  console.log("0");
-  let tensor = tf.browser.fromPixels(img);
-  console.log("1");
+  // console.log(`data: ${img.data}`);
+  // img.width = imageWidth;
+  // img.height = imageHeight;
+  // console.log(`imageWidth: ${imageWidth}`);
+  // console.log(`imageHeight: ${imageHeight}`);
+  // console.log(img);
+  let tensor = tf.browser.fromPixels({data, width:img.width, height: img.height});
+  // let tensor = tf.browser.fromPixels(img);
+  console.log(`tensor: ${tensor}`)
+  // console.log("1");
   //resize to 224 X 224
   const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
   // Normalize the image
@@ -40,23 +47,12 @@ function preprocess(img) {
   const normalized = tf.scalar(1.0).sub(resized.div(offset));
   //We add a dimension to get a batch shape
   const batched = normalized.expandDims(0);
-  console.log("2");
+  // console.log("2");
   return batched;
 }
 
 function RealtimeFaceOutputContainer() {
-  const [isFront, setIsFront] = useState(0);
   const [isCapture, setIsCapture] = useState(false);
-  // useEffect(() => {
-  //   document.title = `업데이트 횟수 : ${isFront}`;
-  // });
-  // useEffect(() => {
-  //   console.log("RealTimeFaceOutput mounted");
-  //   return () => {
-  //     console.log("RealTimeFaceOutput unmounted");
-  //     clearInterval(intervalId);
-  //   };
-  // });
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -68,10 +64,12 @@ function RealtimeFaceOutputContainer() {
   const capture = () => {
     console.log("Capture!!!!!!!!!!!!!!!!");
     const imgSrc = webcamRef.current.getScreenshot();
-    // const { ManageFile } = this.props;
     captureImage(imgSrc, (m_url) => {
-      ManageFile.imageUrl = m_url;
+      // ManageFile.imageUrl = m_url;
+      ManageFile.setImageUrl(m_url);
+      ManageFile.setIsCapture(true);
       setIsCapture(true);
+      clearInterval(intervalId);
     });
   };
 
@@ -88,6 +86,13 @@ function RealtimeFaceOutputContainer() {
       ctx.drawImage(img, -img.width / 2, -img.height / 2);
       cb(canvas.toDataURL("image/jpeg"));
     };
+    imageRef.current = img;
+    // imageWidth = canvasRef.current.width;
+    // imageHeight = canvasRef.current.height;
+    // console.log(`current width: ${canvasRef.current.width}`);
+    // console.log(`current height: ${canvasRef.current.height}`);
+    // imageRef.current.width = canvasRef.current.width;
+    // imageRef.current.height = canvasRef.current.height;
   };
 
   // Load facemesh
@@ -95,8 +100,8 @@ function RealtimeFaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-    const image = imageRef.current;
-    Input_image = image;
+    // const image = imageRef.current;
+    // Input_image = image;
     // console.log(Input_image);
     console.log("init counter");
     //detect(net);
@@ -108,7 +113,7 @@ function RealtimeFaceOutputContainer() {
       // console.log("detect()");
       // console.log("isFront: ", isFront);
       detect(net);
-    }, 200); // 1000ms로 고정
+    }, 1000); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
@@ -144,6 +149,8 @@ function RealtimeFaceOutputContainer() {
         checkFace(keypoints);
         if (count == 6) {
           capture();
+          // setIsCapture(true);
+          
           let max = 0;
           let max_id = 0;
           const model = tf.loadLayersModel(
@@ -151,7 +158,19 @@ function RealtimeFaceOutputContainer() {
           );
           console.log("Complete to load Model");
           // console.log(imageRef.current);
+          // console.log(`imageRef.current: ${imageRef.current}`)
+          // const image = imageRef.current;
+          // Input_image = image;
+          const imageWidth = canvasRef.current.width;
+          const imageHeight = canvasRef.current.height;
+          imageRef.current.width = imageWidth;
+          imageRef.current.height = imageHeight;
+          
+          // console.log(`current width: ${imageWidth}`);
+          // console.log(`current height: ${imageHeight}`);    
+          // console.log(`Input Image: ${imageRef.current}`);
           const img = preprocess(imageRef.current);
+          // console.log(`img: ${img}`);
           // const img = preprocess(Input_image);
 
           // const img = imageRef.current;
@@ -160,7 +179,7 @@ function RealtimeFaceOutputContainer() {
             console.log("Wait a minute please...");
             const rvalue = result.predict(img);
             console.log("Just a moment!");
-            console.log(rvalue);
+            // console.log(rvalue);
             rvalue.data().then(function (data) {
               console.log(data);
               for (let i = 0; i < data.length; i++) {
@@ -172,7 +191,9 @@ function RealtimeFaceOutputContainer() {
               // 예측값(tensor)에서 최댓값과 인덱스 추출
               console.log(max);
               console.log("Your Face ID is ", max_id);
-              alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              // alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              ManageFile.setFaceType(FaceType[max_id]);
+              console.log(`this.faceType: ${ManageFile.faceType}`);
               return;
               // ManageFile.faceType = FaceType[max_id]
               // ManageFile.faceType = "ffff"
@@ -199,6 +220,7 @@ function RealtimeFaceOutputContainer() {
     }
     else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
+      clearInterval(intervalId);
 
       count++;
     }
@@ -221,6 +243,7 @@ function RealtimeFaceOutputContainer() {
       // Set canvas width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
+
       // Make Detections
       // OLD MODEL
       //       const face = await net.estimateFaces(video);
@@ -240,11 +263,11 @@ function RealtimeFaceOutputContainer() {
 
   return (
     <>
-      <div style={{ color: "white", cursor: "none"}}>
+      {/* <div style={{ color: "white", cursor: "none"}}>
         당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
-      </div>
-      <p>인식 중 . . .</p>
+      </div> */}
+      {/* <p>인식 중 . . .</p> */}
       <FrontContainer />
       <ImageContainer>
         <Webcam
@@ -283,11 +306,11 @@ function RealtimeFaceOutputContainer() {
               width: "90%",
               // width: "auto",
               height: "auto",
-              display: "none",
+              // display: "none",
             }}
             object-fit="contain"
-            width="640"
-            height="640"
+            // width="640"
+            // height="640"
           />
         }
       </ImageContainer>
