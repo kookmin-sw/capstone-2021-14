@@ -12,6 +12,11 @@ class ManageFile {
   @observable genderButtonIndex = 0;
   @observable isFront = undefined;
   @observable isCapture = false;
+  @observable counter = 0;
+
+  @action increase = () => {
+    this.counter++;
+  }
 
   @action setImageUrl = (url) => {
     this.imageUrl = url;
