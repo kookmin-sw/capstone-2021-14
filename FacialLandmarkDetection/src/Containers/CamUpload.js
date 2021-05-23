@@ -10,16 +10,21 @@ import { observer, inject } from "mobx-react";
 class CamUploadContainer extends React.Component {
   state = {
     isCapture: false,
+    mImage: null,
   };
 
   componentWillUnmount() {
-    this.setState({isCapture: false});
+    this.setState({ isCapture: false });
   }
 
   setRef = (webcam) => {
     this.webcam = webcam;
   };
 
+  setImageRef = (image) => {
+    this.image = image;
+    // this.setState({ mImage: image });
+  };
   capture = () => {
     const imgSrc = this.webcam.getScreenshot();
     const { ManageFile } = this.props;
@@ -63,8 +68,8 @@ class CamUploadContainer extends React.Component {
             mirrored={true}
             screenshotFormat="image/jpeg"
             style={{
-              width: '90%',
-              height: 'auto',
+              width: "90%",
+              height: "auto",
             }}
             videoConstraints={videoConstraints}
             object-fit={"contain"}
@@ -73,9 +78,10 @@ class CamUploadContainer extends React.Component {
           {this.state.isCapture && (
             <img
               src={ManageFile.imageUrl}
+              ref={this.setImageRef}
               style={{
-                width: '90%',
-                height: 'auto',
+                width: "90%",
+                height: "auto",
               }}
               object-fit="contain"
             />
@@ -133,7 +139,7 @@ const ButtonContainer = styled.div`
   margin: 10px;
 `;
 const CaptureButton = styled.button`
-	&:hover {
+  &:hover {
     cursor: pointer;
     border: solid 2px #0933b3;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
