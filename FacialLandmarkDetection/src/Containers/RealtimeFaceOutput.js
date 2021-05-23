@@ -27,11 +27,8 @@ let Input_image;
 const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
 function preprocess(img) {
-  console.log(img);
   //convert the image data to a tensor
-  console.log("0");
   let tensor = tf.browser.fromPixels(img);
-  console.log("1");
   //resize to 224 X 224
   const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
   // Normalize the image
@@ -39,23 +36,12 @@ function preprocess(img) {
   const normalized = tf.scalar(1.0).sub(resized.div(offset));
   //We add a dimension to get a batch shape
   const batched = normalized.expandDims(0);
-  console.log("2");
   return batched;
 }
 
 function RealtimeFaceOutputContainer() {
   const [isFront, setIsFront] = useState(0);
   const [isCapture, setIsCapture] = useState(false);
-  // useEffect(() => {
-  //   document.title = `업데이트 횟수 : ${isFront}`;
-  // });
-  // useEffect(() => {
-  //   console.log("RealTimeFaceOutput mounted");
-  //   return () => {
-  //     console.log("RealTimeFaceOutput unmounted");
-  //     clearInterval(intervalId);
-  //   };
-  // });
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -95,29 +81,15 @@ function RealtimeFaceOutputContainer() {
     );
     const image = imageRef.current;
     Input_image = image;
-    // console.log(Input_image);
     console.log("init counter");
-    //detect(net);
     downcheck = false;
 
     intervalId = setInterval(() => {
-      // console.log("detect()");
-      // console.log("isFront: ", isFront);
       detect(net);
-    }, 200); // 1000ms로 고정
+    }, 1000); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
-    // console.log("downcheck=" + downcheck);
-
-    //   counter++;
-
-    //   if (counter >= 5) {
-    //     console.log("CLEAR!!!!");
-    //     clearInterval(intervalId);
-    //     downcheck = true;
-    //   }
-
     if (predictions.length > 0) {
       predictions.forEach((prediction, result) => {
         const keypoints = prediction.scaledMesh;
