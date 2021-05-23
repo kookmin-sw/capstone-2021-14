@@ -9,7 +9,7 @@ const Content = styled.div`
   width: 100%;
   min-height: 70vh;
   margin-top: 12px;
-	margin-bottom: 18px;
+  margin-bottom: 18px;
 `;
 
 export default Content;
