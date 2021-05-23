@@ -7,8 +7,11 @@ import { observer, inject } from "mobx-react";
 
 class HomeButton extends React.Component{
 	homeClick = () => {
-    this.props.ManageFile.pageIndex = 1;
+    this.props.ManageFile.imageUrl = "";
+		this.props.ManageFile.pageIndex = 0;
+		this.props.ManageFile.fileName = "";
 		this.props.ManageFile.faceType = "";
+		this.props.ManageFile.isFront = undefined;
   };
 	
 	render(){
