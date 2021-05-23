@@ -146,9 +146,7 @@ class HomeContainer extends React.Component {
                       </div>
                     </Fade>
                     <Fade right cascade delay={1500}>
-                      <Font20>
-                        사진을 선택해 얼굴형을 분석합니다.
-                      </Font20>
+                      <Font20>사진을 선택해 얼굴형을 분석합니다.</Font20>
                     </Fade>
                   </ButtonItem>
 
@@ -179,9 +177,7 @@ class HomeContainer extends React.Component {
                     </Fade>
 
                     <Fade right cascade delay={2000}>
-                      <Font20>
-                        준비된 웹캠/카메라로 얼굴형을 분석합니다.
-                      </Font20>
+                      <Font20>준비된 웹캠/카메라로 얼굴형을 분석합니다.</Font20>
                     </Fade>
                   </ButtonItem>
 
@@ -217,12 +213,13 @@ class HomeContainer extends React.Component {
           </Content>
           <ButtonContainer>
             {ManageFile.pageIndex !== 0 &&
-             ManageFile.pageIndex !== 4 &&
-             ManageFile.pageIndex !== 6 &&
-             ManageFile.pageIndex !== 7 && <PrevButton />}
+              ManageFile.pageIndex !== 4 &&
+              ManageFile.pageIndex !== 6 &&
+              ManageFile.pageIndex !== 7 && <PrevButton />}
             {ManageFile.pageIndex === 0 && <NextButton />}
-            {(ManageFile.pageIndex === 4 ||
-              ManageFile.pageIndex === 6) && (<ResultButton />)}
+            {(ManageFile.pageIndex === 4 || ManageFile.pageIndex === 6) && (
+              <ResultButton />
+            )}
             {ManageFile.pageIndex === 7 && <HomeButton />}
           </ButtonContainer>
           <Footer>
