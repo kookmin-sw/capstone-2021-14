@@ -15,7 +15,7 @@ class ResultContainer extends Component{
 
   componentDidMount(){
     if(this.props.ManageFile.faceType === "둥근형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){
+      if(this.props.ManageFile.genderButtonIndex === 1){
         this.setState({
           resultImg: samples.ManCir1,
           text: "가르마를 타서 자연스러운 웨이브 연출"
@@ -28,7 +28,7 @@ class ResultContainer extends Component{
       }
     }
     else if(this.props.ManageFile.faceType === "계란형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){
+      if(this.props.ManageFile.genderButtonIndex === 1){
         this.setState({
           resultImg: samples.ManRec1,
           text: "턱이 부각되지 않도록 시선을 머리 위로 분산시키는 포마드 스타일"
@@ -41,7 +41,7 @@ class ResultContainer extends Component{
       }
     }
     else if(this.props.ManageFile.faceType === "역삼각형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){
+      if(this.props.ManageFile.genderButtonIndex === 1){
         this.setState({
           resultImg: samples.ManTri1,
           text: "얼굴 면적을 작게 해주면서 얼굴 형태에 균형감을 주는 댄디컷"
@@ -54,7 +54,7 @@ class ResultContainer extends Component{
       }
     }
     else{
-      if(this.props.ManageFile.genderButtonIndex === 0){
+      if(this.props.ManageFile.genderButtonIndex === 1){
         this.setState({
           resultImg: samples.ManRec1,
           text: "턱이 부각되지 않도록 시선을 머리 위로 분산시키는 포마드 스타일"
@@ -70,7 +70,7 @@ class ResultContainer extends Component{
 
   nextSample = () => {
     if(this.props.ManageFile.faceType === "둥근형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){ // 남자 둥근
+      if(this.props.ManageFile.genderButtonIndex === 1){ // 남자 둥근
         if(this.state.imgIndex === 0){
           this.setState({
             resultImg: samples.ManCir2,
@@ -113,7 +113,7 @@ class ResultContainer extends Component{
       }
     }
     else if(this.props.ManageFile.faceType === "계란형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){ // 남자 계란
+      if(this.props.ManageFile.genderButtonIndex === 1){ // 남자 계란
         if(this.state.imgIndex === 0){
           this.setState({
             resultImg: samples.ManRec1,
@@ -156,7 +156,7 @@ class ResultContainer extends Component{
       }
     }
     else if(this.props.ManageFile.faceType === "역삼각형"){
-      if(this.props.ManageFile.genderButtonIndex === 0){ // 남자 역삼
+      if(this.props.ManageFile.genderButtonIndex === 1){ // 남자 역삼
         if(this.state.imgIndex === 0){
           this.setState({
             resultImg: samples.ManTri2,
@@ -205,7 +205,7 @@ class ResultContainer extends Component{
       }
     }
     else{
-      if(this.props.ManageFile.genderButtonIndex === 0){ // 남자 각진
+      if(this.props.ManageFile.genderButtonIndex === 1){ // 남자 각진
         if(this.state.imgIndex === 0){
           this.setState({
             resultImg: samples.ManRec1,
