@@ -76,6 +76,12 @@ function RealtimeFaceOutputContainer() {
       cb(canvas.toDataURL("image/jpeg"));
     };
     imageRef.current = img;
+    // imageWidth = canvasRef.current.width;
+    // imageHeight = canvasRef.current.height;
+    // console.log(`current width: ${canvasRef.current.width}`);
+    // console.log(`current height: ${canvasRef.current.height}`);
+    // imageRef.current.width = canvasRef.current.width;
+    // imageRef.current.height = canvasRef.current.height;
   };
 
   // Load facemesh
