@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import "../App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
@@ -9,7 +9,7 @@ import { MobXProviderContext } from "mobx-react";
 // import { useObserver } from "mobx-react";
 import Webcam from "react-webcam";
 import ManageFileContainer from "../stores/ManageFile";
-
+import MaleIcon from "./faceSample3.png";
 import FaceCheckContainer from "./FaceCheck";
 // @inject("ManageFile")
 // @observer
@@ -46,6 +46,7 @@ function preprocess(img) {
 function RealtimeFaceOutputContainer() {
   const [isFront, setIsFront] = useState(0);
   const [isCapture, setIsCapture] = useState(false);
+  const [stateSrc, setSrc] = useState("");
   // useEffect(() => {
   //   document.title = `업데이트 횟수 : ${isFront}`;
   // });
@@ -69,7 +70,9 @@ function RealtimeFaceOutputContainer() {
     const imgSrc = webcamRef.current.getScreenshot();
     // const { ManageFile } = this.props;
     captureImage(imgSrc, (m_url) => {
-      ManageFile.imageUrl = m_url;
+      // ManageFile.imageUrl = m_url;
+      console.log(m_url);
+      setSrc(m_url);
       setIsCapture(true);
     });
   };
@@ -151,6 +154,7 @@ function RealtimeFaceOutputContainer() {
           console.log("Complete to load Model");
           // console.log(imageRef.current);
           const img = preprocess(imageRef.current);
+          console.log(img);
           // const img = preprocess(Input_image);
 
           // const img = imageRef.current;
@@ -297,7 +301,9 @@ function RealtimeFaceOutputContainer() {
         {
           <img
             id="test"
-            src={ManageFile.imageUrl}
+            // src={ManageFile.imageUrl}
+            src={stateSrc}
+            // src={MaleIcon}
             // ref={this.setImageRef}
             ref={imageRef}
             style={{
@@ -307,7 +313,7 @@ function RealtimeFaceOutputContainer() {
               width: "90%",
               // width: "auto",
               height: "auto",
-              display: "none",
+              // display: "none",
             }}
             object-fit="contain"
             width="640"
