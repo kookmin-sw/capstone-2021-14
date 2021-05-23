@@ -8,15 +8,17 @@ class ManageFile {
   @observable imageUrl = "";
   @observable pageIndex = 7;
   @observable fileName = "";
-  @observable faceType = "역삼각형";
+  @observable faceType = "";
+  @observable genderButtonIndex = 0;
   @observable isFront = undefined;
-  genderButtonIndex = 0;
+  @observable ttt = 2;
 
   @action increase = (t) => {
     this.pageIndex = t;
   };
   @action decrease = () => {
-    this.counter++;
+    this.ttt = 100;
+    console.log("HI");
   };
 
   @action setFaceType = (t) => {

@@ -255,9 +255,7 @@ const AnimationButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  ${'' /* padding: 10px; */}
-  ${'' /* padding-vertical: 50px; */}
-  /* align-items: flex-start !important; */
+  ${"" /* padding-vertical: 50px; */}/* align-items: flex-start !important; */
 `;
 
 const ButtonContainer = styled.div`
@@ -266,10 +264,10 @@ const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
-`
+`;
 
 const PicUploadButton = styled.button`
-	&:hover {
+  &:hover {
     cursor: pointer;
     border: solid 2px #3d978f;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
@@ -284,7 +282,7 @@ const PicUploadButton = styled.button`
 `;
 
 const WebcamButton = styled.button`
-	&:hover {
+  &:hover {
     cursor: pointer;
     border: solid 2px #3d978f;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
@@ -323,14 +321,14 @@ const Font20 = styled.p`
   font-size: 1rem;
   @media screen and (min-width: 0px) and (max-width: 767.98px) {
     font-size: 0.9rem;
-  };
-  
+  }
+
   @media screen and (min-width: 768px) and (max-width: 1279.98px) {
     font-size: 0.9rem;
-  };
+  }
   @media screen and (min-width: 1280px) {
     font-size: 1.1rem;
-  };
+  }
   font-weight: bold;
   cursor: default;
   margin-left: 20px;

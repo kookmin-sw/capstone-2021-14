@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "../App.css";
 import styled from "styled-components";
 import * as tf from "@tensorflow/tfjs";
@@ -8,6 +8,9 @@ import { MobXProviderContext } from "mobx-react";
 // import { inject, observer } from "mobx-react";
 // import { useObserver } from "mobx-react";
 import Webcam from "react-webcam";
+import ManageFileContainer from "../stores/ManageFile";
+
+import FaceCheckContainer from "./FaceCheck";
 import FrontContainer from './Front';
 // @inject("ManageFile")
 // @observer
@@ -18,37 +21,42 @@ function useStores() {
 // let counter = 0;
 let intervalId;
 // let pageIndex;
-let isFront;
+let isFront = 0;
 // let isWorking = undefined;
 let count = 0;
 let Input_image;
 const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
-function preprocess(img)
-{
-  console.log("image in preprocess() = "+img);
-    //convert the image data to a tensor 
-    let tensor = tf.browser.fromPixels(img)
-    //resize to 224 X 224
-    const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat()
-    // Normalize the image 
-    const offset = tf.scalar(255.0);
-    const normalized = tf.scalar(1.0).sub(resized.div(offset));
-    //We add a dimension to get a batch shape 
-    const batched = normalized.expandDims(0)
-    return batched
+function preprocess(img) {
+  console.log(img);
+  //convert the image data to a tensor
+  console.log("0");
+  let tensor = tf.browser.fromPixels(img);
+  console.log("1");
+  //resize to 224 X 224
+  const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
+  // Normalize the image
+  const offset = tf.scalar(255.0);
+  const normalized = tf.scalar(1.0).sub(resized.div(offset));
+  //We add a dimension to get a batch shape
+  const batched = normalized.expandDims(0);
+  console.log("2");
+  return batched;
 }
 
 function RealtimeFaceOutputContainer() {
-  // const [isFront, setIsFront] = useState(false);
-
-  useEffect(() => {
-    console.log("RealTimeFaceOutput mounted");
-    return() => {
-      console.log('RealTimeFaceOutput unmounted');
-      clearInterval(intervalId);
-    }
-  });
+  const [isFront, setIsFront] = useState(0);
+  const [isCapture, setIsCapture] = useState(false);
+  // useEffect(() => {
+  //   document.title = `업데이트 횟수 : ${isFront}`;
+  // });
+  // useEffect(() => {
+  //   console.log("RealTimeFaceOutput mounted");
+  //   return () => {
+  //     console.log("RealTimeFaceOutput unmounted");
+  //     clearInterval(intervalId);
+  //   };
+  // });
 
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -57,6 +65,31 @@ function RealtimeFaceOutputContainer() {
   const { ManageFile } = useStores();
   // const imageRef = React.createRef();
 
+  const capture = () => {
+    console.log("Capture!!!!!!!!!!!!!!!!");
+    const imgSrc = webcamRef.current.getScreenshot();
+    // const { ManageFile } = this.props;
+    captureImage(imgSrc, (m_url) => {
+      ManageFile.imageUrl = m_url;
+      setIsCapture(true);
+    });
+  };
+
+  const captureImage = (imageBase64, cb) => {
+    var img = new Image();
+    img.src = imageBase64;
+    img.onload = () => {
+      var canvas = document.createElement("canvas");
+      // var canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      var ctx = canvas.getContext("2d");
+      ctx.setTransform(1, 0, 0, 1, img.width / 2, img.height / 2);
+      ctx.drawImage(img, -img.width / 2, -img.height / 2);
+      cb(canvas.toDataURL("image/jpeg"));
+    };
+  };
+
   // Load facemesh
   const runFacemesh = async () => {
     const net = await facemesh.load(
@@ -64,7 +97,7 @@ function RealtimeFaceOutputContainer() {
     );
     const image = imageRef.current;
     Input_image = image;
-    console.log(Input_image);
+    // console.log(Input_image);
     console.log("init counter");
     //detect(net);
     downcheck = false;
@@ -73,12 +106,21 @@ function RealtimeFaceOutputContainer() {
 
     intervalId = setInterval(() => {
       // console.log("detect()");
-      console.log("isFront: ", isFront);
+      // console.log("isFront: ", isFront);
       detect(net);
     }, 200); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
+    // console.log("downcheck=" + downcheck);
+
+    //   counter++;
+
+    //   if (counter >= 5) {
+    //     console.log("CLEAR!!!!");
+    //     clearInterval(intervalId);
+    //     downcheck = true;
+    //   }
 
     if (predictions.length > 0) {
       predictions.forEach((prediction, result) => {
@@ -95,20 +137,25 @@ function RealtimeFaceOutputContainer() {
             ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
             ctx.fillStyle = "SpringGreen";
             ctx.fill();
-  
+
             finalData.push(keypoints[i]);
           }
         }
         checkFace(keypoints);
         if (count == 6) {
+          capture();
           let max = 0;
           let max_id = 0;
           const model = tf.loadLayersModel(
             "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
           );
           console.log("Complete to load Model");
-          const img = preprocess(Input_image);
-          console.log("Checking...")
+          // console.log(imageRef.current);
+          const img = preprocess(imageRef.current);
+          // const img = preprocess(Input_image);
+
+          // const img = imageRef.current;
+          console.log("Checking...");
           model.then(function (result) {
             console.log("Wait a minute please...");
             const rvalue = result.predict(img);
@@ -130,7 +177,7 @@ function RealtimeFaceOutputContainer() {
               // ManageFile.faceType = FaceType[max_id]
               // ManageFile.faceType = "ffff"
             });
-          })
+          });
         }
       });
     }
@@ -152,7 +199,7 @@ function RealtimeFaceOutputContainer() {
     }
     else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
-      
+
       count++;
     }
   };
@@ -205,10 +252,13 @@ function RealtimeFaceOutputContainer() {
           style={{
             position: "relative",
             top: 0,
-            left: '5%',
+            left: "5%",
             width: "90%",
             height: "auto",
           }}
+          screenshotFormat="image/jpeg"
+          object-fit={"contain"}
+          screenshotQuality={1}
         />
         <canvas
           ref={canvasRef}
@@ -219,18 +269,163 @@ function RealtimeFaceOutputContainer() {
             width: "90%",
           }}
         />
+        {/* {ManageFile.imageUrl} */}
+        {
+          <img
+            id="test"
+            src={ManageFile.imageUrl}
+            // ref={this.setImageRef}
+            ref={imageRef}
+            style={{
+              position: "relative",
+              top: 0,
+              left: "5%",
+              width: "90%",
+              // width: "auto",
+              height: "auto",
+              display: "none",
+            }}
+            object-fit="contain"
+            width="640"
+            height="640"
+          />
+        }
       </ImageContainer>
     </>
   );
 }
 
 var DOTS = [
-  10, 21, 32, 34, 36, 50, 54, 58, 67, 68, 69, 71, 93, 101, 103,
-  104, 108, 109, 111, 116, 117, 118, 123, 127, 132, 135, 136, 137, 138, 139, 140, 143, 147, 148, 149, 150, 151, 152,
-  162, 169, 170, 171, 172, 175, 176, 177, 187, 192, 194, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 210, 211,
-  212, 213, 214, 215, 216, 227, 234, 251, 262, 264, 266, 280, 284, 288, 297, 298, 299, 301, 323, 330, 332, 333, 337,
-  338, 340, 345, 346, 347, 352, 356, 361, 364, 365, 366, 367, 368, 369, 372, 376, 377, 378, 379, 389, 394, 395, 396,
-  397, 400, 401, 411, 416, 418, 421, 422, 423, 424, 425, 426, 427, 428, 430, 431, 432, 433, 434, 435, 436, 447, 454,
+  10,
+  21,
+  32,
+  34,
+  36,
+  50,
+  54,
+  58,
+  67,
+  68,
+  69,
+  71,
+  93,
+  101,
+  103,
+  104,
+  108,
+  109,
+  111,
+  116,
+  117,
+  118,
+  123,
+  127,
+  132,
+  135,
+  136,
+  137,
+  138,
+  139,
+  140,
+  143,
+  147,
+  148,
+  149,
+  150,
+  151,
+  152,
+  162,
+  169,
+  170,
+  171,
+  172,
+  175,
+  176,
+  177,
+  187,
+  192,
+  194,
+  199,
+  200,
+  201,
+  202,
+  203,
+  204,
+  205,
+  206,
+  207,
+  208,
+  210,
+  211,
+  212,
+  213,
+  214,
+  215,
+  216,
+  227,
+  234,
+  251,
+  262,
+  264,
+  266,
+  280,
+  284,
+  288,
+  297,
+  298,
+  299,
+  301,
+  323,
+  330,
+  332,
+  333,
+  337,
+  338,
+  340,
+  345,
+  346,
+  347,
+  352,
+  356,
+  361,
+  364,
+  365,
+  366,
+  367,
+  368,
+  369,
+  372,
+  376,
+  377,
+  378,
+  379,
+  389,
+  394,
+  395,
+  396,
+  397,
+  400,
+  401,
+  411,
+  416,
+  418,
+  421,
+  422,
+  423,
+  424,
+  425,
+  426,
+  427,
+  428,
+  430,
+  431,
+  432,
+  433,
+  434,
+  435,
+  436,
+  447,
+  454,
 ];
 
 export default RealtimeFaceOutputContainer;
