@@ -46,9 +46,9 @@ function preprocess(img) {
 function RealtimeFaceOutputContainer() {
   const [isFront, setIsFront] = useState(0);
   const [isCapture, setIsCapture] = useState(false);
-  useEffect(() => {
-    document.title = `업데이트 횟수 : ${isFront}`;
-  });
+  // useEffect(() => {
+  //   document.title = `업데이트 횟수 : ${isFront}`;
+  // });
   // useEffect(() => {
   //   console.log("RealTimeFaceOutput mounted");
   //   return () => {
@@ -95,7 +95,7 @@ function RealtimeFaceOutputContainer() {
       facemesh.SupportedPackages.mediapipeFacemesh
     );
     const image = imageRef.current;
-    // Input_image = image;
+    Input_image = image;
     // console.log(Input_image);
     console.log("init counter");
     //detect(net);
@@ -151,6 +151,8 @@ function RealtimeFaceOutputContainer() {
           console.log("Complete to load Model");
           // console.log(imageRef.current);
           const img = preprocess(imageRef.current);
+          // const img = preprocess(Input_image);
+
           // const img = imageRef.current;
           console.log("Checking...");
           model.then(function (result) {
@@ -294,6 +296,7 @@ function RealtimeFaceOutputContainer() {
         {/* {ManageFile.imageUrl} */}
         {
           <img
+            id="test"
             src={ManageFile.imageUrl}
             // ref={this.setImageRef}
             ref={imageRef}
@@ -302,9 +305,13 @@ function RealtimeFaceOutputContainer() {
               top: 0,
               left: "5%",
               width: "90%",
+              // width: "auto",
               height: "auto",
+              display: "none",
             }}
             object-fit="contain"
+            width="640"
+            height="640"
           />
         }
       </ImageContainer>
