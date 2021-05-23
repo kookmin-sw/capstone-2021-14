@@ -54,7 +54,6 @@ function RealtimeFaceOutputContainer() {
   const imageRef = useRef(null);
 
   const { ManageFile } = useStores();
-  // const imageRef = React.createRef();
 
   // Load facemesh
   const runFacemesh = async () => {
@@ -67,8 +66,6 @@ function RealtimeFaceOutputContainer() {
     console.log("init counter");
     //detect(net);
     downcheck = false;
-    // counter = 0;
-    // pageIndex = ManageFile.pageIndex;
 
     intervalId = setInterval(() => {
       // console.log("detect()");
@@ -151,7 +148,7 @@ function RealtimeFaceOutputContainer() {
     }
     else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
-      
+
       count++;
     }
   };
@@ -175,16 +172,9 @@ function RealtimeFaceOutputContainer() {
       // Set canvas width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
-      // console.log(`Canvas: ${canvasRef.current.width}`);
-      // console.log(`Canvas: ${canvasRef.current.height}`);
-      // Make Detections
-      // OLD MODEL
-      //       const face = await net.estimateFaces(video);
-      // NEW MODEL
-      const face = await net.estimateFaces({ input: video });
-      // console.log(face);
 
-      // Get canvas context
+      const face = await net.estimateFaces({ input: video });
+
       const ctx = canvasRef.current.getContext("2d");
       requestAnimationFrame(() => {
         drawMesh(face, ctx);
@@ -231,10 +221,6 @@ function RealtimeFaceOutputContainer() {
   );
 }
 
-// import { saveAs } from "FileSaver";
-// import { downcheck } from "Containers/FaceOutput";
-
-// length = 130. dots for detecting face shape
 var DOTS = [
   10, 21, 32, 34, 36, 50, 54, 58, 67, 68, 69, 71, 93, 101, 103,
   104, 108, 109, 111, 116, 117, 118, 123, 127, 132, 135, 136, 137, 138, 139, 140, 143, 147, 148, 149, 150, 151, 152,
@@ -243,56 +229,6 @@ var DOTS = [
   338, 340, 345, 346, 347, 352, 356, 361, 364, 365, 366, 367, 368, 369, 372, 376, 377, 378, 379, 389, 394, 395, 396,
   397, 400, 401, 411, 416, 418, 421, 422, 423, 424, 425, 426, 427, 428, 430, 431, 432, 433, 434, 435, 436, 447, 454,
 ];
-
-// const checkFace = (keypoints) => {
-//   var std = 77;
-//   var user = keypoints[454][0] - keypoints[234][0];
-//   var ratio = user / std;
-//   var A = keypoints[10][0] - keypoints[234][0];
-//   var B = keypoints[454][0] - keypoints[10][0];
-//   var C = keypoints[10][0] - keypoints[152][0];
-
-//   if (A - B > 10 * ratio) setIsFront(false);//console.log("turn Left");
-//   else if (A - B < -10 * ratio) setIsFront(false);//console.log("turn Right");
-//   else if (Math.abs(C) > 10 * ratio) setIsFront(false);//console.log("a");
-//   else setIsFront(true);//console.log("good");
-// };
-
-// Drawing Mesh
-// const drawMesh = (predictions, ctx) => {
-//   // console.log("downcheck=" + downcheck);
-
-//   //   counter++;
-
-//   //   if (counter >= 5) {
-//   //     console.log("CLEAR!!!!");
-//   //     clearInterval(intervalId);
-//   //     downcheck = true;
-//   //   }
-
-//   if (predictions.length > 0) {
-//     predictions.forEach((prediction, result) => {
-//       const keypoints = prediction.scaledMesh;
-//       var finalData = [];
-//       // Draw Dots
-//       for (let i = 0; i < keypoints.length; i++) {
-//         // 먼저, index가 DOTS에 포함된 index인지 확인
-//         result = DOTS.includes(i);
-//         if (result) {
-//           const [x, y, z] = keypoints[i];
-//           // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
-//           ctx.beginPath();
-//           ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
-//           ctx.fillStyle = "SpringGreen";
-//           ctx.fill();
-
-//           finalData.push(keypoints[i]);
-//         }
-//       }
-//       checkFace(keypoints);
-//     });
-//   }
-// };
 
 export default RealtimeFaceOutputContainer;
 
