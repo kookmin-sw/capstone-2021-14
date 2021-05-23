@@ -11,6 +11,7 @@ import Webcam from "react-webcam";
 import ManageFileContainer from "../stores/ManageFile";
 
 import FaceCheckContainer from "./FaceCheck";
+import FrontContainer from './Front';
 // @inject("ManageFile")
 // @observer
 export var downcheck = null;
@@ -36,11 +37,11 @@ function preprocess(img) {
   const normalized = tf.scalar(1.0).sub(resized.div(offset));
   //We add a dimension to get a batch shape
   const batched = normalized.expandDims(0);
+  // console.log("2");
   return batched;
 }
 
 function RealtimeFaceOutputContainer() {
-  const [isFront, setIsFront] = useState(0);
   const [isCapture, setIsCapture] = useState(false);
 
   const webcamRef = useRef(null);
@@ -52,10 +53,12 @@ function RealtimeFaceOutputContainer() {
   const capture = () => {
     console.log("Capture!!!!!!!!!!!!!!!!");
     const imgSrc = webcamRef.current.getScreenshot();
-    // const { ManageFile } = this.props;
     captureImage(imgSrc, (m_url) => {
-      ManageFile.imageUrl = m_url;
+      // ManageFile.imageUrl = m_url;
+      ManageFile.setImageUrl(m_url);
+      ManageFile.setIsCapture(true);
       setIsCapture(true);
+      clearInterval(intervalId);
     });
   };
 
@@ -72,6 +75,13 @@ function RealtimeFaceOutputContainer() {
       ctx.drawImage(img, -img.width / 2, -img.height / 2);
       cb(canvas.toDataURL("image/jpeg"));
     };
+    imageRef.current = img;
+    // imageWidth = canvasRef.current.width;
+    // imageHeight = canvasRef.current.height;
+    // console.log(`current width: ${canvasRef.current.width}`);
+    // console.log(`current height: ${canvasRef.current.height}`);
+    // imageRef.current.width = canvasRef.current.width;
+    // imageRef.current.height = canvasRef.current.height;
   };
 
   // Load facemesh
@@ -79,8 +89,9 @@ function RealtimeFaceOutputContainer() {
     const net = await facemesh.load(
       facemesh.SupportedPackages.mediapipeFacemesh
     );
-    const image = imageRef.current;
-    Input_image = image;
+    // const image = imageRef.current;
+    // Input_image = image;
+    // console.log(Input_image);
     console.log("init counter");
     downcheck = false;
 
@@ -112,6 +123,8 @@ function RealtimeFaceOutputContainer() {
         checkFace(keypoints);
         if (count == 6) {
           capture();
+          // setIsCapture(true);
+          
           let max = 0;
           let max_id = 0;
           const model = tf.loadLayersModel(
@@ -119,7 +132,19 @@ function RealtimeFaceOutputContainer() {
           );
           console.log("Complete to load Model");
           // console.log(imageRef.current);
+          // console.log(`imageRef.current: ${imageRef.current}`)
+          // const image = imageRef.current;
+          // Input_image = image;
+          const imageWidth = canvasRef.current.width;
+          const imageHeight = canvasRef.current.height;
+          imageRef.current.width = imageWidth;
+          imageRef.current.height = imageHeight;
+          
+          // console.log(`current width: ${imageWidth}`);
+          // console.log(`current height: ${imageHeight}`);    
+          // console.log(`Input Image: ${imageRef.current}`);
           const img = preprocess(imageRef.current);
+          // console.log(`img: ${img}`);
           // const img = preprocess(Input_image);
 
           // const img = imageRef.current;
@@ -128,7 +153,7 @@ function RealtimeFaceOutputContainer() {
             console.log("Wait a minute please...");
             const rvalue = result.predict(img);
             console.log("Just a moment!");
-            console.log(rvalue);
+            // console.log(rvalue);
             rvalue.data().then(function (data) {
               console.log(data);
               for (let i = 0; i < data.length; i++) {
@@ -140,7 +165,9 @@ function RealtimeFaceOutputContainer() {
               // 예측값(tensor)에서 최댓값과 인덱스 추출
               console.log(max);
               console.log("Your Face ID is ", max_id);
-              alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              // alert("당신의 얼굴형은 " + FaceType[max_id] + "입니다!");
+              ManageFile.setFaceType(FaceType[max_id]);
+              console.log(`this.faceType: ${ManageFile.faceType}`);
               return;
               // ManageFile.faceType = FaceType[max_id]
               // ManageFile.faceType = "ffff"
@@ -160,21 +187,14 @@ function RealtimeFaceOutputContainer() {
     var C = keypoints[10][0] - keypoints[152][0];
 
     if (count <= 5) {
-      if (A - B > 10 * ratio) {
-        console.log("turn Left");
-        count = 0;
-      } else if (A - B < -10 * ratio) {
-        console.log("turn Right");
-        count = 0;
-      } else if (Math.abs(C) > 10 * ratio) {
-        console.log("a");
-        count = 0;
-      } else {
-        console.log("good");
-        count++;
-      }
-    } else if (count == 6) {
+      if (A - B > 10 * ratio) { console.log("turn Left"); ManageFile.setIsFront(false); count = 0; }
+      else if (A - B < -10 * ratio) { console.log("turn Right"); ManageFile.setIsFront(false); count = 0; }
+      else if (Math.abs(C) > 10 * ratio) { console.log("a"); ManageFile.setIsFront(false); count = 0; }
+      else { console.log("good"); ManageFile.setIsFront(true); count++; }
+    }
+    else if (count == 6) {
       console.log("Send to model And go to result page"); // To do
+      clearInterval(intervalId);
 
       count++;
     }
@@ -190,9 +210,7 @@ function RealtimeFaceOutputContainer() {
       // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
-      // console.log(`Video: ${videoWidth}`);
       const videoHeight = webcamRef.current.video.videoHeight;
-      // console.log(`Video: ${videoHeight}`);
       // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
@@ -200,6 +218,10 @@ function RealtimeFaceOutputContainer() {
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
+      // Make Detections
+      // OLD MODEL
+      //       const face = await net.estimateFaces(video);
+      // NEW MODEL
       const face = await net.estimateFaces({ input: video });
 
       const ctx = canvasRef.current.getContext("2d");
@@ -213,25 +235,12 @@ function RealtimeFaceOutputContainer() {
 
   return (
     <>
-      {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      {/* {isFront} */}
-      {/* <FaceCheckContainer type={isFront} /> */}
-      {/* {ManageFile.ttt} */}
-      <div style={{ color: "white", cursor: "none" }}>
-        당신의
-        <p
-          fontWeight={"bold"}
-          style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}
-        >
-          얼굴형
-        </p>
+      {/* <div style={{ color: "white", cursor: "none"}}>
+        당신의 <p fontWeight={"bold"} style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}>얼굴형</p>
         을 확인해보세요.
-      </div>
-      <p>인식 중 . . .</p>
-      {/* {isFront === undefined? console.log("아직 아님") : isFront === false? <p>얼굴을 정면을 향해 맞춰주세요.</p>: <p>얼굴이 정면을 향해 있습니다.</p>)} */}
-      {/* {isWorking === undefined? <p></p> : <p>얼굴을 정면을 향해 맞춰주세요.</p>}
-       */}
-      {/* <p>{isFront === undefined ? null : "yes" }</p> */}
+      </div> */}
+      {/* <p>인식 중 . . .</p> */}
+      <FrontContainer />
       <ImageContainer>
         <Webcam
           ref={webcamRef}
@@ -269,11 +278,11 @@ function RealtimeFaceOutputContainer() {
               width: "90%",
               // width: "auto",
               height: "auto",
-              display: "none",
+              // display: "none",
             }}
             object-fit="contain"
-            width="640"
-            height="640"
+            // width="640"
+            // height="640"
           />
         }
       </ImageContainer>
