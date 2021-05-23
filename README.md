@@ -79,7 +79,7 @@ GitHub : https://github.com/choinara0
     - Tensorflow.js 사용
     - 얼굴 인식 및 윤곽 인식
       - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
-      - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용해 정면 인식
+      - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
     - 얼굴형 판단 모델
       - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
  
