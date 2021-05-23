@@ -6,20 +6,16 @@ class ManageFile {
   }
 
   @observable imageUrl = "";
-  @observable pageIndex = 7;
+  @observable pageIndex = 0;
   @observable fileName = "";
   @observable faceType = "";
   @observable genderButtonIndex = 0;
   @observable isFront = undefined;
-  @observable ttt = 2;
+  @observable isCapture = false;
 
-  @action increase = (t) => {
-    this.pageIndex = t;
-  };
-  @action decrease = () => {
-    this.ttt = 100;
-    console.log("HI");
-  };
+  @action setImageUrl = (url) => {
+    this.imageUrl = url;
+  }
 
   @action setFaceType = (t) => {
     this.faceType = t;
@@ -29,7 +25,12 @@ class ManageFile {
 
   @action setIsFront = (b) => {
     this.isFront = b;
-    console.log("Set Front!");
+    // console.log("Set Front!");
+  }
+
+  @action setIsCapture = (b) => {
+    this.isCapture = b;
+    console.log("isCapture!!!!!!");
   }
 }
 
