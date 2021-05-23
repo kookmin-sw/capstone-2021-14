@@ -11,9 +11,11 @@ import Footer from "Components/Footer";
 import NextButton from "../Components/NextButton";
 import PrevButton from "../Components/PrevButton";
 import HomeButton from "../Components/HomeButton";
+import ResultButton from "../Components/ResultButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
 import Fade from "react-reveal/Fade";
+import ResultContainer from "./Result";
 // import Reveal from "react-reveal/Reveal";
 
 // import * as cv from "opencv4nodejs";
@@ -213,19 +215,17 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex === 4 && <FaceOutputContainer />}
             {ManageFile.pageIndex === 5 && <EducationContainer />}
             {ManageFile.pageIndex === 6 && <RealtimeFaceOutputContainer />}
+            {ManageFile.pageIndex === 7 && <ResultContainer />}
           </Content>
           <ButtonContainer>
-          {ManageFile.pageIndex !== 0 &&
+            {ManageFile.pageIndex !== 0 &&
              ManageFile.pageIndex !== 4 &&
-             ManageFile.pageIndex !== 6 && <PrevButton />}
-            {ManageFile.pageIndex !== 1 &&
-              ManageFile.pageIndex !== 2 &&
-              ManageFile.pageIndex !== 4 &&
-              ManageFile.pageIndex !== 3 &&
-              ManageFile.pageIndex !== 5 &&
-              ManageFile.pageIndex !== 6 && <NextButton />}
+             ManageFile.pageIndex !== 6 &&
+             ManageFile.pageIndex !== 7 && <PrevButton />}
+            {ManageFile.pageIndex === 0 && <NextButton />}
             {(ManageFile.pageIndex === 4 ||
-             ManageFile.pageIndex === 6) && (<HomeButton />)}
+              ManageFile.pageIndex === 6) && (<ResultButton />)}
+            {ManageFile.pageIndex === 7 && <HomeButton />}
           </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
