@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import Container from "Components/Container";
+import pic from './faceSample.png';
 
 import { observer, inject } from "mobx-react";
 
@@ -59,7 +60,9 @@ class FileUploadContainer extends React.Component {
     return (
       <>
       {/* // <Container> */}
-        <Font30>파일을 업로드 해 주세요</Font30>
+        <Font20>얼굴 정면이 잘 보이는 사진을 업로드 해주세요.</Font20>
+        <Font20>예시</Font20>
+        <ExampleImg src={pic} />
 
         <FileSelect
           onClick={() => document.getElementById("FileInput").click()}
@@ -76,7 +79,7 @@ class FileUploadContainer extends React.Component {
           />
         </FileSelect>
         {this.state.previewURL && this.props.ManageFile.pageIndex != 4 && (
-          <img src={this.state.previewURL} style={{width: '480px', height: 'auto', marginTop: '15px', marginBottom: '15px'}} />
+          <UploadImg src={this.state.previewURL} />          
         )}
 
         {/* {ManageFile.imageFile && <img src={require('./'+ManageFile.imageFile.name)}/>} */}
@@ -88,6 +91,38 @@ class FileUploadContainer extends React.Component {
 }
 
 export default FileUploadContainer;
+
+const ExampleImg = styled.img`
+  @media screen and (min-width: 0px) and (max-width: 767.98px) {
+    width: 50%;
+  };
+  
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    width: 45%;
+  };
+  @media screen and (min-width: 1280px) {
+    width: 40%;
+  };
+  height: auto;
+  margin-top: 12px;
+  margin-bottom: 18px;
+`
+
+const UploadImg = styled.img`
+  @media screen and (min-width: 0px) and (max-width: 700px) {
+    width: 240px;
+  };
+  
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    width: 360px;
+  };
+  @media screen and (min-width: 1280px) {
+    width: 480px;
+  };
+  height: auto;
+  margin-top: 18px;
+  margin-bottom: 18px;
+`
 
 const FileSelect = styled.div`
   border: none;
@@ -117,18 +152,29 @@ const FileSelect = styled.div`
   > img {
     margin-left: 10px;
   }
+  margin-bottom: 12px;
 `;
 const Font16 = styled.div`
   color: white;
   font-size: 16px;
   font-weight: bold;
 `;
-const Font30 = styled.div`
+const Font20 = styled.div`
   color: white;
-  font-size: 30px;
+  ${'' /* font-size: 30px; */}
+  @media screen and (min-width: 0px) and (max-width: 767.98px) {
+    font-size: 1rem;
+  };
+  
+  @media screen and (min-width: 768px) and (max-width: 1279.98px) {
+    font-size: 1.3rem;
+  };
+  @media screen and (min-width: 1280px) {
+    font-size: 1.5rem;
+  };
   font-weight: bold;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  ${'' /* margin-top: 5px; */}
+  ${'' /* margin-bottom: 5px; */}
   cursor: default;
 `;
 const UploadButton = styled.button`

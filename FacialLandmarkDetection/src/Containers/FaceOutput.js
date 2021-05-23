@@ -110,7 +110,8 @@ function FaceOutputContainer() {
 
     // console.log(face);
     const ctx = canvasRef.current.getContext("2d");
-    ManageFile.faceType = drawMesh(face, ctx);
+    // ManageFile.faceType = drawMesh(face, ctx);
+    drawMesh(face, ctx);
 
     // drawDot(ctx);
   };
@@ -119,22 +120,6 @@ function FaceOutputContainer() {
 
   return (
     <>
-      {/* 당신의 얼굴형은 {ManageFile.faceType} 입니다! */}
-      <div style={{ color: "white", cursor: "none" }}>
-        당신의{" "}
-        <p
-          fontWeight={"bold"}
-          style={{ color: "blue", display: "inline-block", fontWeight: "bold" }}
-        >
-          얼굴형
-        </p>
-        을 확인해보세요.
-      </div>
-      {/* <p>{!isDetected ? '인식중...' : '인식 완료'}</p> */}
-      <p>인식중. . .</p>
-      <p fontWeight={"bold"} fontSize={15} style={{ cursor: "default" }}>
-        약 1분정도 소요됩니다.
-      </p>
       <FaceTypeContainer />
       <ImageContainer>
         <img

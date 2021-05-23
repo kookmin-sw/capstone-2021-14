@@ -4,28 +4,25 @@ import { observer, inject } from "mobx-react";
 
 @inject("ManageFile")
 @observer
-
-class HomeButton extends React.Component{
-	homeClick = () => {
-    this.props.ManageFile.imageUrl = "";
-		this.props.ManageFile.pageIndex = 0;
-		this.props.ManageFile.fileName = "";
-		this.props.ManageFile.faceType = "";
-		this.props.ManageFile.isFront = undefined;
-		this.props.ManageFile.genderButtonIndex = 0;
-		this.props.ManageFile.isCapture = false;
+class ResultButton extends React.Component{
+	resultClick = () => {
+    if(this.props.ManageFile.faceType === ""){
+      alert('잠시 기다려 주세요.');
+    } else {
+      this.props.ManageFile.pageIndex = 7;
+    }
   };
 	
 	render(){
 		return(
-			<Home onClick={this.homeClick}>
-				<Font20>HOME</Font20>
-			</Home>
+			<Result onClick={this.resultClick}>
+				<Font20>RESULT</Font20>
+			</Result>
 		);
 	};
 };
 
-export default HomeButton;
+export default ResultButton;
 
 const Font20 = styled.div`
 	color: white;
@@ -33,14 +30,14 @@ const Font20 = styled.div`
 	font-weight: bold;
 `
 
-const Home = styled.button`
+const Result = styled.button`
 	&:hover {
     cursor: pointer;
     border: solid 2px #0933b3;
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.3);
   }
 	color: white;
-	background-color: #87ceea;
+	background: #00cfbb;
 	width: 120px;
 	height: 40px;
 	box-shadow: 3px 4px 5px 0 rgba(0, 0, 0, 0.5);

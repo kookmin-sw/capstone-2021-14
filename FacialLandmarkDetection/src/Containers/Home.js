@@ -11,9 +11,11 @@ import Footer from "Components/Footer";
 import NextButton from "../Components/NextButton";
 import PrevButton from "../Components/PrevButton";
 import HomeButton from "../Components/HomeButton";
+import ResultButton from "../Components/ResultButton";
 import { observer, inject } from "mobx-react";
 import EducationContainer from "./Education";
 import Fade from "react-reveal/Fade";
+import ResultContainer from "./Result";
 // import Reveal from "react-reveal/Reveal";
 
 // import * as cv from "opencv4nodejs";
@@ -139,19 +141,18 @@ class HomeContainer extends React.Component {
                     <Fade left cascade>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <PicUploadButton onClick={this.picClick}>
-                          <ButtonFont15>사진 업로드</ButtonFont15>
+                          <ButtonFont15>사진 선택</ButtonFont15>
                         </PicUploadButton>
                       </div>
                     </Fade>
                     <Fade right cascade delay={1500}>
                       <Font20>
-                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
-                        있습니다.
+                        사진을 선택해 얼굴형을 분석합니다.
                       </Font20>
                     </Fade>
                   </ButtonItem>
 
-                  <ButtonItem>
+                  {/* <ButtonItem>
                     <Fade left cascade delay={500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.camClick}>
@@ -166,21 +167,20 @@ class HomeContainer extends React.Component {
                         있습니다.
                       </Font20>
                     </Fade>
-                  </ButtonItem>
+                  </ButtonItem> */}
 
                   <ButtonItem>
-                    <Fade left cascade delay={1000}>
+                    <Fade left cascade delay={500}>
                       <div style={{ display: "flex", alignItems: "center" }}>
                         <WebcamButton onClick={this.realTimeCamClick}>
-                          <ButtonFont15>실시간 웹캠</ButtonFont15>
+                          <ButtonFont15>웹캠/카메라</ButtonFont15>
                         </WebcamButton>
                       </div>
                     </Fade>
 
-                    <Fade right cascade delay={2500}>
+                    <Fade right cascade delay={2000}>
                       <Font20>
-                        웹캠이 준비되어 있지 않으시면 사진을 직접 업로드 할 수
-                        있습니다.
+                        준비된 웹캠/카메라로 얼굴형을 분석합니다.
                       </Font20>
                     </Fade>
                   </ButtonItem>
@@ -207,26 +207,23 @@ class HomeContainer extends React.Component {
             {ManageFile.pageIndex === 2 && (
               <FaceInputContainer inputType={"file"} />
             )}
-            {ManageFile.pageIndex === 3 && (
+            {/* {ManageFile.pageIndex === 3 && (
               <FaceInputContainer inputType={"cam"} />
-            )}
+            )} */}
             {ManageFile.pageIndex === 4 && <FaceOutputContainer />}
             {ManageFile.pageIndex === 5 && <EducationContainer />}
             {ManageFile.pageIndex === 6 && <RealtimeFaceOutputContainer />}
+            {ManageFile.pageIndex === 7 && <ResultContainer />}
           </Content>
           <ButtonContainer>
             {ManageFile.pageIndex !== 0 &&
-              ManageFile.pageIndex !== 4 &&
-              ManageFile.pageIndex !== 6 && <PrevButton />}
-            {ManageFile.pageIndex !== 1 &&
-              ManageFile.pageIndex !== 2 &&
-              ManageFile.pageIndex !== 4 &&
-              ManageFile.pageIndex !== 3 &&
-              ManageFile.pageIndex !== 5 &&
-              ManageFile.pageIndex !== 6 && <NextButton />}
-            {(ManageFile.pageIndex === 4 || ManageFile.pageIndex === 6) && (
-              <HomeButton />
-            )}
+             ManageFile.pageIndex !== 4 &&
+             ManageFile.pageIndex !== 6 &&
+             ManageFile.pageIndex !== 7 && <PrevButton />}
+            {ManageFile.pageIndex === 0 && <NextButton />}
+            {(ManageFile.pageIndex === 4 ||
+              ManageFile.pageIndex === 6) && (<ResultButton />)}
+            {ManageFile.pageIndex === 7 && <HomeButton />}
           </ButtonContainer>
           <Footer>
             <Font15>Robolink AI web app free trial</Font15>
