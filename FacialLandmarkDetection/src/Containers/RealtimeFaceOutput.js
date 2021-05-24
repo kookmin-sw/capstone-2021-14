@@ -217,9 +217,9 @@ function RealtimeFaceOutputContainer() {
     var C = keypoints[10][0] - keypoints[152][0];
     console.log(ManageFile.counter);
     if (ManageFile.counter <= 5) {
-      if (A - B > 10 * ratio) { console.log("turn Left"); ManageFile.setIsFront(false); ManageFile.increase(); }
-      else if (A - B < -10 * ratio) { console.log("turn Right"); ManageFile.setIsFront(false); ManageFile.increase(); }
-      else if (Math.abs(C) > 10 * ratio) { console.log("a"); ManageFile.setIsFront(false); ManageFile.increase(); }
+      if (A - B > 10 * ratio) { console.log("turn Left"); ManageFile.setIsFront(false); ManageFile.setZero(); }
+      else if (A - B < -10 * ratio) { console.log("turn Right"); ManageFile.setIsFront(false); ManageFile.setZero(); }
+      else if (Math.abs(C) > 10 * ratio) { console.log("a"); ManageFile.setIsFront(false); ManageFile.setZero(); }
       else { console.log("good"); ManageFile.setIsFront(true); ManageFile.increase(); }
     }
     else if (ManageFile.counter == 6) {
