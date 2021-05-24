@@ -151,7 +151,7 @@ function RealtimeFaceOutputContainer() {
           }
         }
         checkFace(keypoints);
-        if (count == 6) {
+        if (ManageFile.counter == 6) {
           capture();
           // setIsCapture(true);
 
@@ -215,30 +215,18 @@ function RealtimeFaceOutputContainer() {
     var A = keypoints[10][0] - keypoints[234][0];
     var B = keypoints[454][0] - keypoints[10][0];
     var C = keypoints[10][0] - keypoints[152][0];
-
-    if (count <= 5) {
-      if (A - B > 10 * ratio) {
-        console.log("turn Left");
-        ManageFile.setIsFront(false);
-        count = 0;
-      } else if (A - B < -10 * ratio) {
-        console.log("turn Right");
-        ManageFile.setIsFront(false);
-        count = 0;
-      } else if (Math.abs(C) > 10 * ratio) {
-        console.log("a");
-        ManageFile.setIsFront(false);
-        count = 0;
-      } else {
-        console.log("good");
-        ManageFile.setIsFront(true);
-        count++;
-      }
-    } else if (count == 6) {
+    console.log(ManageFile.counter);
+    if (ManageFile.counter <= 5) {
+      if (A - B > 10 * ratio) { console.log("turn Left"); ManageFile.setIsFront(false); ManageFile.increase(); }
+      else if (A - B < -10 * ratio) { console.log("turn Right"); ManageFile.setIsFront(false); ManageFile.increase(); }
+      else if (Math.abs(C) > 10 * ratio) { console.log("a"); ManageFile.setIsFront(false); ManageFile.increase(); }
+      else { console.log("good"); ManageFile.setIsFront(true); ManageFile.increase(); }
+    }
+    else if (ManageFile.counter == 6) {
       console.log("Send to model And go to result page"); // To do
       clearInterval(intervalId);
 
-      count++;
+      ManageFile.increase();
     }
   };
 
