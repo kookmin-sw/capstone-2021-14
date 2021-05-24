@@ -18,6 +18,10 @@ class ManageFile {
     this.counter++;
   }
 
+  @action setZero = () => {
+    this.counter = 0;
+  }
+
   @action setImageUrl = (url) => {
     this.imageUrl = url;
   }
