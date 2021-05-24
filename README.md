@@ -21,7 +21,7 @@
 ```markdown
 Student ID: 20163125
 Email : cane1226@gmail.com
-Role : 팀장, Project manager, Front-End 개발
+Role : Project manager, Front-End 개발
 GitHub : https://github.com/cane21
 ```
 
