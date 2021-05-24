@@ -80,8 +80,16 @@ GitHub : https://github.com/choinara0
     - 얼굴 인식 및 윤곽 인식
       - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
       - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
-    - 얼굴형 판단 모델
-      - FLD 모델의 Output을 데이터로 하여 Classification 모델 개발
+    - 얼굴형 판단 모델은 아래 3가지 모델 중 학습 결과가 가장 높은 성능의 모델을 선택했습니다.
+      - CNN 모델
+        - Image Classification에 최적화된 신경망 사용
+        - ImageNet에서 높은 성능의 모델 & 활용도가 높은 모델 조사
+      - 선택 모델
+        - VGGNET(VGG16) : 가장 많이 활용되는 모델로 멘토님의 조언으로 사용하게 됐습니다.
+        - MobileNet V2 : FLD 모델에서 사용한 Network로 모델의 크기가 작아서 높은 성능을 가집니다.
+        - Inception V3 : 얼굴형 판단 모델에 대한 논문에서 사용됩니다.
+      - 학습 진행
+        - Transfer Learning
  
   - Front-End
     - React
@@ -91,7 +99,6 @@ GitHub : https://github.com/choinara0
   - 데이터 라벨링
     - 데이터 수집
       - Kaggle, GitHub
-    - Dataframe 생성
-      - Pandas
     - 데이터 전처리
       - OpenCV
+        - OpenCV를 사용해 사람의 얼굴 부분을 인식하여 그 부분만 잘라서 학습 데이터를 만들었습니다.
