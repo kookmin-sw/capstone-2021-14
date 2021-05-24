@@ -28,6 +28,7 @@ let Input_image;
 const FaceType = ["둥근형", "계란형", "역삼각형", "각진형"];
 
 function preprocess(img) {
+  const data = new Uint8Array(img.data);
   //convert the image data to a tensor
   // console.log(`data: ${img.data}`);
   // img.width = imageWidth;
@@ -62,6 +63,7 @@ function RealtimeFaceOutputContainer() {
   const imageRef = useRef(null);
 
   const { ManageFile } = useStores();
+  // const imageRef = React.createRef();
 
   const capture = () => {
     console.log("Capture!!!!!!!!!!!!!!!!");
@@ -106,14 +108,29 @@ function RealtimeFaceOutputContainer() {
     // Input_image = image;
     // console.log(Input_image);
     console.log("init counter");
+    //detect(net);
     downcheck = false;
+    // counter = 0;
+    // pageIndex = ManageFile.pageIndex;
 
     intervalId = setInterval(() => {
+      // console.log("detect()");
+      // console.log("isFront: ", isFront);
       detect(net);
     }, 1000); // 1000ms로 고정
   };
 
   const drawMesh = (predictions, ctx) => {
+    // console.log("downcheck=" + downcheck);
+
+    //   counter++;
+
+    //   if (counter >= 5) {
+    //     console.log("CLEAR!!!!");
+    //     clearInterval(intervalId);
+    //     downcheck = true;
+    //   }
+
     if (predictions.length > 0) {
       predictions.forEach((prediction, result) => {
         const keypoints = prediction.scaledMesh;
@@ -248,7 +265,9 @@ function RealtimeFaceOutputContainer() {
       //       const face = await net.estimateFaces(video);
       // NEW MODEL
       const face = await net.estimateFaces({ input: video });
+      // console.log(face);
 
+      // Get canvas context
       const ctx = canvasRef.current.getContext("2d");
       requestAnimationFrame(() => {
         drawMesh(face, ctx);
