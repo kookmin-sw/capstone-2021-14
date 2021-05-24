@@ -563,12 +563,13 @@ function preprocess(img) {
   let tensor = tf.browser.fromPixels(img);
   //resize to 224 X 224
   // console.log("ASNKLCNASKLCNLKASNCLANCSKLNL");
-  const resized = tf.image.resizeBilinear(tensor, [224, 224]).toFloat();
+  console.log("tensor: ", tensor.dataSync());
   // Normalize the image
   const offset = tf.scalar(255.0);
-  const normalized = tf.scalar(1.0).sub(resized.div(offset));
+  const normalized = tensor.toFloat().div(offset);
+  const resized = tf.image.resizeBilinear(normalized, [224, 224]);
   //We add a dimension to get a batch shape
-  const batched = normalized.expandDims(0);
+  const batched = resized.expandDims(0);
   return batched;
 }
 
@@ -639,7 +640,7 @@ const drawMesh = (predictions, ctx) => {
         let max = 0;
         let max_id = 0;
         const model = tf.loadLayersModel(
-          "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
+          "https://seonjongyoo.github.io/ModelServer/inceptionv3/model.json"
         );
         console.log("Complete to load Model");
         const img = preprocess(Input_image);
