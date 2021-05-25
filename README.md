@@ -21,7 +21,7 @@
 ```markdown
 Student ID: 20163125
 Email : cane1226@gmail.com
-Role : 팀장, Project manager, Front-End 개발
+Role : Project manager, Front-End 개발
 GitHub : https://github.com/cane21
 ```
 
@@ -59,6 +59,8 @@ GitHub : https://github.com/choinara0
 ```
 
 ### 4. 사용법
+먼저 http://cha-y-s.github.io/HAI에 접속합니다.
+
 사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
 
 첫 번째는 "사진 업로드" 방식입니다. "사진 업로드" 버튼 클릭시 사용자는 "업로드" 버튼을 클릭하고 얼굴의 정면이 보이는 사진을 업로드 합니다. 
@@ -94,4 +96,4 @@ GitHub : https://github.com/choinara0
     - Dataframe 생성
       - Pandas
     - 데이터 전처리
-      - OpenCV
+      - OpenCV를 사용하여 사람 얼굴을 인식해 얼굴 부분만 추출하도록 전처리를 진행했습니다.
