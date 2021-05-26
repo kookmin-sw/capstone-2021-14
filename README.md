@@ -59,7 +59,7 @@ GitHub : https://github.com/choinara0
 ```
 
 ### 4. 사용법
-http://cha-y-s.github.io/HAI로 접속합니다.
+http://cha-y-s.github.io/HAI URL로 접속합니다.
 
 사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
 
