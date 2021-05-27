@@ -2,19 +2,32 @@
 
 **팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-14
 
-### 1. 프로젝트 소개
+# 1. 프로젝트 소개
+## 1-1 프로젝트 개요
+<img width="428" alt="스크린샷 2021-05-27 오후 8 19 47" src="https://user-images.githubusercontent.com/26623611/119817434-f120fc80-bf28-11eb-8d4d-dd00367602dd.png">
+
 #### 사용자의 얼굴형을 바탕으로 Hair Style을 추천하는 서비스
 
-최근에 다양한 헤어 스타일들이 생겨나면서 사람들은 다양한 헤어 스타일을 시도하려고 합니다. 하지만, 자신에게 어울리는 헤어 스타일을 찾기란 쉽지 않습니다. 조사에 따르면 얼굴형 별로 어울리는 헤어 스타일이 있다는 사실을 알았습니다.
+본 프로젝트 ‘HAI!’는 사용자의 얼굴을 인식하고, 직접 개발한 AI 모델을 통해 사용자의 얼굴형을 분석합니다. 최종적으로 AI 모델이 판단한 사용자의 얼굴형에 따라 어울리는 헤 어스타일을 추천해 주는 웹 서비스(Web service) 개발을 목표로 합니다.
 
-실제로 사람들은 직접 자신의 얼굴형에 맞는 헤어 스타일을 찾아 머리를 꾸미기도 하고 많은 헤어 디자이너들은 고객에게 헤어 스타일을 추천할 때, 고객의 얼굴형을 참고하여 헤어 스타일을 추천하기도 합니다. 그러나, 대부분의 사람들은 자신의 얼굴형에 대해 정확히 인지하지 못하고 있고, 전문가들도 얼굴형을 정확하게 판단하는데 어려움이 있습니다.
+프로젝트 이름인 ‘HAI!’는 ‘Hair’와 ‘AI’를 합성하여 만든 단어로서 본 프로젝트의 목표 인 ‘헤어스타일 추천하는 AI’의 의미를 담고 있습니다. 또한 프로젝트 이름인 ‘HAI’는 ‘Hi’와 비슷한 발음을 가집니다. 산학 기업인 ‘로보링크’에서 ‘AI를 체험할 수 있는 서비스’를 개발 하는 것을 요구했고, AI를 체험하기 위해 AI에게 인사를 하는 의미도 내포하고 있습니다.
 
-이와 같이 사람들의 고민과 여러 사실들을 바탕으로 저희 팀은 본 프로젝트를 기획하게 되었습니다. 
-본 프로젝트는 Web-Cam 캡처 또는 사진 업로드를 통해 사용자의 얼굴형을 판단하여 헤어 스타일을 추천해주는 AI기반 웹 서비스를 개발합니다.
+본 프로젝트는 성별에 따른 대중적인 헤어스타일을 추천하기 위해 사용자가 자신의 성 별을 선택을 하며 서비스가 시작됩니다. 사용자는 ‘사진 업로드 기능’과 ‘실시간 Web-Cam 을 이용한 자동 캡처 기능’ 중에 하나를 이용하여 자신의 얼굴 사진을 제공합니다. Web- Cam을 이용하는 경우, 사용자의 얼굴을 인식하여 사용자가 정면을 바라보도록 안내합니다. 사용자가 정면을 바라봤을 때 자동으로 캡처를 합니다. AI 모델을 통해 사용자의 얼굴형을 판단하고, 판단한 얼굴형을 사용자에게 제시합니다. 사용자의 성별과 얼굴형을 기준으로 사 용자에게 어울리는 헤어스타일을 추천합니다.
 
+## 1-2 프로젝트 추진 배경 및 필요성
+```
+현 시대에는 인간의 외적인 모습을 아름답게 디자인하는 분야인 패션(Fashion), 메 이크업(Make-up), 이미지 메이킹(Image making) 등 모든 분야에서 얼굴 유형의 특성 을 다루고 있다.
+특히 헤어 분야를 연구하여 발표된 여러 학문서적 에서는 각각의 얼 굴유형을 분석하고, 분석된 얼굴유형의 특성을 보완하는 방법까지 다방면으로 제시하 고 있다.
+
+(출처 : Tak, W.-W., & Kim, P.-J. (2015). 얼굴형에 따른 헤어스타일연구. The Korean Journal of Food & Health Convergence, 1(1), 1–20. https://doi.org/10.13106/KJFHC.2015.VOL1.NO1.1)
+```
+
+개성과 취향의 시대인 만큼 우리는 다양한 헤어스타일을 접하고 이를 시도하려고 합니다. 하지만 자신에게 어울리는 헤어스타일을 찾기란 쉽지 않습니다. 그렇다면 헤어 디자이너와 헤어 컨설턴트는 고객에게 어떤 기준으로 헤어스타일을 추천할까요? 여러 논문과 전문가들 의 의견을 조사한 결과, 헤어 디자이너와 헤어 컨설턴트는 고객의 얼굴형을 분석하고, 분석된 얼굴형의 특성을 보완하는 방법으로 헤어스타일을 추천합니다.
+그러나 대부분의 사람들은 자신의 얼굴형에 대해 정확히 인지하지 못하고, 얼굴형의 특성을 보완하는 헤어스타일이 무엇인지 모르는 경우도 있습니다. 또한 전문가들도 얼굴형을 육안으로 정 확하게 판단하는데 어려움이 있고, 분류하는 방법이 서로 다릅니다.
+이와 같은 사람들의 고민과 어려움을 해결하고자 본 프로젝트를 기획했습니다. 본 프로젝 트를 통해 사람들이 자신의 얼굴형을 정확하게 인지하고, 얼굴형을 보완하는 헤어스타일 을 시도할 수 있을 것입니다. 
 ### 2. 소개 영상
 
-추후에 추가
+[![HAI Introduction Video ](http://img.youtube.com/vi/h6WypzzalbA/0.jpg)](https://www.youtube.com/watch?v=h6WypzzalbA)
 
 ### 3. 팀 소개
 #### 오규석
@@ -29,7 +42,7 @@ GitHub : https://github.com/cane21
 ```markdown
 Student ID: 20163124
 Email : tjdals1668@kookmin.ac.kr
-Role : Object Detection, 데이터 라벨링
+Role : Object Detection, Data Labeling
 GitHub : https://github.com/ysmin709
 ```
 
@@ -37,7 +50,7 @@ GitHub : https://github.com/ysmin709
 ```markdown
 Student ID: 20163128
 Email : sjongyuuu@gmail.com
-Role : Object Detection, 모델 개발
+Role : Object Detection, AI Model Develop
 GitHub : https://github.com/SeonJongYoo
 ```
 
@@ -57,8 +70,11 @@ Email : chlskfkt6810@kookmin.ac.kr
 Role : Object Detection
 GitHub : https://github.com/choinara0
 ```
+### 4. 시스템 구조도
 
-### 4. 사용법
+<img width="875" alt="스크린샷 2021-05-27 오후 8 42 39" src="https://user-images.githubusercontent.com/26623611/119820284-43175180-bf2c-11eb-9fbf-1cbc3ccdc60d.png">
+
+### 5. 사용법
 http://cha-y-s.github.io/HAI URL로 접속합니다.
 
 사용자는 자신에게 어울리는 헤어 스타일을 추천 받기 위해서 사용자의 얼굴형을 판단할 수 있는 사진을 제공해야 합니다. 사진을 제공하는 두 가지 방식이 있습니다.
@@ -69,7 +85,7 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
 
 이후 사용자는 "결과 확인하기" 버튼을 클릭합니다. 그 결과 사용자의 얼굴형에 어울리는 헤어 스타일과 어울리지 않는 헤어 스타일을 추천받을 수 있습니다. 
 
-### 5. 협업 및 개발
+### 6. 협업 및 개발
 
 #### 협업
   - 버전 관리 : GitHub
@@ -82,14 +98,9 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
     - 얼굴 인식 및 윤곽 인식
       - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
       - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
-    - 얼굴형 판단 모델은 아래 3가지 모델 중 학습 결과가 가장 높은 성능의 모델을 선택했습니다.
-      - CNN 모델
-        - Image Classification에 최적화된 신경망 사용
-        - ImageNet에서 높은 성능의 모델 & 활용도가 높은 모델 조사
-      - 선택 모델
-        - VGGNET(VGG16) : 가장 많이 활용되는 모델로 멘토님의 조언으로 사용하게 됐습니다.
-        - MobileNet V2 : FLD 모델에서 사용한 Network로 모델의 크기가 작아서 높은 성능을 가집니다.
-        - Inception V3 : 얼굴형 판단 모델에 대한 논문에서 사용됩니다.
+    - 얼굴형 판단 모델
+      - Inception V3 : “Face shape classification using Inception V3”라는 논문에서 참고하여 사용
+       Inception V3는 높은 정확성을 장점으로 하는 이미지 인식 모델입니다. 위의 논문에서는 Inception V3와 CNN을 이용하지 않은 분류 모델의 성능 비교를 제시하면서 Inception V3의 높은 성능에 대해 이야기합니다. 이와 같은 근거를 통해 본 프로젝트에서 사용하기로 결정했습니다.
       - 학습 진행
         - Transfer Learning
  
@@ -100,7 +111,8 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
 
   - 데이터 라벨링
     - 데이터 수집
-      - Kaggle, GitHub
+      - Kaggle ( 출처 : https://www.kaggle.com/niten19/face-shape-dataset )
+      - GitHub ( 출처 : https://github.com/NVlabs/ffhq-dataset )
     - 데이터 전처리
       - OpenCV
         - OpenCV를 사용해 사람의 얼굴 부분을 인식하여 그 부분만 잘라서 학습 데이터를 만들었습니다.
