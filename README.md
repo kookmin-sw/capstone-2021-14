@@ -98,14 +98,9 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
     - 얼굴 인식 및 윤곽 인식
       - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
       - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
-    - 얼굴형 판단 모델은 아래 3가지 모델 중 학습 결과가 가장 높은 성능의 모델을 선택했습니다.
-      - CNN 모델
-        - Image Classification에 최적화된 신경망 사용
-        - ImageNet에서 높은 성능의 모델 & 활용도가 높은 모델 조사
-      - 선택 모델
-        - VGGNET(VGG16) : 가장 많이 활용되는 모델로 멘토님의 조언으로 사용하게 됐습니다.
-        - MobileNet V2 : FLD 모델에서 사용한 Network로 모델의 크기가 작아서 높은 성능을 가집니다.
-        - Inception V3 : 얼굴형 판단 모델에 대한 논문에서 사용됩니다.
+    - 얼굴형 판단 모델
+      - Inception V3 : “Face shape classification using Inception V3”라는 논문에서 참고하여 사용
+       Inception V3는 높은 정확성을 장점으로 하는 이미지 인식 모델입니다. 위의 논문에서는 Inception V3와 CNN을 이용하지 않은 분류 모델의 성능 비교를 제시하면서 Inception V3의 높은 성능에 대해 이야기합니다. 이와 같은 근거를 통해 본 프로젝트에서 사용하기로 결정했습니다.
       - 학습 진행
         - Transfer Learning
  
