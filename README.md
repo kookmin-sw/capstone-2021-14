@@ -1,6 +1,7 @@
-# H A I !
 
-**팀페이지 주소** -> https://kookmin-sw.github.io/capstone-2021-14
+##### Team Page-> https://kookmin-sw.github.io/capstone-2021-14
+##### HAI! Web Service -> http://cha-y-s.github.io/HAI
+
 
 # 1. 프로젝트 소개
 ## 1-1 프로젝트 개요
@@ -26,8 +27,10 @@
 그러나 대부분의 사람들은 자신의 얼굴형에 대해 정확히 인지하지 못하고, 얼굴형의 특성을 보완하는 헤어스타일이 무엇인지 모르는 경우도 있습니다. 또한 전문가들도 얼굴형을 육안으로 정 확하게 판단하는데 어려움이 있고, 분류하는 방법이 서로 다릅니다.
 이와 같은 사람들의 고민과 어려움을 해결하고자 본 프로젝트를 기획했습니다. 본 프로젝 트를 통해 사람들이 자신의 얼굴형을 정확하게 인지하고, 얼굴형을 보완하는 헤어스타일 을 시도할 수 있을 것입니다. 
 ### 2. 소개 영상
-
+##### 메인 소개 영상
 [![HAI Introduction Video ](http://img.youtube.com/vi/h6WypzzalbA/0.jpg)](https://www.youtube.com/watch?v=h6WypzzalbA)
+
+##### [중간 발표 영상](https://www.youtube.com/watch?v=uB3eTzhrVHs&list=PLE8WM9--xhgaQu5xDsO8Ol7snMT6AuxLV)
 
 ### 3. 팀 소개
 #### 오규석
