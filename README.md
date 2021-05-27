@@ -99,11 +99,9 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
   - Object Detection
     - Tensorflow.js 사용
     - 얼굴 인식 및 윤곽 인식
-      - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델) 사용
-      - Face-Landmark-Detection을 사용하여 출력되는 좌표를 이용한 정면 인식
+        - Tensorflow.js에서 제공하는 [Face-Landmarks-Detection](https://github.com/tensorflow/tfjs-models/tree/master/face-landmarks-detection) 모델(FLD 모델)
     - 얼굴형 판단 모델
-      - Inception V3 : “Face shape classification using Inception V3”라는 논문에서 참고하여 사용
-       Inception V3는 높은 정확성을 장점으로 하는 이미지 인식 모델입니다. 위의 논문에서는 Inception V3와 CNN을 이용하지 않은 분류 모델의 성능 비교를 제시하면서 Inception V3의 높은 성능에 대해 이야기합니다. 이와 같은 근거를 통해 본 프로젝트에서 사용하기로 결정했습니다.
+      - Inception V3
       - 학습 진행
         - Transfer Learning
  
