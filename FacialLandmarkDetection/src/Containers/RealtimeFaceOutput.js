@@ -139,14 +139,13 @@ function RealtimeFaceOutputContainer() {
         for (let i = 0; i < keypoints.length; i++) {
           // 먼저, index가 DOTS에 포함된 index인지 확인
           result = DOTS.includes(i);
+          const [x, y, z] = keypoints[i];
+          // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
+          ctx.beginPath();
+          ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
+          ctx.fillStyle = "SpringGreen";
+          ctx.fill();
           if (result) {
-            const [x, y, z] = keypoints[i];
-            // console.log(`Keypoint ${i}: [${x}, ${y}, ${z}]`);
-            ctx.beginPath();
-            ctx.arc(x, y, 1.7, 0, 3 * Math.PI);
-            ctx.fillStyle = "SpringGreen";
-            ctx.fill();
-
             finalData.push(keypoints[i]);
           }
         }
@@ -158,7 +157,7 @@ function RealtimeFaceOutputContainer() {
           let max = 0;
           let max_id = 0;
           const model = tf.loadLayersModel(
-            "https://seonjongyoo.github.io/ModelServer/model-v3/model.json"
+            "https://seonjongyoo.github.io/ModelServer/inceptionv3/model.json"
           );
           console.log("Complete to load Model");
           // console.log(imageRef.current);
