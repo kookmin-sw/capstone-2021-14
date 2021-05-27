@@ -116,4 +116,4 @@ http://cha-y-s.github.io/HAI URL로 접속합니다.
       - GitHub ( 출처 : https://github.com/NVlabs/ffhq-dataset )
     - 데이터 전처리
       - OpenCV
-        - OpenCV를 사용해 사람의 얼굴 부분을 인식하여 그 부분만 잘라서 학습 데이터를 만들었습니다.
+        - OpenCV를 사용해 사람의 얼굴 부분을 추출하는 전처리를  학습 데이터를 만들었습니다.
